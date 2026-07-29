@@ -1,0 +1,87 @@
+PORTAL SUBMISSION PACK — structured-data paper
+Venue: Data Mining and Knowledge Discovery (Springer, Editorial Manager / Snapp)
+Everything below is copy-paste ready. Radio-button answers are marked [SELECT].
+
+=====================================================================
+1. TITLE
+=====================================================================
+Group- and Time-Split Coverage in Tabular Models Fails to Certify, but Uncertainty Abstention Robustly Repairs Selective Risk: A Preregistered Audit with Held-Out Confirmatory Replication
+
+=====================================================================
+2. KEYWORDS
+=====================================================================
+Selective prediction; Conformal prediction; Distribution shift; Tabular foundation models; Reliability evaluation; Reproducibility
+
+=====================================================================
+3. ABSTRACT
+=====================================================================
+Uncertainty-ranked abstention beats random deferral on 13 of 14 public OpenML datasets with a defensible entity/time key, across four open, token-free configurations in three architecture families — XGBoost, LightGBM, and the tabular foundation models TabICLv2 and TabDPT — surviving Holm–Bonferroni for the gradient-boosted models and with bootstrap CIs excluding zero for the foundation models; a preregistered, held-out confirmatory replication on TableShift (9 credential-free tasks, 6 evaluable; frozen endpoint rule, K=20 split-repeats) confirms without exception that this free uncertainty score ties-or-beats a tuned learned selector (H2 CONFIRM). Beating random deferral is a low bar; the substantive findings are that the advantage holds under grouped and temporal shift, that no tabular foundation model auto-repairs it, and that the free score matches a tuned one at no extra cost — though both sit far below an oracle ceiling (median repair ratio 0.339 free vs. 0.338 tuned vs. 0.745 oracle). The repair does not restore coverage: deployment shifts are usually grouped, and moving from random to leave-group-out or rolling-origin splits leaves split-conformal coverage below its 0.90 nominal target (median worst-group coverage ≈0.81 exploratory, 0.797 confirmatory), with no tested distribution-free remedy restoring it at the majority level on either roster (H1 REJECT). We recommend plain split-conformal plus uncertainty abstention for grouped tabular shift, scoped strictly to selective reliability rather than a coverage guarantee; our own preregistered gate for certifying a directional coverage collapse was underpowered and knife-edge, evaluated to KILL, and we accordingly report that degradation as a direction rather than a robust count.
+
+=====================================================================
+4. COVER LETTER
+=====================================================================
+Dear Editors,
+
+We submit our manuscript, "Group- and Time-Split Coverage in Tabular Models Fails to Certify, but Uncertainty Abstention Robustly Repairs Selective Risk: A Preregistered Audit with Held-Out Confirmatory Replication," for consideration in Data Mining and Knowledge Discovery.
+
+Tabular models are routinely validated with random splits, but deployment shifts are usually grouped — a new entity, region, or time period. Across 14 public OpenML datasets carrying an entity or time key, and a preregistered, held-out confirmatory replication on TableShift, the paper shows two things. First, moving to leave-group-out or rolling-origin splits leaves split-conformal coverage below its nominal target, and no tested distribution-free remedy restores it at the majority level. Second, the repairable part is selective risk: uncertainty-ranked abstention beats random deferral on 13 of 14 datasets, model-agnostically across gradient-boosted models and tabular foundation models, surviving multiplicity correction and confirmed without exception on the held-out tasks. The resulting prescription is deliberately minimal — plain split-conformal plus uncertainty abstention, scoped to selective reliability rather than a coverage guarantee.
+
+As a benchmark-and-audit study with a preregistered confirmatory arm and honestly reported negative results, we believe the paper sits squarely in DMKD's tradition of rigorous evaluation and benchmark contributions. The manuscript states its preregistration outcomes plainly, including which counts are confirmatory and which are exploratory.
+
+This manuscript is original work and is not under consideration elsewhere.
+
+Thank you for your consideration.
+
+Sincerely,
+
+Zeyu Fu
+ORCID: 0009-0001-8329-0108
+e-mail: fuzeyu09@gmail.com
+State Key Laboratory of Trauma and Chemical Poisoning, Institute of Combined Injury,
+Army Medical University, Chongqing, China
+
+=====================================================================
+5. DECLARATIONS (DMKD form, in page order)
+=====================================================================
+-- Publishing policy:
+[SELECT] "I have read and understood the publishing model policy, and I am submitting according to this policy."
+(Route note for you, not the portal: choose the SUBSCRIPTION publishing route at acceptance — no APC.)
+
+-- Competing interests:
+[SELECT] "No, I declare that the authors have no competing interests as defined by Springer, or other interests that might be perceived to influence the results and/or discussion reported in this paper."
+
+-- Dual publication:
+[SELECT] "No, the results/data/figures in this manuscript have not been published elsewhere, nor are they under consideration (from you or one of your Contributing Authors) by another publisher."
+
+-- Authorship:
+[SELECT/CHECK] "I confirm the corresponding author has read the journal policies and submit this manuscript in accordance with those policies."
+
+-- Third party material:
+[SELECT] "No, all of the material is owned by the authors and/or no permissions are required."
+
+-- Data availability:
+[SELECT] "Yes. I used or generated research data in this study."
+Statement box:
+All datasets analyzed in this study are public: the OpenML dataset suite and the TableShift/Folktables (ACS) benchmark tasks, each cited in the manuscript. Code, configuration, and the frozen result artifacts sufficient to reproduce every reported number and figure are available at https://github.com/PeterPonyu/structured-data-fm-reliability-research and are archived at https://doi.org/10.5281/zenodo.21130297; the archive is publicly released upon acceptance.
+
+-- Acknowledgements:
+(leave blank)
+
+-- Research funding:
+[SELECT] "No, this research did not receive funding."
+
+-- Author Contributions Statement:
+Z.F. conceived and designed the study, performed all experiments and analyses, prepared all figures and tables, and wrote and reviewed the manuscript.
+
+=====================================================================
+6. SUGGESTED REVIEWERS (portal field; supply names yourself)
+=====================================================================
+Expertise areas to pick three from: (a) conformal prediction / selective classification; (b) tabular machine learning (gradient boosting, tabular foundation models); (c) distribution shift / reliability under group or temporal shift. Avoid recent co-authors and shared-institution conflicts.
+
+=====================================================================
+7. CORRESPONDING AUTHOR
+=====================================================================
+Zeyu Fu
+ORCID: 0009-0001-8329-0108
+e-mail: fuzeyu09@gmail.com
+State Key Laboratory of Trauma and Chemical Poisoning, Institute of Combined Injury, Army Medical University, Chongqing, China

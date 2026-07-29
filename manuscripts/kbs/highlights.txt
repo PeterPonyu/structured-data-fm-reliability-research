@@ -1,0 +1,8 @@
+Highlights -- Knowledge-Based Systems submission
+(3-5 bullet points; each <= 85 characters including spaces, per Elsevier policy)
+
+- Grouped/temporal splits degrade tabular reliability; random splits overstate it.
+- Uncertainty abstention beats random deferral across XGBoost, LightGBM, and two FMs.
+- Free uncertainty score matches a tuned selector on held-out generalization test.
+- No distribution-free conformal remedy restores group-conditional coverage robustly.
+- Protocol: keyed split comparison, coverage test, uncertainty abstention fallback.

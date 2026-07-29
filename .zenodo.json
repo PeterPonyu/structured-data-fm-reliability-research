@@ -1,0 +1,24 @@
+{
+  "title": "structured-data-fm-reliability-research: Random-split validation overstates tabular-model reliability — a split-conditioned selective-prediction audit",
+  "description": "Code, experiment pipelines, and result JSONs for a split-conditioned reliability audit of tabular models. On 14 public OpenML datasets with defensible entity/time keys, moving from random splits to leave-group-out / rolling-origin splits collapses risk-coverage (AURC) and split-conformal coverage (e.g. electricity 0.91 to 0.59, Airlines 0.90 to 0.22), and uncertainty-ranked abstention repairs most of the degradation (Holm-robust on 13/14 datasets). The effect is model-agnostic across XGBoost, LightGBM, and an open-weights tabular foundation model (TabICLv2), which does not auto-repair the gap; a Mondrian group-conditional conformal add-on is a pre-registered null. The finding replicates on a Folktables/ACS spatial-OOD suite where it surfaces as a race-subgroup conformal coverage gap. The archive contains the OpenML group-key census scripts, Stage-1/Stage-2 audit pipelines, the TabICLv2 FM arm, the ACS arm, result JSONs with bootstrap CIs, R figure scripts, and the LaTeX manuscript; analysis uses the relmetrics package from the reliability-commons kit. Contribution is a reliability-evaluation-protocol/benchmark study, not a new estimator.",
+  "upload_type": "software",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Fu, Zeyu"
+    }
+  ],
+  "keywords": [
+    "machine learning reliability",
+    "selective prediction",
+    "conformal prediction",
+    "uncertainty quantification",
+    "tabular data",
+    "distribution shift",
+    "tabular foundation models",
+    "benchmark evaluation protocol"
+  ],
+  "version": "0.1.0",
+  "access_right": "open",
+  "prereserve_doi": true
+}

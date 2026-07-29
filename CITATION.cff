@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software or the audit protocol, please cite it as below."
+title: "structured-data-fm-reliability-research: split-conditioned selective-prediction reliability audit for tabular models"
+type: software
+version: 0.1.0
+date-released: "2026-07-02"
+doi: "10.5281/zenodo.21130297"
+authors:
+  - family-names: "Fu"
+    given-names: "Zeyu"
+    email: "fuzeyu09@gmail.com"
+license: MIT
+abstract: >-
+  Reliability-evaluation protocol and benchmark audit showing that random-split
+  validation overstates tabular-model reliability: on 14 keyed OpenML datasets,
+  leave-group-out / rolling-origin splits collapse risk-coverage (AURC) and
+  split-conformal coverage; uncertainty-ranked abstention repairs most of it
+  (13/14 datasets, Holm-robust) across XGBoost, LightGBM, and the TabICLv2
+  tabular foundation model, and a Mondrian group-conditional conformal add-on
+  is a pre-registered null. Code only; datasets are fetched on demand and carry
+  their own licenses (see DATA_MANIFEST.md).
+keywords:
+  - tabular machine learning
+  - selective prediction
+  - conformal prediction
+  - distribution shift
+  - reliability evaluation
+  - foundation models

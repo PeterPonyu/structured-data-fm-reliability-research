@@ -1,0 +1,40 @@
+# Pinned from the environment that produced all tracked results
+# (conda env "dl", Python 3.13.7, Linux; versions read live on 2026-07-02).
+# Install:  pip install -r requirements.txt
+# NOTE: `relmetrics` (multiplicity correction + provenance stamping) is a local
+# sibling package, NOT on PyPI. Install it with:
+#   pip install -e ../reliability-commons
+# or point the RELIABILITY_COMMONS env var at a checkout of that directory
+# (the scripts fall back to a sys.path insert).
+
+# --- core (Stage-1/Stage-2 audits, calibration-size diagnostic, census) ---
+numpy==2.3.4
+pandas==2.3.3
+scipy==1.16.2
+scikit-learn==1.6.1
+openml==0.15.1
+xgboost==3.2.0
+lightgbm==4.6.0
+
+# --- ACS / TableShift-class arm (experiments/p4_tableshift.py) ---
+folktables==0.0.12
+
+# --- tabular foundation-model arms (experiments/nd1_tabicl_fm_arm*.py,
+#     nd1_tabdpt_fm_arm.py, nd1_fm_scaling_arm.py; GPU) ---
+tabicl==2.1.1
+# torch was 2.12.1+cu130 in the producing env; the +cu130 build comes from the
+# PyTorch CUDA index, plain `torch==2.12.1` (any build) suffices for CPU use.
+torch==2.12.1
+# TabDPT: second FM-roster member added 2026-07-09 (EXPANSION-PLAN §2.2
+# deliverable 2), Layer6/TabDPT checkpoint via Hugging Face, no license gate.
+tabdpt==1.2.0
+
+# --- TabPFN-2.5 arm (experiments/nd1_tabpfn25_arm.py; GPU, GATED on
+#     TABPFN_TOKEN -- audit body implemented 2026-07-09 but the script
+#     refuses to run without a token; see NEXT-EXPERIMENTS.md item 5) ---
+tabpfn==8.0.8
+
+# --- ND2 time-series spike only (experiments/nd2_mini_spike.py; BLOCKED run,
+#     kept for the blocked-run record — needs TABPFN_TOKEN, do not rerun) ---
+tabpfn-time-series==1.2.0
+gluonts==0.16.2

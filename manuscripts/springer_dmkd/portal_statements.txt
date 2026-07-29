@@ -1,0 +1,11 @@
+== Author Contributions Statement ==
+Z.F. conceived and designed the study, performed all experiments and analyses, prepared all figures and tables, and wrote and reviewed the manuscript.
+
+== Funding ==
+The author received no funding for this work.
+
+== Competing Interests ==
+The author has no competing interests to declare.
+
+== Data Availability ==
+All datasets analyzed in this study are public (OpenML and the TableShift/Folktables benchmark suites, cited in the manuscript). Code and frozen result artifacts are available at https://github.com/PeterPonyu/structured-data-fm-reliability-research and archived at https://doi.org/10.5281/zenodo.21130297 (deposit publicly released upon acceptance).

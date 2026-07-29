@@ -1,0 +1,8 @@
+Highlights -- Information Sciences submission
+(3-5 bullet points; each <= 85 characters including spaces, per Elsevier policy)
+
+- Random-to-grouped tabular splits collapse risk-coverage and conformal coverage.
+- Uncertainty abstention beats random deferral on 13/14 datasets, model-agnostically.
+- Repair holds for XGBoost, LightGBM and two tabular foundation models.
+- No tested distribution-free conformal remedy restores group-conditional coverage.
+- Prescription: plain split-conformal plus uncertainty abstention for grouped shift.
