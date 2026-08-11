@@ -14,7 +14,7 @@
 # Override SHARED_BIB if reliability-commons lives elsewhere:
 #   make paper SHARED_BIB=/path/to/reliability-commons/shared.bib
 
-SHARED_BIB ?= /home/zeyufu/Desktop/ml-reliability-research/reliability-commons/shared.bib
+SHARED_BIB ?= ${COMMONS_ROOT}/shared.bib
 R_SCRIPTS  := figures/p4_figs.R figures/p5_tableshift.R
 
 .PHONY: all figures fig0 bib paper clean

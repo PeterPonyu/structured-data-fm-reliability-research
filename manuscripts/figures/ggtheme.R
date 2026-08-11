@@ -1,6 +1,6 @@
 # Reusable professional ggplot2 theme + helpers for the reliability-portfolio manuscripts.
 # Usage in a figure script:
-#   source("/home/zeyufu/Desktop/Orchestration-files/manuscript-template/ggtheme.R")
+#   source("${ORCHESTRATION_FILES}/manuscript-template/ggtheme.R")
 #   d <- read_result("/path/to/result.json")          # jsonlite
 #   p <- ggplot(...) + theme_paper()
 #   save_fig(p, "figures/F1_name", w = 6.5, h = 4)     # writes 300-dpi PNG + PDF
