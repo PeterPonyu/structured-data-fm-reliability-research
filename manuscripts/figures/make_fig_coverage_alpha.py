@@ -55,15 +55,15 @@ def _portal_repo_root():
     return here
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE / ".." / ".." / ".." / "reliability-commons" / "tools" / "inspect-gate" / "figures_2026-07-19"))
+sys.path.insert(0, str(_portal_commons_root() / "tools" / "inspect-gate" / "figures_2026-07-19"))
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-DATA = _portal_repo_root()
-OUT = _portal_repo_root()
+DATA = _portal_repo_root() / "alpha_sweep_2026-07-20" / "results.json"
+OUT = _portal_repo_root() / "manuscripts" / "figures" / "F8_coverage_alpha.pdf"
 
 
 def main():
