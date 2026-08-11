@@ -27,16 +27,43 @@ import json
 import sys
 from pathlib import Path
 
+
+def _portal_commons_root():
+    import os
+    from pathlib import Path
+    for key in ("COMMONS_ROOT", "RELIABILITY_COMMONS"):
+        v = os.environ.get(key)
+        if v:
+            p = Path(v).expanduser().resolve()
+            if p.is_dir():
+                return p
+    here = Path(__file__).resolve()
+    for parent in [here.parent, *here.parents]:
+        for cand in (parent / "reliability-commons", parent.parent / "reliability-commons"):
+            if cand.is_dir():
+                return cand
+    raise RuntimeError(
+        "Set COMMONS_ROOT to the reliability-commons checkout (or place it as a sibling of this repo)."
+    )
+
+def _portal_repo_root():
+    from pathlib import Path
+    here = Path(__file__).resolve().parent
+    for p in [here, *here.parents]:
+        if (p / ".git").exists() or (p / "pyproject.toml").exists() or (p / "README.md").exists():
+            return p
+    return here
+
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE / ".." / ".." / ".." / "reliability-commons" / "tools" / "inspect-gate" / "figures_2026-07-19"))
+sys.path.insert(0, str(_portal_commons_root() / "tools" / "inspect-gate" / "figures_2026-07-19"))
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-DATA = Path("/home/zeyufu/Desktop/ml-reliability-research/structured-data-fm-reliability-research/alpha_sweep_2026-07-20/results.json")
-OUT = Path("/home/zeyufu/Desktop/ml-reliability-research/structured-data-fm-reliability-research/manuscripts/figures/F8_coverage_alpha.pdf")
+DATA = _portal_repo_root() / "alpha_sweep_2026-07-20" / "results.json"
+OUT = _portal_repo_root() / "manuscripts" / "figures" / "F8_coverage_alpha.pdf"
 
 
 def main():

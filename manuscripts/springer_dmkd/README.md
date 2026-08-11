@@ -33,7 +33,7 @@ Figures are read from `../figures/` via `\graphicspath`.
 
 | File | Source |
 |---|---|
-| `sn-jnl.cls` | Springer Nature LaTeX template, copied from a prior local Springer submission at `/home/zeyufu/Desktop/labs/_previous/PanODE-LAB/article/sn-template/sn-jnl.cls` (official Springer template dir, incl. `user-manual.pdf`). The same class serves DMKD and Machine Learning. |
+| `sn-jnl.cls` | Springer Nature LaTeX template, copied from a prior local Springer submission at `${LABS_ROOT}/_previous/PanODE-LAB/article/sn-template/sn-jnl.cls` (official Springer template dir, incl. `user-manual.pdf`). The same class serves DMKD and Machine Learning. |
 | `sn-mathphys-num.bst` | Same template's `bst/` dir — Math & Physical Sciences **numbered** reference style. |
 | `refs.bib`, `shared.bib` | Copied from `../` (identical to the canonical paper's bibliography). |
 

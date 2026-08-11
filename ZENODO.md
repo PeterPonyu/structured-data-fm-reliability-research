@@ -15,8 +15,8 @@ DOI-reserved copy of HEAD for the paper's Data & Code Availability statement.
 2. Rehearse without network first:
 
    ```bash
-   python3 /home/zeyufu/Desktop/ml-reliability-research/reliability-commons/zenodo/zenodo_deposit.py \
-       --repo /home/zeyufu/Desktop/ml-reliability-research/structured-data-fm-reliability-research \
+   python3 ${COMMONS_ROOT}/zenodo/zenodo_deposit.py \
+       --repo ${REPO_ROOT} \
        --dry-run
    ```
 

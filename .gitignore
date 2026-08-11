@@ -1,0 +1,8 @@
+.omx/
+.omc/
+.cursor/
+.superpowers/
+.playwright-mcp/
+.env
+.env.*
+!.env.example
