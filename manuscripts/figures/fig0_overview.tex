@@ -10,6 +10,8 @@
 % 2026-08-12: GEO/RotCert visual bar -- left accent + role wash, full arrow
 % shafts, role colors (blue random / yellow grouped / green restore /
 % vermillion fail), higher body fill.
+% 2026-08-12: slight type scale-up (roles/subtitles/quarantine first;
+% titles a smaller bump). Card geometry unchanged.
 \documentclass[border=0.5pt]{standalone}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -33,7 +35,7 @@
 \begin{document}
 \begin{tikzpicture}[
   x=1mm, y=1mm,
-  font=\rmfamily\fontsize{8.0}{9.2}\selectfont,
+  font=\rmfamily\fontsize{8.2}{9.4}\selectfont,
   line cap=round, line join=round,
   >=Latex,
   flow/.style={draw=cMute, line width=1.25pt,
@@ -44,11 +46,11 @@
     inner sep=0pt, outer sep=0pt, align=center},
   pair/.style={stage, minimum width=59.5mm, minimum height=15.4mm},
   verdict/.style={stage, minimum width=59.5mm, minimum height=14.8mm},
-  steplab/.style={font=\rmfamily\fontsize{6.3}{7.1}\selectfont, text=cMute},
-  rolelab/.style={font=\rmfamily\fontsize{5.9}{6.6}\selectfont\bfseries},
-  titlelab/.style={font=\rmfamily\fontsize{8.35}{9.5}\selectfont, text=cInk},
-  sublab/.style={font=\rmfamily\fontsize{6.85}{7.8}\selectfont, text=cMute},
-  bandlab/.style={font=\rmfamily\fontsize{7.45}{8.6}\selectfont, text=cInk},
+  steplab/.style={font=\rmfamily\fontsize{6.75}{7.6}\selectfont, text=cMute},
+  rolelab/.style={font=\rmfamily\fontsize{6.7}{7.5}\selectfont\bfseries},
+  titlelab/.style={font=\rmfamily\fontsize{8.7}{9.9}\selectfont, text=cInk},
+  sublab/.style={font=\rmfamily\fontsize{7.5}{8.5}\selectfont, text=cMute},
+  bandlab/.style={font=\rmfamily\fontsize{8.1}{9.3}\selectfont, text=cInk},
 ]
 
 \newcommand{\accentbar}[2]{%
