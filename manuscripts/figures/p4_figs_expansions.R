@@ -315,6 +315,9 @@ pD3 <- make_cov_panel(gbm_cov_gb, "Tuned GBM")
 # Fully free A so its log–log axes are not aligned to B's dataset names.
 # Dedicated 4-key legend (not collect). Do not `& theme(plot.tag=...)` or the
 # legend row inherits a spurious E tag.
+# Height is independent of H_F12: B/C/D carry 14 dataset names. Do not cap
+# at 6.20 in (F1/F2 textheight) — that recrowds the y-ticks. Native 8.00 in
+# fills the column; the float may sit on its own page.
 f3_tag <- theme(
   plot.tag = element_text(family = PAPER_FONT, face = "bold",
                           size = 11, colour = "black"),
@@ -326,7 +329,7 @@ f3 <- (free(pA3 + labs(tag = "A") + f3_tag) | (pB3 + labs(tag = "B") + f3_tag)) 
               axes = "keep", axis_titles = "keep") &
   theme(plot.margin = margin(t = 10, r = 8, b = 2, l = 10))
 if (want_fig("F3"))
-  save_fig(f3, file.path(SDIR, "F3_model_agnostic"), w = W_F12, h = 6.20)
+  save_fig(f3, file.path(SDIR, "F3_model_agnostic"), w = W_F12, h = 8.00)
 cat("F3: scatter n=", nrow(w), " cov4_ki=", nrow(cov4_ki), " cov4_ke=", nrow(cov4_ke),
     " gbmb=", nrow(gbm_cov_gb),
     " models_C=", paste(sort(unique(as.character(cov4_ke$model))), collapse = ","),
