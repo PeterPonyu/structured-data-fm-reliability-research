@@ -315,9 +315,15 @@ pD3 <- make_cov_panel(gbm_cov_gb, "Tuned GBM")
 # Fully free A so its log–log axes are not aligned to B's dataset names.
 # Dedicated 4-key legend (not collect). Do not `& theme(plot.tag=...)` or the
 # legend row inherits a spurious E tag.
-# Height is independent of H_F12: B/C/D carry 14 dataset names. Do not cap
-# at 6.20 in (F1/F2 textheight) — that recrowds the y-ticks. Native 8.00 in
-# fills the column; the float may sit on its own page.
+# Height is independent of H_F12: B/C/D carry 14 dataset names. Width is
+# the page-filling canvas (not W_F12): KBS preprint \linewidth is 390 pt
+# (5.42 in) and DMKD sn-jnl is 372 pt (5.17 in). Native 7.20 in makes
+# includegraphics[width=\linewidth] width-binding at both venues.
+# Height 6.30 in is the KBS 12pt-review page budget (8.00 in overflowed
+# the float+caption by ~95 pt). Do not clamp height=...keepaspectratio
+# (that shrinks a tall canvas and leaves side gaps).
+F3_W <- 7.20
+F3_H <- 6.30
 f3_tag <- theme(
   plot.tag = element_text(family = PAPER_FONT, face = "bold",
                           size = 11, colour = "black"),
@@ -327,13 +333,13 @@ f3 <- (free(pA3 + labs(tag = "A") + f3_tag) | (pB3 + labs(tag = "B") + f3_tag)) 
   (model_legend() + labs(tag = NULL) + theme(plot.tag = element_blank())) +
   plot_layout(heights = c(1, 1, 0.14),
               axes = "keep", axis_titles = "keep") &
-  theme(plot.margin = margin(t = 10, r = 8, b = 2, l = 10))
+  theme(plot.margin = margin(t = 10, r = 10, b = 2, l = 12))
 if (want_fig("F3"))
-  save_fig(f3, file.path(SDIR, "F3_model_agnostic"), w = W_F12, h = 8.00)
+  save_fig(f3, file.path(SDIR, "F3_model_agnostic"), w = F3_W, h = F3_H)
 cat("F3: scatter n=", nrow(w), " cov4_ki=", nrow(cov4_ki), " cov4_ke=", nrow(cov4_ke),
     " gbmb=", nrow(gbm_cov_gb),
     " models_C=", paste(sort(unique(as.character(cov4_ke$model))), collapse = ","),
-    "\n")
+    " canvas=", F3_W, "x", F3_H, "in\n")
 if (P4_ONLY %in% c("F3")) {
   cat("P4_ONLY=F3: stopping before F4-F6\n")
   quit(save = "no")
