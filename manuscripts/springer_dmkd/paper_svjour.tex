@@ -1,8 +1,5 @@
-%% Springer Data Mining and Knowledge Discovery (DMKD) submission port of ../paper.tex (CANONICAL).
-%% (Retargeted from Machine Learning per the frozen venue rule PREREG-REMEDY-EVAL-2026-07-13.md:76-81:
-%%  G1=FAIL -> DMKD as benchmark+audit. Same Springer Nature sn-jnl class; only the venue framing changes.)
-%% Do NOT edit content here for science changes -- paper.tex is canonical;
-%% this file is the venue-format rendering only. See README.md for provenance.
+%% Springer Data Mining and Knowledge Discovery (DMKD) venue-format rendering.
+%% Same Springer Nature sn-jnl class; only the venue framing differs from the KBS port.
 %% Class: Springer Nature sn-jnl, Math & Physical Sciences NUMBERED reference style.
 \documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
 \usepackage{bookmark}% silences hyperref bookmark-level warnings (outline only)
@@ -13,7 +10,11 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{amsmath,amssymb}
+\usepackage{placeins}
 \usepackage{cleveref}
+% sn-jnl defines \burl only in non-pdflatex mode (breakurl). Under pdflatex
+% the command is undefined; provide it so URL fields with underscores break.
+\providecommand{\burl}[1]{\url{#1}}
 
 \graphicspath{{../figures/}{figures/}{./}}
 
@@ -63,6 +64,12 @@ The split that governs reliability at inference is a grouped or temporal split, 
 If random-split validation systematically overstates reliability under such shifts, then published performance
 figures are misleading and practitioners are blind to actual deployment risk---yet this gap is
 rarely closed with controlled experiments on standard benchmarks.
+Dataset shift is a classical problem~\citep{quinonerocandela2009datasetshift}; tabular benchmarks now
+curate real grouped and temporal shifts and score predictive performance~\citep{gardner2023tableshift,whyshift2023,wildtab2023},
+while split conformal supplies a finite-sample coverage guarantee only under exchangeability~\citep{vovk2005algorithmic,angelopoulos2023conformal}.
+What remains missing is a split-conditioned \emph{reliability} audit: does that guarantee, and the associated
+risk--coverage curve~\citep{elyaniv2010selective,geifman2017selective}, survive the deployment split, and if not,
+does a free uncertainty score repair selective risk?
 
 We ask three empirical questions about the primary phenomenon, plus one negative-control question about
 a candidate remedy. (i) Do grouped/temporal splits cause a measurable reliability
@@ -75,7 +82,7 @@ explanation as a control rather than a co-equal finding. (We use the uncertainty
 group-keyed taxonomy provably degenerates to split conformal under leave-group-out, where the grouping key
 is absent from calibration.)
 Uncertainty-ranked abstention is an instance of selective classification
-\citep{geifman2017selective}---the learning-theoretic descendant of the classical reject option, from
+\citep{elyaniv2010selective,geifman2017selective}---the learning-theoretic descendant of the classical reject option, from
 \citet{chow1970reject}'s error--reject tradeoff through statistically grounded classification with a
 reject option \citep{herbei2006reject} to margin-based learning with rejection
 \citep{cortes2016rejection}---and selective mechanisms are known to interact non-trivially with
@@ -88,7 +95,7 @@ keys~\citep{vanschoren2014openml},
 using two open gradient-boosted models (XGBoost~\citep{chen2016xgboost}, LightGBM~\citep{ke2017lightgbm}) and two
 open-weights tabular foundation models (TabICLv2~\citep{qu2026tabicl}, TabDPT~\citep{ma2024tabdpt}), all token-free.
 
-Two results are the ones we hold ourselves to a preregistered, held-out standard for, and both hold. First,
+Two results are held to a preregistered, held-out standard, and both hold. First,
 uncertainty-ranked abstention beats random deferral on $13$ of $14$ datasets for each of four open,
 token-free configurations spanning three architecture families---two gradient-boosted models (XGBoost,
 LightGBM), which behave near-identically, plus two distinct tabular-FM
@@ -116,7 +123,7 @@ throughout.
 The degradation these two confirmed results are read against is real in direction---grouped splits degrade
 risk--coverage across all four configurations and push split-conformal coverage below the $0.90$ nominal
 target on the temporal splits, including two tabular FMs that do not auto-correct the gap---but its
-dataset-count is not itself a robust, preregistered claim, and we say so plainly rather than let the
+dataset-count is not itself a robust, preregistered claim, rather than let the
 positive results above imply otherwise: our conjunctive Stage-2 gate on that count evaluated to KILL, the
 confirmatory/exploratory partition we draw throughout is accordingly a \emph{post-hoc reinterpretation}
 adopted after that failure, and \cref{sec:limitations} gives the full rigor check---why the gap count is
@@ -135,7 +142,7 @@ headline---but do not condition on split protocol (random vs.\ grouped/temporal)
 or test an abstention repair. The BeyondArena benchmark~\citep{beyondiid2026} evaluates tabular FMs across
 IID/temporal/grouped splits on $142$ datasets and finds FMs lead only on small IID data, but reports
 accuracy/ranking only---no calibration, conformal coverage, or selective prediction.
-\citet{tabpfn_openenv2025} show TabPFN~v2 degrades under distribution shift, and \citet{helli2024driftresilient}
+\citet{tabpfn_openenv2025} show that TabPFN~v2~\citep{hollmann2025tabpfn} degrades under distribution shift, and \citet{helli2024driftresilient}
 propose SCM priors to improve its temporal-shift calibration---the ``FM auto-repairs shift'' counter-hypothesis
 that our grouped-split arms refute. Two further 2026 entries study TabPFN uncertainty through
 decomposition~\citep{tabpfn_uncdecomp2026} and proper scoring rules~\citep{distreg_tfm2026}, but neither
@@ -173,77 +180,144 @@ imbalanced tables where calibration data are scarcest \citep{schultz2024convgen}
 uncertainty quantification in deep models \citep{abdar2021review,gawlikowski2023survey} situate
 selective reliability within this broader reliability agenda. Against this
 backdrop, our contribution is a single, precisely scoped one, and we state its defense against a
-near-tautological reading up front rather than leave it implicit: we package the
+near-tautological reading explicitly: we package the
 split-type~$\times$~reliability~$\times$~selective-abstention object with preregistered nulls and evaluate it
 across gradient-boosted models and two tabular foundation models, showing that one uncertainty-abstention
 recipe substantially improves selective reliability model-agnostically. Beating random deferral alone would be
-nearly definitional---any weakly informative score clears that bar---so the load-bearing claims are that the
+nearly definitional---any weakly informative score clears that bar---so the primary claims are that the
 advantage holds under grouped and temporal shift, that no tabular foundation model auto-repairs it, and that
 the free score matches a budget-matched tuned selector at no extra cost, on both the exploratory suite and a
-preregistered held-out confirmatory replication (\cref{sec:results}), while we honestly scope which counts are
+preregistered held-out confirmatory replication (\cref{sec:results}), while we scope which counts are
 realization-robust. We do not claim the four configurations are four independent confirmations---the two GBMs
 are strongly correlated (\cref{sec:results}), so they count as one architecture family plus two FM
 architectures. Methodologically, this is an empirical reliability/reproducibility study: we root-cause a
-cross-run irreproducibility to a shared-RNG advancement order (\cref{sec:limitations}) and replace single-split
+cross-run irreproducibility to a shared random-number stream (\cref{sec:limitations}) and replace single-split
 counts with repeated-draw percentile CIs, treating that discipline as a first-class result rather than an
 appendix. The conformal machinery we audit is standard split
 conformal~\citep{vovk2005algorithmic,angelopoulos2023conformal}; abstention is selective
-classification~\citep{geifman2017selective}, which interacts with subgroup structure~\citep{jones2021selective}.
+classification~\citep{elyaniv2010selective,geifman2017selective}, which interacts with subgroup structure~\citep{jones2021selective}.
+\Cref{sec:discussion} returns to questions (i)--(iv) and to the preregistered pair H1/H2, using the same
+tables and figures rather than a new story.
 \Cref{fig:overview} summarizes the audit design used throughout: the frozen predictor and split-conformal
 wrapper are held fixed while only the split protocol and the coverage remedy vary, with the exploratory
 remedy audit quarantined from the confirmatory TableShift arm.
-\begin{figure}[t]\centering\includegraphics[width=0.95\linewidth]{fig0_overview.pdf}
-\caption{Overview of the reliability-collapse audit design: a keyed tabular dataset (entity or time key)
-is split randomly or by group/time (leave-group-out or rolling-origin); a frozen predictor (GBM or tabular FM,
-interchangeable) is wrapped in split-conformal prediction; a remedy ladder (weighted CP, Mondrian variants,
-tuned selector) is evaluated by worst-group coverage, yielding one of two verdicts: Restore (coverage returns
-to the $0.90$ target, rare) or Fail (coverage remains below target, typical). The remedy audit is exploratory
-($K{=}10$ split-repeats), quarantined from the confirmatory $K{=}20$ TableShift arm (no data
-overlap).}\label{fig:overview}\end{figure}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{fig0_overview.pdf}
+\caption{Overview of the reliability-collapse audit design.
+A keyed tabular dataset (entity or time key) is split on a blue random protocol or a yellow
+grouped/time protocol (leave-group-out or rolling-origin). A frozen predictor (GBM or tabular FM,
+interchangeable) is wrapped in split-conformal prediction. A remedy ladder (weighted CP, Mondrian
+variants, tuned selector) is evaluated by worst-group coverage, yielding Restore (green; coverage
+returns to the $0.90$ target, rare) or Fail (vermillion; coverage remains below target, typical).
+The remedy audit is exploratory ($K{=}10$ split-repeats), held out from the confirmatory $K{=}20$
+TableShift arm (no data overlap).}
+\label{fig:overview}
+\end{figure}
 
 \section{Data \& Methods}\label{sec:methods}
-\paragraph{Data.} 14 OpenML datasets with a defensible entity key (e.g.\ \texttt{adult}/native-country,
-\texttt{nyc-taxi-green}/location, \texttt{sf-police-incidents}/district) or time key (e.g.\ \texttt{electricity},
-\texttt{Airlines\_DepDelay\_10M}); selected by a 3-pass census (name $\to$ true-cardinality $\to$ hand-vetted)
-using the OpenML API~\citep{vanschoren2014openml}.
+\paragraph{Data.} 14 OpenML datasets with a defensible entity key (e.g.\ Adult/native-country,
+NYC taxi/location, SF police/district) or time key (e.g.\ Electricity,
+Airline delays); selected by a 3-pass census (name $\to$ true-cardinality $\to$ hand-vetted)
+from the public OpenML catalog~\citep{vanschoren2014openml}.
 This suite is deliberately keyed by construction rather than broad: the object of the audit is the
 reliability gap under a defensible deployment shift, which requires each dataset to carry a genuine
 entity/time key along which a leave-group-out / rolling-origin split is a real distributional change---most
 tabular benchmark datasets have none, and an arbitrary-column split is not a shift, so breadth and
 key-defensibility trade off directly. The 3-pass census reduced $145$ candidates to $23$ by name, $20$ by true cardinality, and
-$14$ hand-vetted with a reviewer-defensible key (frozen in a triage record); breadth is supplied
+$14$ hand-vetted with a reviewer-defensible key (frozen after manual review); breadth is supplied
 % source: experiments/results/census_final_triage.json
 separately by the $30$-dataset arbitrary-key extension (\cref{sec:results}), kept out of the headline for
 exactly that reason.
 \paragraph{Models.} XGBoost~\citep{chen2016xgboost} and LightGBM~\citep{ke2017lightgbm} with quantile-interval uncertainty
-(regression) / $1-\max p$ (classification), evaluated both at default hyperparameters and under a
+(regression, whose conformalized form is the basis of conformalized quantile regression~\citep{romano2019cqr}) / $1-\max p$ (classification), evaluated both at default hyperparameters and under a
 leakage-safe $12$-trial randomized hyperparameter search (tuned only on the random-split training fold; the
 grouped test and calibration folds are never seen during tuning).
 \paragraph{Foundation-model arms.} On all 14 keyed datasets we additionally run two open-weights, token-free
-tabular foundation models: TabICLv2~\citep{qu2026tabicl} (\texttt{tabicl} package, \texttt{n\_estimators=16},
-GPU) and TabDPT~\citep{ma2024tabdpt} (\texttt{tabdpt} package, $8$ ensemble members, GPU), each under the same
+tabular foundation models: TabICLv2~\citep{qu2026tabicl} (ensemble of $16$,
+GPU) and TabDPT~\citep{ma2024tabdpt} ($8$ ensemble members, GPU), each under the same
 split-conformal + abstention protocol; the same uncertainty score ($1-\max p$ for classification; quantile
 width for regression) drives the abstention ranking. The TabICLv2 arm is run with the group key excluded and
-included (a leakage ablation) and against a de-staled Stage-1 GBM reference; a supplementary in-context scaling
+included (a leakage ablation) and against an RNG-reconciled Stage-1 GBM reference; a supplementary in-context scaling
 sweep (ensemble size $\in\{1,4,8,16\}\times$ context length $\in\{200,500,1000,2000\}$ on four datasets) and a
 % source: experiments/results/nd1_fm_scaling_arm.json, nd1_tabicl_fm_arm_leakage_ablation.json
 $30$-dataset breadth extension (the 14 keyed datasets plus 16 additional OpenML datasets grouped on an
 arbitrary categorical feature) are reported in \cref{sec:results} as robustness checks, not as the headline.
-\paragraph{Protocol.} For each dataset and model we compute risk--coverage / AURC and split-conformal coverage
+\paragraph{Protocol.} For each dataset and model we compute the risk--coverage curve and its area (AURC), together with split-conformal coverage
 ($\alpha=0.10$; target $0.90$) under a RANDOM split vs.\ a GROUPED (leave-group-out) / rolling-origin split,
-with $400$-bootstrap CIs~\citep{vovk2005algorithmic,angelopoulos2023conformal}. We then test an
-uncertainty-taxonomy Mondrian~\citep{vovk2003mondrian} conformal predictor---one conformal quantile per
-decile of the model's calibration uncertainty---against plain split-conformal. We use this
-confidence-conditional taxonomy rather than a group-keyed one because, under leave-group-out, the grouping key
+with $400$-bootstrap CIs~\citep{vovk2005algorithmic,angelopoulos2023conformal}.
+Write $u(x)$ for the model-native uncertainty that ranks abstention and, via the associated nonconformity $s(x,y)$, builds the conformal set:
+$u(x)=1-\max_y\hat p_y(x)$ for classification and the predicted quantile-interval width for regression~\citep{romano2019cqr,guo2017calibration}.
+Let $n$ be the calibration-fold size, $s_i=s(X_i,Y_i)$ the $i$-th calibration nonconformity, and $n_{\mathrm{te}}$ the test-fold size.
+Split conformal uses the finite-sample calibration quantile of the held-out scores $\{s_i\}_{i=1}^{n}$,
+\begin{equation}
+\label{eq:fs-quantile}
+\hat q
+=\mathrm{Quantile}\Bigl(\{s_i\}_{i=1}^{n},\;
+\tfrac{\lceil(n{+}1)(1{-}\alpha)\rceil}{n}\Bigr),
+\end{equation}
+\begin{equation}
+\label{eq:split-cp}
+\hat C(x)=\bigl\{y:s(x,y)\le\hat q\bigr\}.
+\end{equation}
+Let $G$ be the grouping (or time) key and $g$ a group. Write $\mathrm{cov}_g$ for the empirical coverage on test points with $G=g$, and $\mathrm{cov}_{\mathrm{best}}=\max_g\mathrm{cov}_g$.
+Realized marginal coverage, worst-group coverage, and the nonnegative best--worst group gap are
+\begin{equation}
+\label{eq:coverage}
+\begin{aligned}
+\mathrm{cov}
+&=\frac{1}{n_{\mathrm{te}}}\sum_{j=1}^{n_{\mathrm{te}}}\mathbf{1}\bigl\{Y_j\in\hat C(X_j)\bigr\},\\
+\mathrm{cov}_{\mathrm{worst}}
+&=\min_g\mathrm{cov}_g,
+\qquad
+\Delta_{\mathrm{grp}}
+=\mathrm{cov}_{\mathrm{best}}-\mathrm{cov}_{\mathrm{worst}}.
+\end{aligned}
+\end{equation}
+with nominal level $1-\alpha=0.90$; the undercover flag used in tables is $\mathrm{cov}<0.88$ (a $0.02$ slack).
+An uncertainty-taxonomy Mondrian~\citep{vovk2003mondrian} predictor replaces the single quantile by one quantile $\hat q_b$ per decile $b$ of calibration uncertainty,
+\begin{equation}
+\label{eq:mondrian}
+\hat C_{\mathrm{Mondrian}}(x)=\bigl\{y:s(x,y)\le\hat q_{b(x)}\bigr\}.
+\end{equation}
+We use this confidence-conditional taxonomy rather than a group-keyed one because, under leave-group-out, the grouping key
 is absent from the calibration fold, so a group-keyed Mondrian provably degenerates to split conformal (we
 verified $0/28$ deviation empirically). We then run a calibration-size diagnostic relating per-stratum
-calibration fold size to the uncertainty-taxonomy Mondrian's coverage improvement. To characterize how sensitive the headline
+calibration fold size to the Mondrian coverage improvement $\mathrm{cov}_{\mathrm{Mondrian}}-\mathrm{cov}$.
+To characterize how sensitive the headline
 counts are to the particular split realization, we additionally repeat the GBM audit over $K{=}20$--$30$
 independent grouped/rolling-origin split draws and report percentile CIs on the grouped-gap and repair counts
 % source: experiments/results/split_repeats/aggregate-split-repeats-2026-07-02.json
-(predeclared before the runs). Figures are generated from the result records.
+(predeclared before the runs). 
+\paragraph{Selective risk, AURC, and the repair ratio.}
+Ranking test points by increasing $u(x)$ and retaining the most confident fraction $c$ yields the risk--coverage curve $R(c)$ (mean loss on the retained set), the standard selective-classification summary~\citep{elyaniv2010selective,geifman2017selective}. The empirical AURC is the right-endpoint Riemann sum
+\begin{equation}
+\label{eq:aurc}
+\mathrm{AURC}
+=\sum_{k=1}^{n_{\mathrm{te}}}(c_k-c_{k-1})\,R(c_k),
+\qquad c_0=0,
+\end{equation}
+with $c_k$ the retained fraction after $k$ acceptances (lower is better). Uniformly random deferral has constant selective risk equal to the pooled mean loss $\bar\ell$, hence $\mathrm{AURC}_{\mathrm{rand}}=\bar\ell$ in closed form. The repair ratio reported in Results is the fraction of that random-deferral AURC removed by uncertainty ranking,
+\begin{equation}
+\label{eq:repair-ratio}
+\rho
+=\frac{\mathrm{AURC}_{\mathrm{rand}}-\mathrm{AURC}_{u}}{\mathrm{AURC}_{\mathrm{rand}}},
+\end{equation}
+so $\rho>0$ means abstention beats random deferral and $\rho=0$ is a tie.
+Weighted / covariate-shift conformal~\citep{tibshirani2019covariate} replaces \eqref{eq:fs-quantile} by the likelihood-ratio-weighted quantile
+\begin{equation}
+\label{eq:weighted-cp}
+\hat q_w(x)
+=\inf\Bigl\{t:
+\sum_{i=1}^{n}\tilde w_i(x)\,\mathbf{1}\{s_i\le t\}+\tilde w_{n+1}(x)\ge 1-\alpha\Bigr\},
+\end{equation}
+with $\tilde w_i(x)=w(X_i)/(\sum_{j=1}^{n}w(X_j)+w(x))$ and $w(x)$ an estimate of the inter-group density ratio $dP_{\mathrm{test}}/dP_{\mathrm{cal}}$; inferred-group Mondrian uses \eqref{eq:mondrian} with $b(x)$ a covariate-space cluster (the split key dropped). Neither construction restores a coverage guarantee without extra assumptions, which is the content of the H1 audit.
 \paragraph{Validity of the guarantee.} Split-conformal coverage
-$\Pr\!\big(Y_{n+1}\in\hat C(X_{n+1})\big)\ge 1-\alpha$ holds under a single assumption: the calibration points
+\begin{equation}
+\label{eq:cp-guarantee}
+\Pr\!\big(Y_{n+1}\in\hat C(X_{n+1})\big)\ge 1-\alpha
+\end{equation}
+holds under a single assumption: the calibration points
 and the test point are \emph{exchangeable}~\citep{vovk2005algorithmic,lei2018distribution}. A random split
 satisfies this; a leave-group-out / rolling-origin split does not---the calibration fold is drawn from the
 training groups and the test point from disjoint held-out groups, so the two obey different group-conditional
@@ -255,23 +329,43 @@ does not supply. The observed collapse (\cref{sec:results}) is therefore the pre
 applying an exchangeability-dependent procedure across a group boundary that breaks exchangeability; the
 uncertainty-ranked abstention repair makes no exchangeability claim and restores low conditional risk on
 the retained set without it.
+\paragraph{Restoration bar and preregistered H1--H2.}
+A remedy $r$ is said to restore coverage on a task $t$ at split-repeat $k$ only under the conjunctive bar used throughout the remedy audit: $\mathrm{cov}_{\mathrm{worst}}\ge 0.87$, a bootstrap CI on the reduction in $\Delta_{\mathrm{grp}}$ versus split conformal that excludes zero, and no set-size blow-up. Write $\mathrm{Restore}(r,t,k)=1$ if that bar is met. Let $\mathcal T$ be the evaluable held-out TableShift tasks under the frozen endpoint rule of \cref{sec:results}, $K{=}20$ the confirmatory split-repeats, and $m_{\mathcal T}=\lfloor|\mathcal T|/2\rfloor+1$ the majority threshold. The two hypotheses frozen before any confirmatory number were
+\begin{equation}
+\label{eq:h1}
+\mathrm{H1}:\quad
+\min_{k\le K}\bigl|\bigl\{t\in\mathcal T:\exists r,\;\mathrm{Restore}(r,t,k)=1\bigr\}\bigr|\ge m_{\mathcal T}
+\end{equation}
+(any tested remedy restores group-conditional coverage on a majority of evaluable tasks, at the minimum across $K$; this is the operational tally used in \cref{sec:results}), and
+\begin{equation}
+\label{eq:h2}
+\mathrm{H2}:\quad
+\min_{k\le K}\bigl|\bigl\{t\in\mathcal T:\rho_{u}(t,k)\ge\rho_{\mathrm{tuned}}(t,k)\bigr\}\bigr|\ge m_{\mathcal T}
+\end{equation}
+(the free uncertainty score ties or beats a budget-matched $12$-trial-tuned learned selector on a majority of evaluable tasks, robustly across $K$). H1/H2 are decided only on the held-out TableShift roster; the 14 keyed OpenML datasets that generated the hypotheses remain exploratory for this pair.
 \paragraph{Reproducibility note.} All XGBoost/LightGBM numbers in \cref{sec:results} are read from two
 % source: nd1_split_conditioned_audit.json (Stage-1, XGBoost-only); nd1_s2_lightgbm_mondrian.json (Stage-2, combined two-model)
 reconciled runs---a Stage-1 XGBoost-only audit and a Stage-2 combined two-model audit---regenerated under a
 per-context deterministic RNG discipline (an independent random-number stream seeded per dataset
 $\times$ purpose $\times$ model for splits, calibration carve-outs, and bootstraps; see \cref{sec:limitations} for
 the divergence this fixed). Under this discipline the two runs' XGBoost arms produce identical
-per-dataset statistics (verified field-by-field on all 14 datasets), both GBM arms share identical
+per-dataset statistics (verified on all 14 datasets), both GBM arms share identical
 splits and calibration folds, and reruns are deterministic. Result records carry provenance stamps
-(git SHA, seeds, package versions). Per-dataset one-sided bootstrap $p$-values are corrected across the
-14 datasets with Holm--Bonferroni (FWER) and Benjamini--Hochberg (FDR) at $\alpha=0.05$, using our
-reliability-analysis toolkit's multiplicity-correction utilities.
+(code version, seeds, package versions). Per-dataset one-sided bootstrap $p$-values are corrected across the
+14 datasets with Holm--Bonferroni (FWER) and Benjamini--Hochberg (FDR) at $\alpha=0.05$.
+Here $m$ is the number of tests in the family (the 14 datasets), not the test-fold size $n_{\mathrm{te}}$ of \eqref{eq:coverage}:
+ordering $p_{(1)}\le\cdots\le p_{(m)}$, Holm rejects while
+\begin{equation}
+\label{eq:holm}
+p_{(i)}\le\frac{\alpha}{m-i+1},
+\end{equation}
+and BH uses the step-up threshold $i\alpha/m$.
 
 \section{Results}\label{sec:results}
 We flag each result as \emph{confirmatory} (it meets a preregistered per-arm bar) or exploratory/
 descriptive (a statistic we report without asserting it as a robust claim). The abstention repair meets its
 preregistered per-arm bar robustly throughout, including on the held-out TableShift replication below (H2
-CONFIRM), and is confirmatory in every sense we use the word; the grouped-gap count---the only preregistered
+CONFIRM), and is confirmatory; the grouped-gap count---the only preregistered
 bar on the degradation side---is underpowered and is accordingly reported as a descriptive distribution
 rather than a confirmatory count. \Cref{sec:limitations} gives the dedicated rigor check behind that
 labeling choice: our conjunctive Stage-2 gate on the gap count evaluated to KILL under the reconciled
@@ -281,27 +375,28 @@ therefore the split-realization robustness analysis itself, not the gate verdict
 as a distribution over split draws and read the collapse direction as a descriptive observation, not a
 separately preregistered bar.
 \paragraph{Grouped splits collapse reliability (descriptive); abstention substantially improves it (repair: per-arm confirmatory).}
-Moving random$\to$grouped degrades AURC suite-wide (e.g.\ \texttt{electricity} AURC $0.031\to0.224$; base error
+Moving random$\to$grouped degrades AURC suite-wide (e.g.\ Electricity AURC $0.031\to0.224$; base error
 % source: experiments/results/nd1_split_conditioned_audit.json (electricity record; n_aurc_degrade_ci_excl0=7)
 $0.117\to0.366$), while split-conformal under-coverage is concentrated on temporal splits ($4/6$ temporal
-model$\times$dataset pairs undercover---\texttt{electricity}, \texttt{Airlines\_DepDelay\_10M}---vs.\ $4/22$
+model$\times$dataset pairs undercover---Electricity, Airline delays---vs.\ $4/22$
 % source: experiments/results/nd1_s2_lightgbm_mondrian.json (grouped_undercovers_split by kind)
 grouped pairs), so the suite-wide collapse signal is the AURC one. Uncertainty-ranked abstention beats random
-deferral on $13$ of $14$ datasets (Fig.~\ref{fig:f1}, \ref{fig:f2}); descriptively, it cuts integrated
-selective risk by a median of $33\%$ (XGBoost) / $34\%$ (LightGBM) relative to random deferral---a substantial
+deferral on $13$ of $14$ datasets (\cref{fig:f2}); grouped splits raise AURC on the same suite (\cref{fig:f1}). Descriptively, it cuts integrated
+selective risk by a median of $33\%$ (XGBoost) / $34\%$ (LightGBM) relative to random deferral (the repair ratio $\rho$ of \eqref{eq:repair-ratio})---a substantial
 % source: experiments/results/nd1_s2_lightgbm_mondrian.json (median repair_ratio_grouped: xgb 0.329, lgbm 0.342)
 improvement, though (lacking persisted risk--coverage curves at matched coverage) we do not quantify what
-fraction of the random$\to$grouped gap this closes. \begin{figure}[t]\centering\includegraphics[width=0.78\linewidth]{F1_aurc_random_vs_grouped.pdf}
+fraction of the random$\to$grouped gap this closes. \begin{figure}[t]\centering\includegraphics[width=\linewidth]{F1_aurc_random_vs_grouped.pdf}
 \caption{Per-dataset risk--coverage AURC under random vs.\ grouped/time split, shown as paired points on a
-log-scaled AURC axis (per-dataset AURC spans several orders of magnitude across classification and regression
-tasks, so a shared linear axis renders most datasets illegible): grouped splits degrade
-reliability.}\label{fig:f1}\end{figure}
-\begin{figure}[t]\centering\includegraphics[width=0.60\linewidth]{F2_repair_ratio.pdf}
+log-scaled AURC axis (classification and regression AURC span several orders of magnitude).
+\textbf{A}~GBMs with the group key included; \textbf{B}~TabICLv2; \textbf{C}~TabDPT;
+\textbf{D}~tuned GBM baseline. Grouped/time points sit to the right of random on most datasets
+(higher AURC, worse selective risk).}\label{fig:f1}\end{figure}
+\begin{figure}[t]\centering\includegraphics[width=\linewidth]{F2_repair_ratio.pdf}
 \caption{Uncertainty-ranked abstention beats random deferral under the grouped split. Each point is one
-dataset's repair ratio for one GBM (XGBoost, LightGBM) --- the share of the random-deferral selective-risk
-AURC that abstention removes --- with datasets ordered by ratio; points right of the dashed zero line
-improve on random deferral, and only a single model--dataset pair (Moneyball, XGBoost) falls at or below
-zero.}\label{fig:f2}\end{figure}
+dataset's repair ratio---the share of the random-deferral selective-risk AURC that abstention
+removes---with datasets ordered by ratio; points right of the dashed zero line improve on random
+deferral. \textbf{A}~GBMs, key included; \textbf{B}~TabICLv2 and TabDPT; \textbf{C}~GBMs, key
+excluded; \textbf{D}~TabICLv2, key excluded.}\label{fig:f2}\end{figure}
 \paragraph{Model-agnostic across GBMs, with the repair robust and the count fragile.}
 On a single reconciled split the grouped reliability gap excludes zero on $8/14$
 (XGBoost) and $7/14$ (LightGBM) datasets with the group key retained as a feature, or on the more conservative,
@@ -309,16 +404,15 @@ On a single reconciled split the grouped reliability gap excludes zero on $8/14$
 less-confounded key-excluded design---which we argue in \cref{sec:limitations} is the less
 inflation-prone of the two---on only $6/14$ and $5/14$, both below the preregistered majority threshold
 of $8$; repair-beats-random holds $13/14$ for both GBMs in both key conditions
-(Fig.~\ref{fig:f3}A). We report both key conditions side by side here rather than headlining the higher
+(\cref{fig:f2}). We report both key conditions side by side here rather than headlining the higher
 (key-included) count, and note that under the less-confounded design the gap-count component is a
-minority result---which only reinforces our thesis that the gap count is not the load-bearing claim.
+minority result---which only reinforces that the gap count is not the primary claim.
 But that single-draw
 count is an \emph{exploratory/descriptive} statistic, not the finding: over $K{=}20$--$30$ independent grouped
 split draws the grouped-gap count is a
 distribution with median $9/14$ and $95\%$ percentile interval $[6,12]$ (XGBoost, key-included; LightGBM
 median $9$, interval $[5,11]$),\footnote{Percentile-CI bounds are reported rounded to integer dataset counts
-(e.g.\ the XGBoost lower bound $6.7$ is shown as $6$); exact fractional bounds are in the split-repeats
-aggregate record.} whose lower tail sits below the majority threshold---the gap count is
+(e.g.\ the XGBoost lower bound $6.7$ is shown as $6$); exact fractional bounds accompany the archived results.} whose lower tail sits below the majority threshold---the gap count is
 majority-robust in only $75$--$83\%$ of these split re-draws (which are independent re-partitions of
 the fixed 14-dataset panel, so the CI quantifies split-realization variance, not sampling over a
 % source: experiments/results/split_repeats/aggregate-split-repeats-2026-07-02.json (stage1_xgboost frac 0.833; stage2 lightgbm 0.75)
@@ -333,29 +427,28 @@ $[13,14]$/$[12,14]$ for the Stage-2 XGBoost/LightGBM arms ($K{=}20$). Hyperparam
 % source: experiments/results/nd1_tuned_gbm_baseline.json (per_model_summary)
 $13/14$ (XGBoost) and $12/14$ (LightGBM)---so the gap count is neither realization- nor hyperparameter-robust,
 whereas the repair is both. Multiple-comparison correction across the 14 datasets
-leaves the repair claim intact---$13/14$ datasets survive Holm--Bonferroni for both GBMs---while the
+leaves the repair claim intact---$13/14$ datasets survive Holm--Bonferroni \eqref{eq:holm} for both GBMs---while the
 AURC-degradation tests survive Holm on $6/14$ (XGBoost) and $5/14$ (LightGBM) and BH-FDR on $7/14$ and
 % source: experiments/results/nd1_s2_lightgbm_mondrian.json (per_model_summary.*.multiplicity_correction)
 $6/14$. (A key-excluded robustness ablation---dropping the leave-group-out/rolling-origin key from the
 model features---lowers the single-draw gap counts to $6/14$ XGBoost and $5/14$ LightGBM while repair-beats-random
 % source: experiments/results/nd1_s2_lightgbm_mondrian_keyexcluded.json (per_model_summary)
 stays at $13/14$ for both; see \cref{sec:limitations}.)
-\begin{figure}[t]\centering\includegraphics[width=0.75\linewidth]{F3_model_agnostic.pdf}
+\begin{figure}[t]\centering\includegraphics[width=\linewidth]{F3_model_agnostic.pdf}
 \caption{Model-agnosticism across four configurations spanning three architecture families.
-A Grouped AURC for XGBoost vs.\ LightGBM across all 14 datasets (points near the diagonal
-confirm that the two GBMs behave near-identically, i.e.\ are effectively one GBDT family).
-B Split-conformal grouped coverage for all four configurations (XGBoost, LightGBM, and the
-TabICLv2 and TabDPT foundation models) on all 14 datasets; dashed line at target $0.90$. Both FMs show the
-same collapse as the GBMs under grouped/time shift, with no auto-repair.}\label{fig:f3}\end{figure}
-\begin{figure}[t]\centering\includegraphics[width=0.69\linewidth]{F6_split_repeats_fragility.pdf}
-\caption{Split-realization fragility of the four headline counts (LightGBM, key-included, $K$ repeated
-grouped-split draws). Three of the four counts sit at or below the preregistered majority threshold of $8$
-(dashed line): the grouped-gap count (out of 14) is a broad distribution straddling the threshold---for
-LightGBM (shown) it is majority-robust in only $75\%$ of draws (Stage-2 XGBoost $80\%$; combined range
-$75$--$83\%$)---the AURC-degrade count likewise straddles it, and the under-coverage count falls below it;
-only the repair-beats-random count sits at the top and never drops below the threshold ($100\%$ of draws).
-This is why we treat the repair, not the degradation-side counts, as the load-bearing finding.}\label{fig:f6}\end{figure}
-\paragraph{Uncertainty-taxonomy Mondrian does not help (negative control).} The uncertainty-taxonomy Mondrian
+\textbf{A.} Grouped AURC for XGBoost versus LightGBM on all 14 datasets (log--log; points near the diagonal show the two gradient-boosted models behave near-identically).
+\textbf{B.} Split-conformal grouped coverage with the group key included, all four configurations; dashed line at target $0.90$.
+\textbf{C.} The same coverage comparison with the group key excluded (XGBoost, LightGBM, and TabICLv2). TabDPT is omitted: this panel has no key-excluded coverage points for that configuration.
+\textbf{D.} Leakage-safe hyperparameter-tuned XGBoost and LightGBM; dashed line at target $0.90$. Tuning moves the single-draw gap count without a consistent sign (XGBoost $8\to6/14$, LightGBM $7\to8/14$) and does not restore grouped coverage, while repair stays at $13/14$ and $12/14$.
+Both foundation models show the same collapse as the gradient-boosted models, with no auto-repair.}\label{fig:f3}\end{figure}
+\begin{figure}[t]\centering\includegraphics[width=\linewidth]{F6_split_repeats_fragility.pdf}
+\caption{Split-realization fragility of the four headline counts over $K$ repeated grouped-split draws (count out of 14 datasets; dashed line at the preregistered majority threshold of $8$).
+\textbf{A.} LightGBM, Stage-2, key included.
+\textbf{B.} XGBoost, Stage-2, key included.
+\textbf{C.} LightGBM, Stage-2, key excluded.
+\textbf{D.} XGBoost, Stage-2, key excluded.
+The grouped-gap count straddles the threshold---majority-robust in $75\%$ of LightGBM key-included draws (Stage-2 XGBoost $80\%$; combined range $75$--$83\%$)---AURC-degrade likewise straddles it, and under-coverage falls below it; only repair-beats-random sits at the top and never drops below the threshold ($100\%$ of draws). This is why we treat the repair, not the degradation-side counts, as the load-bearing finding.}\label{fig:f6}\end{figure}
+\paragraph{Uncertainty-taxonomy Mondrian does not help (negative control).} The uncertainty-taxonomy Mondrian of \eqref{eq:mondrian}
 add-on improves grouped coverage on $12/28$ model$\times$dataset pairs by point estimate but only $7/28$ with CI
 excluding zero (median pooled improvement $-0.002$), well below
 % source: experiments/results/nd1_s2_lightgbm_mondrian.json (pooled_mondrian: point 12/28, ci-excl-0 7/28, median=-0.00215, majority 15)
@@ -373,14 +466,13 @@ group/time key as a feature (zero predictors with CIs excluding zero, best separ
 $p=0.867$, chance level, preregistered verdict KILL; Fig.~\ref{fig:f4}). We report the mechanism as real but
 split-fragile and key-dependent, not a confirmed explanation.
 
-\begin{figure}[t]\centering\includegraphics[width=0.69\linewidth]{F4_calsize_vs_mondrian.pdf}
-\caption{Why Mondrian conformal fails, and why that explanation is key-dependent (reconciled RNG).
-A Key-included: per-bin calibration fold size predicts Mondrian's coverage improvement
-(Spearman $\rho=0.50$, CI excluding zero; clean-threshold separation $\mathrm{bacc}=0.854$, $p=0.0011$)---the
-mechanism passes the preregistered bar. B Key-excluded: dropping the group key from the
-model features collapses the relationship ($\rho=-0.12$, no significant predictors, threshold
-$\mathrm{bacc}=0.548$), flipping the preregistered verdict to KILL. The calibration-size mechanism is real but
-key-dependent---the paper's protocol-sensitivity finding applied to its own mechanism.}\label{fig:f4}\end{figure}
+\begin{figure}[t]\centering\includegraphics[width=\linewidth]{F4_calsize_vs_mondrian.pdf}
+\caption{Why Mondrian conformal fails, and why that explanation is key-dependent (reconciled random-number stream).
+\textbf{A.} With the group key included, per-bin calibration-fold size predicts Mondrian coverage improvement (Spearman $\rho=0.50$, CI excluding zero; clean-threshold separation $\mathrm{bacc}=0.854$, $p=0.0011$, $n=28$)---the mechanism passes the preregistered bar.
+\textbf{B.} Dropping the group key from the model features collapses the relationship ($\rho=-0.12$, no significant predictors, threshold $\mathrm{bacc}=0.548$, $n=28$), flipping the preregistered verdict to KILL.
+\textbf{C.} The same $n=28$ pairs as A, coloured by model (LightGBM, XGBoost): the key-included association is not confined to one booster.
+\textbf{D.} Within-dataset calibration-fraction sweep (LightGBM), split into datasets where Mondrian helps versus hurts: raising the calibration fraction does not uniformly improve coverage, and can worsen it where Mondrian already hurts.
+The calibration-size mechanism is real but key-dependent.}\label{fig:f4}\end{figure}
 \subsection*{Is the repair a low bar? A learned selector does not beat the free uncertainty score}
 To check that abstention's advantage over random deferral is not merely the low bar of beating a coin flip, we
 compare the free model-native uncertainty score against a learned post-hoc selector---a small
@@ -402,7 +494,7 @@ all regression (\texttt{Airlines\_DepDelay\_10M}, \texttt{nyc-taxi-green-dec-201
 it can exploit interval geometry beyond raw width, with $3$ ties. The learned selector also needs calibration
 errors to fit, which dominant-group splits barely supply (\texttt{adult} and \texttt{cylinder-bands}
 leave only $56$ and $45$ calibration rows), a structural disadvantage the free score does not share. We scope
-this claim honestly: the selector is untuned and gets none of the $12$-trial hyperparameter budget our
+this claim: the selector is untuned and gets none of the $12$-trial hyperparameter budget our
 GBMs receive, so the head-to-head is asymmetric in the free score's favour, and the pattern is better read as
 ``the free score wins where calibration errors are scarce (classification, small folds) and the selector wins
 where they are abundant (the three data-rich regression datasets)'' than as a global tie---the equal medians
@@ -422,7 +514,7 @@ XGBoost-only; LightGBM behaves near-identically throughout, so the verdict trans
 \begin{table}[ht]\centering\small
 \caption{A learned post-hoc abstention selector vs.\ the free uncertainty score vs.\ random deferral (grouped
 split, 14 keyed datasets, XGBoost). Head-to-head is a paired test-set bootstrap on the repair-ratio difference;
-``wins'' means the difference CI excludes zero. Numbers from the learned-selector baseline run.}\label{tab:learned}
+``wins'' means the difference CI excludes zero. Numbers from the learned-selector comparison.}\label{tab:learned}
 % source: results_expansion_2026-07-11/nd1_learned_selector_baseline.json (grouped_headline)
 \begin{tabular}{lr}
 \toprule
@@ -441,16 +533,16 @@ median repair ratio --- oracle (true-loss ranking) & $0.745$ \\
 \end{table}
 
 \subsection*{Foundation-model arms: TabICLv2 and TabDPT collapse the same way}
-To pre-empt the question of whether a tabular foundation model auto-corrects the reliability gap, we ran two
-open-weights, token-free tabular FMs---TabICLv2~\citep{qu2026tabicl} (\texttt{tabicl}, \texttt{n\_estimators=16})
-and TabDPT~\citep{ma2024tabdpt} (\texttt{tabdpt}, $8$ ensemble members)---under the identical split-conformal +
-abstention protocol on all 14 keyed OpenML datasets, each with a per-context reconciled RNG and a de-staled
+To test whether a tabular foundation model auto-corrects the reliability gap, we ran two
+open-weights, token-free tabular FMs---TabICLv2~\citep{qu2026tabicl} (ensemble of $16$)
+and TabDPT~\citep{ma2024tabdpt} ($8$ ensemble members)---under the identical split-conformal +
+abstention protocol on all 14 keyed OpenML datasets, each with a per-context deterministic RNG and the reconciled
 Stage-1 GBM reference. Table~\ref{tab:fm} reports the TabICLv2 (leakage-ablated) numbers; Fig.~\ref{fig:f3}B
 shows the four-model coverage comparison.
 
 \begin{table}[ht]
 \centering\small
-\caption{TabICLv2 FM arm, leakage-ablated (\texttt{n\_estimators=16}, key retained), all 14 datasets:
+\caption{TabICLv2 FM arm, leakage-ablated (ensemble of $16$, key retained), all 14 datasets:
 split-conformal coverage ($\alpha=0.10$, target $0.90$) and grouped repair ratio under random vs.\
 grouped/time split. Numbers from the leakage-ablated TabICLv2 arm; 400-bootstrap CIs.
 Undercover$=$ grouped coverage $<0.88$ (target $-0.02$ slack). The gap column is the coverage-gap point
@@ -466,20 +558,20 @@ subtraction by one unit in the last place.}\label{tab:fm}
 \toprule
 Dataset & key & kind & cov R & cov G & gap & repair ratio (grouped) \\
 \midrule
-\texttt{electricity}           & date                & time  & $0.898$ & $0.634$ & $+0.264$ & $0.417$ [$0.396$, $0.439$] \\
-\texttt{eucalyptus}            & Year                & time  & $0.904$ & $0.838$ & $+0.067$ & $0.503$ [$0.400$, $0.588$] \\
-\texttt{adult}                 & native-country      & group & $0.902$ & $0.858$ & $+0.043$ & $0.703$ [$0.696$, $0.710$] \\
-\texttt{cylinder-bands}        & paper\_mill\_location & group & $0.876$ & $0.765$ & $+0.111$ & $0.337$ [$0.219$, $0.451$] \\
-\texttt{churn}                 & state               & group & $0.907$ & $0.913$ & $-0.006$ & $0.443$ [$0.247$, $0.593$] \\
-\texttt{Moneyball}             & Team                & group & $0.905$ & $0.889$ & $+0.016$ & $0.064$ [$-0.011$, $0.130$] \\
-\texttt{kick}                  & VNZIP1              & group & $0.895$ & $0.893$ & $+0.002$ & $0.489$ [$0.447$, $0.525$] \\
-\texttt{black\_friday}         & City\_Category      & group & $0.905$ & $0.899$ & $+0.007$ & $0.295$ [$0.287$, $0.303$] \\
-\texttt{house\_prices\_nominal}& Neighborhood        & group & $0.952$ & $0.940$ & $+0.013$ & $0.264$ [$0.204$, $0.313$] \\
-\texttt{colleges}              & state               & group & $0.914$ & $0.891$ & $+0.023$ & $0.400$ [$0.381$, $0.421$] \\
-\texttt{Airlines\_DepDelay}    & DayofMonth          & time  & $0.906$ & $0.234$ & $+0.672$ & $0.195$ [$0.184$, $0.204$] \\
-\texttt{nyc-taxi-green}        & PULocationID        & group & $0.901$ & $0.895$ & $+0.006$ & $0.378$ [$0.358$, $0.400$] \\
-\texttt{house\_sales}          & zipcode             & group & $0.909$ & $0.817$ & $+0.092$ & $0.440$ [$0.422$, $0.458$] \\
-\texttt{sf-police-incidents}   & PdDistrict          & group & $0.894$ & $0.891$ & $+0.003$ & $0.241$ [$0.194$, $0.285$] \\
+Electricity           & date                & time  & $0.898$ & $0.634$ & $+0.264$ & $0.417$ [$0.396$, $0.439$] \\
+Eucalyptus            & Year                & time  & $0.904$ & $0.838$ & $+0.067$ & $0.503$ [$0.400$, $0.588$] \\
+Adult                 & native-country      & group & $0.902$ & $0.858$ & $+0.043$ & $0.703$ [$0.696$, $0.710$] \\
+Cylinder bands        & paper mill location & group & $0.876$ & $0.765$ & $+0.111$ & $0.337$ [$0.219$, $0.451$] \\
+Churn                 & state               & group & $0.907$ & $0.913$ & $-0.006$ & $0.443$ [$0.247$, $0.593$] \\
+Moneyball             & Team                & group & $0.905$ & $0.889$ & $+0.016$ & $0.064$ [$-0.011$, $0.130$] \\
+Kick                  & ZIP                 & group & $0.895$ & $0.893$ & $+0.002$ & $0.489$ [$0.447$, $0.525$] \\
+Black Friday          & city category       & group & $0.905$ & $0.899$ & $+0.007$ & $0.295$ [$0.287$, $0.303$] \\
+House prices          & Neighborhood        & group & $0.952$ & $0.940$ & $+0.013$ & $0.264$ [$0.204$, $0.313$] \\
+Colleges              & state               & group & $0.914$ & $0.891$ & $+0.023$ & $0.400$ [$0.381$, $0.421$] \\
+Airline delays        & DayofMonth          & time  & $0.906$ & $0.234$ & $+0.672$ & $0.195$ [$0.184$, $0.204$] \\
+NYC taxi              & pickup location     & group & $0.901$ & $0.895$ & $+0.006$ & $0.378$ [$0.358$, $0.400$] \\
+House sales           & zipcode             & group & $0.909$ & $0.817$ & $+0.092$ & $0.440$ [$0.422$, $0.458$] \\
+SF police             & district            & group & $0.894$ & $0.891$ & $+0.003$ & $0.241$ [$0.194$, $0.285$] \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -501,28 +593,22 @@ collapse-plus-repair story now reproduces across four configurations spanning th
 no FM auto-repairing the gap. The hardest shifts remain temporal: \texttt{Airlines\_DepDelay\_10M} grouped
 coverage collapses to $0.234$ and \texttt{electricity} to $0.634$ (TabICLv2), comparable to or worse than the
 reconciled XGBoost baseline, confirming that the FMs require the same conformal + abstention recipe---not an
-auto-repair. These leakage-ablated \texttt{n\_estimators=16} numbers, with a de-staled reference, supersede an
-earlier \texttt{n\_estimators=4} pass whose $7/14$ regression datasets had failed to download the FM regressor
-checkpoint in-container; the two passes agree qualitatively on the shared classification datasets (see
+auto-repair. These leakage-ablated ensemble-of-$16$ numbers, with the reconciled GBM reference, are the headline TabICLv2 results; a smaller-ensemble configuration agrees qualitatively on the shared classification datasets and is not used for any headline number (see
 \cref{sec:limitations}). \paragraph{Robustness checks.} A $30$-dataset breadth extension (the 14 keyed datasets
 plus 16 OpenML datasets grouped on an arbitrary categorical feature, so the ``grouped shift'' is less
 % source: experiments/results/nd1_tabicl_fm_arm_leakage_ablation.json (ext30: n_ok=29/30, repair 25/29),
 % nd1_fm_scaling_arm.json (64/64 cells)
 meaningful there) keeps abstention-repair ahead of random on $25/29$ completed datasets for TabICLv2 (the
-single non-completing dataset is \texttt{PhishingWebsites}, dropped at the arbitrary-key assignment gate before
-any model ran), and an
+single non-completing dataset is \texttt{PhishingWebsites}, excluded before evaluation because no valid grouping key could be assigned), and an
 in-context scaling sweep (ensemble $\times$ context length, 64 cells) shows AURC improving smoothly with more
 context without altering the grouped-collapse conclusion; we report both as appendix-level robustness, not as
 the keyed-suite headline.
 
 \subsection*{Generalization to a TableShift-class benchmark (Folktables/ACS)}
-We test whether the model-agnostic finding survives on a canonical distribution-shift suite. The
-\texttt{tableshift} package ships no pip wheel, but it installs from source in an isolated environment and its
-$11$ open tasks are credential-free (verified end-to-end by a loader smoke on
-\texttt{diabetes\_readmission}). Two of these $11$ credential-free tasks, \texttt{assistments} and
-\texttt{college\_scorecard}, proved Kaggle-API-gated at data-staging time and were excluded before any
+We test whether the model-agnostic finding survives on a canonical distribution-shift suite. TableShift's $11$ open tasks are publicly downloadable. Two of them, \texttt{assistments} and
+\texttt{college\_scorecard}, require Kaggle credentials and were excluded before any
 confirmatory number was computed, leaving $9$ open tasks that enter the confirmatory run reported below, which
-resolves the held-out \texttt{ood\_test} fold's often-single-domain endpoint ambiguity with a frozen
+resolves the held-out out-of-distribution test fold's often-single-domain endpoint ambiguity with a frozen
 evaluability rule fixed ahead of time. For the present, complementary generalization arm we use the open
 TableShift-class substitute~\citep{gardner2023tableshift}: four
 Folktables/ACS~\citep{ding2021retiring} binary tasks (\texttt{ACSIncome}, \texttt{ACSPublicCoverage},
@@ -543,7 +629,7 @@ race-subgroup conformal coverage gap---worst-minus-best is negative on all $8$ (
 the gap CI excluding $0$ on $4/4$ tasks for both GBMs (median $-0.033$ XGBoost, $-0.027$ LightGBM;
 % source: experiments/results/p4_tableshift_result.json (per_model_summary.*.median_grouped_coverage_gap)
 Fig.~\ref{fig:f5}B)---but this $4/4$ is the post-hoc, broadened subgroup criterion, not the
-preregistered marginal one. The honest reading is that only the repair generalizes to this milder
+preregistered marginal one. Only the repair generalizes to this milder
 ACS shift (the abstention improvement replicates $4/4$); the marginal reliability collapse does
 not (AURC-degrade / under-coverage on just $1/4$ tasks per GBM), and the RAC1P subgroup-coverage-gap
 $4/4$ survives only because the success criterion was broadened after the marginal one missed---so the
@@ -553,20 +639,14 @@ collapse itself is benchmark-dependent and does not generalize here, only the re
 primary 14-dataset study's 2-way disjunction (AURC-degrade OR coverage-gap only), because the narrow
 criterion alone replicated on only $1/4$ tasks per GBM under this milder spatial shift.
 
-
-
-
-
-
-
-\begin{figure}[t]\centering\includegraphics[width=0.71\linewidth]{F5_tableshift.pdf}
+\begin{figure}[t]\centering\includegraphics[width=\linewidth]{F5_tableshift.pdf}
 \caption{Generalization to a TableShift-class benchmark (Folktables/ACS, leave-states-out spatial OOD).
-A OOD abstention repair ratio per ACS task (XGBoost vs.\ LightGBM, $400$-bootstrap CIs); the repair
+\textbf{A.} OOD abstention repair ratio per ACS task (XGBoost vs.\ LightGBM, $400$-bootstrap CIs); the repair
 ratio is the fractional reduction in integrated selective risk vs.\ random deferral, so positive ratios
 (CI excluding $0$) mean uncertainty abstention beats random deferral, replicating on $4/4$ tasks for both
-GBMs. B RAC1P race-subgroup conformal coverage gap (worst$-$best); the OOD reliability gap
+GBMs. \textbf{B.} RAC1P race-subgroup conformal coverage gap (worst$-$best); the OOD reliability gap
 manifests as a negative subgroup coverage gap (CI excluding $0$ on $4/4$ for both GBMs) rather than a
-marginal-AURC blow-up.}\label{fig:f5}\end{figure}
+marginal-AURC blow-up.}\label{fig:f5}\end{figure}\FloatBarrier
 \subsection*{Exploratory audit: do distribution-free remedies restore group-conditional coverage? (No.)}
 We close the diagnostic by asking, exploratorily, whether the coverage side of the collapse can be repaired by
 a \emph{distribution-free} conformal remedy that never sees the (absent) grouping key. We label this arm
@@ -576,7 +656,7 @@ exploratory data cannot contaminate, and nothing here is read as confirmatory. I
 % source: g1_remedies_2026-07-13/results.json (aggregate.k_completed=10; the prereg specifies K=20 confirmatory)
 split-repeats---the preregistration specifies $K{=}20$ for the confirmatory version; we report $K{=}10$ here
 as the exploratory budget and flag the difference---with $N{=}400$ paired-bootstrap CIs and the GBM
-loss/uncertainty arrays bit-identical to the frozen backbone.
+loss and uncertainty arrays identical to the frozen backbone.
 
 \paragraph{The disease.} Under the grouped / rolling-origin split, plain split conformal---the paper's headline
 % source: g1_remedies_2026-07-13/results.json (aggregate.median_split_conformal_worst_group_cov=0.8104, .median_split_conformal_group_gap=0.14425)
@@ -606,7 +686,7 @@ induces a shift beyond covariate-only (a label/concept component the covariate-s
 capture), or from calibration-fold scarcity our design cannot separate, so we scope the negative narrowly
 to the two standard distribution-free remedies we implemented. The stronger subpopulation-shift and audited-CP
 estimators~\citep{subpop2025conformal,audited2026conformal} are not run here; we cite them as the open
-coverage-restoring question, not as implied-refuted. The honest prescription is therefore negative for
+coverage-restoring question, not as implied-refuted. The prescription is therefore negative for
 coverage, positive for selection: no tested distribution-free remedy restores group-conditional coverage
 without the group key, while the free uncertainty score reliably ties-or-beats a budget-matched tuned selector
 (above).
@@ -614,7 +694,7 @@ without the group key, while the free uncertainty score reliably ties-or-beats a
 \subsection*{Confirmatory coverage-remedy evaluation on the held-out TableShift roster}
 We now report the confirmatory test the exploratory remedy audit above was reserved for: a preregistered,
 held-out replication of H1 and H2 on TableShift's own open task roster, disjoint from the 14 keyed OpenML
-datasets that generated the two hypotheses. Frozen ahead of any confirmatory number: \textbf{H1 (coverage
+datasets that generated the two hypotheses. Frozen ahead of any confirmatory number, and written as \eqref{eq:h1}--\eqref{eq:h2}: \textbf{H1 (coverage
 restoration)}---some single remedy restores group-conditional coverage on a majority of evaluable held-out
 tasks, at the minimum across $K{=}20$ split-repeats; \textbf{H2 (selective prescription)}---the free
 uncertainty score ties or beats a budget-matched, $12$-trial-tuned learned selector on a majority of
@@ -632,7 +712,7 @@ rather than the primary worst-group-domain endpoint that motivates the study, so
 verdicts below are majority-carried by the fallback construct, not the primary one. The rule is
 endpoint-blind---it selects an
 endpoint from each task's own group structure, not from which answer that endpoint would produce---so the
-fallback-heavy composition is a property of the roster, not a chosen-to-flatter selection; read plainly, the
+fallback-heavy composition is a property of the roster, not a chosen-to-flatter selection; in short, the
 confirmatory yield below is one confirmed negative on coverage (H1 REJECT) plus one confirmed tie on
 selection (H2 CONFIRM), not a positive method win.
 
@@ -640,7 +720,7 @@ selection (H2 CONFIRM), not a positive method win.
 \centering
 \caption{Frozen per-task endpoint decisions on the $9$-task open, held-out TableShift roster (evaluability
 rule applied mechanically, before any confirmatory number was computed). The $3$ excluded-by-rule tasks
-report only a descriptive marginal in-domain-vs-out-of-domain coverage gap (main text); the $6$ evaluable
+report only a descriptive marginal in-domain versus out-of-domain coverage gap; the $6$ evaluable
 tasks enter the H1/H2 confirmatory tally.}\label{tab:p5roster}
 % source: p5-arm results.json (per_task_endpoint)
 % Springer single-column reflow: \footnotesize + tightened \tabcolsep (venue-port only, see tab:fm above).
@@ -650,15 +730,15 @@ tasks enter the H1/H2 confirmatory tally.}\label{tab:p5roster}
 \toprule
 Task & Endpoint & $n$ groups & In H1/H2 tally \\
 \midrule
-\texttt{diabetes\_readmission} & marginal gap only & $0$ & excluded-by-rule \\
-\texttt{nhanes\_lead} & marginal gap only & $0$ & excluded-by-rule \\
-\texttt{physionet} & marginal gap only & $0$ & excluded-by-rule \\
-\texttt{brfss\_diabetes} & primary worst-group domain & $5$ & yes \\
-\texttt{brfss\_blood\_pressure} & fallback (secondary: AGEG5YR) & $7$ & yes \\
-\texttt{acsincome} & fallback (secondary: AGEP) & $71$ & yes \\
-\texttt{acspubcov} & fallback (secondary: AGEP) & $50$ & yes \\
-\texttt{acsfoodstamps} & fallback (secondary: AGEP) & $44$ & yes \\
-\texttt{acsunemployment} & primary worst-group domain & $15$ & yes \\
+Diabetes readmission & marginal gap only & $0$ & excluded-by-rule \\
+NHANES lead & marginal gap only & $0$ & excluded-by-rule \\
+PhysioNet & marginal gap only & $0$ & excluded-by-rule \\
+BRFSS diabetes & primary worst-group domain & $5$ & yes \\
+BRFSS blood pressure & fallback (secondary: age group) & $7$ & yes \\
+ACS Income & fallback (secondary: age) & $71$ & yes \\
+ACS Public coverage & fallback (secondary: age) & $50$ & yes \\
+ACS Food stamps & fallback (secondary: age) & $44$ & yes \\
+ACS Unemployment & primary worst-group domain & $15$ & yes \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -718,85 +798,108 @@ uncertainty ties-or-beats tuned selector (min / median / max across $K$) & $6$ /
 \end{tabular}
 \end{table}
 
-\paragraph{Descriptive: the marginal id-vs-ood coverage gap where available.} TableShift exposes an
-additional in-domain held-out (\texttt{id\_test}) split for only $3$ of the $9$ tasks; where available, the
+\paragraph{Descriptive: the marginal in-domain versus out-of-domain coverage gap where available.} TableShift exposes an
+additional in-domain held-out test split for only $3$ of the $9$ tasks; where available, the
 marginal (non-group-conditional) coverage gap under plain split conformal is \texttt{physionet} $+0.094$,
 \texttt{brfss\_diabetes} $+0.040$, and \texttt{diabetes\_readmission} $-0.018$---two of three tasks show the
 % source: p5-arm results.json (per-task marginal_gap, id_test_available)
 same direction (out-of-domain coverage below in-domain) as the primary 14-dataset study's headline collapse,
 with \texttt{diabetes\_readmission}'s small negative gap the exception.
 
-\paragraph{Mechanical loader adapters (disclosed deviations).} Running the frozen endpoint rule and remedy
-ladder on TableShift's own loaders required three narrow, mechanical adapters, none of which touch the
-frozen decision rule or the remedy code itself: (i) a categorical domain-column passthrough for the ACS
-tasks, reproducing TableShift's own (empty) preprocessing configuration plus only the domain column; (ii) a
-case-corrected, isolated cache directory for the NHANES loader, working around an uppercase/lowercase
-filename mismatch in TableShift's own downloader that would otherwise silently substitute a different
-survey wave lacking the needed fields; (iii) column-restricted reads for the wide ACS person/household
-files, reducing memory footprint without altering which columns are used. Each adapter was validated by
-reproducing an already-completed task and confirming identical results (every field matched except
-wall-clock timing) before being adopted on the remaining tasks; the frozen evaluability/endpoint rule itself
-was never modified.
+\paragraph{Disclosed loader adaptations.} Applying the frozen endpoint rule and remedy
+ladder to TableShift required three narrow adaptations that do not change the
+frozen decision rule or the remedies: (i) passing the ACS domain column through TableShift's
+standard (otherwise empty) preprocessing; (ii) correcting a case-sensitivity mismatch in the
+NHANES download so the intended survey wave is used; (iii) reading only the required columns
+from the wide ACS person and household files. Each adaptation was checked by reproducing an
+already-completed task with identical numerical results before being applied to the remaining
+tasks; the frozen evaluability and endpoint rule itself was never modified.
 
 \section{Discussion}\label{sec:discussion}
-The reliable, simple recipe for the selective reliability of the retained set under grouped tabular
-shift is uncertainty abstention on top of plain split-conformal, and it is model-agnostic across four
-open, token-free configurations spanning three architecture families: two
-gradient-boosted models (which behave near-identically, effectively one GBDT family)
-and two distinct tabular-FM architectures. We are explicit that this recipe targets selective
-reliability, not marginal coverage: uncertainty abstention makes no coverage guarantee, and the split-conformal
-coverage that collapses under group shift (e.g.\ \texttt{Airlines\_DepDelay\_10M} to $0.234$) is not
-restored by it. Restoring marginal coverage under this exchangeability break is the province of weighted or
-adaptive conformal~\citep{tibshirani2019covariate,barber2023beyond}; neither of the two standard
-distribution-free remedies we evaluate (weighted / covariate-shift CP and inferred-group Mondrian) robustly
-restores it without the absent group key (\cref{sec:results}), and the stronger subpopulation- and
-audited-CP methods~\citep{subpop2025conformal,audited2026conformal} remain an open, still-untested
-follow-up; accordingly we do not recommend bare split-conformal as a coverage fix. A preregistered
-confirmatory replication on the held-out TableShift roster reaches the same verdict (H1 REJECT; H2 CONFIRM
-without exception across any task or repeat; \cref{sec:results})---so the negative-coverage/positive-selection
-prescription is not an artifact of the 14-dataset convenience suite.
-Neither FM (TabICLv2~\citep{qu2026tabicl},
-TabDPT~\citep{ma2024tabdpt}) auto-repairs the reliability gap: both show the same collapse under group/time
-shift as XGBoost and LightGBM, and require the same conformal + abstention recipe. What we deliberately do
-not claim is a stable ``majority of datasets show a gap'' count: over repeated split draws, hyperparameter
-tuning, and key inclusion, that count ranges over roughly $5$--$12$ of $14$ and is majority-robust in only
-three-quarters to four-fifths of draws with the group key included, falling to roughly half with the key
-excluded (\cref{sec:limitations}), whereas the repair beats random deferral on $13/14$ in every arm and
-every draw. The uncertainty-taxonomy Mondrian add-on is not a free win: it needs large per-stratum calibration,
-which grouped-shift tabular data rarely provides.
-The calibration-size explanation for that failure (\cref{sec:results}, Fig.~\ref{fig:f4}) clears our
+The Introduction asked whether random-split validation overstates reliability under grouped and temporal
+deployment~\citep{quinonerocandela2009datasetshift,gardner2023tableshift,whyshift2023}, and whether a free
+uncertainty score is a defensible selective-risk fallback when split-conformal coverage
+\eqref{eq:cp-guarantee} fails. The answers, read against the same H1/H2 pair~\eqref{eq:h1}--\eqref{eq:h2}
+and the same tables and figures, are as follows.
+
+(i)~\emph{Directional collapse, fragile count.} Grouped splits degrade AURC~\eqref{eq:aurc} suite-wide
+(\cref{fig:f1}) and push split-conformal coverage~\eqref{eq:coverage} below the $0.90$ nominal target on
+temporal splits, including both tabular foundation models (\cref{fig:f3}B). That is the predicted
+consequence of breaking exchangeability~\citep{vovk2005algorithmic,lei2018distribution,tibshirani2019covariate,barber2023beyond},
+not a surprise relative to the guarantee in \cref{sec:methods}. The dataset-count of the gap is not a
+preregistered majority claim: it straddles the threshold across split draws (\cref{fig:f6}) and is
+key- and hyperparameter-fragile (\cref{sec:limitations}). We therefore read the degradation as a
+direction, matching the Introduction, not as a confirmed majority finding.
+
+(ii)~\emph{Abstention repairs selective risk, not coverage.} Uncertainty-ranked abstention beats random
+deferral on $13$ of $14$ datasets (\cref{fig:f2}), with median repair ratio $\rho$~\eqref{eq:repair-ratio}
+of $0.339$ against an oracle ceiling of $0.745$ (\cref{tab:learned}). On the held-out TableShift
+roster~\citep{gardner2023tableshift} the free score ties-or-beats a budget-matched tuned selector on all
+$6$ evaluable tasks at every one of $K{=}20$ repeats (\cref{tab:p5verdict}), so H2 is CONFIRMed.
+Abstention makes no coverage claim and does not restore \eqref{eq:cp-guarantee}; the
+\texttt{Airlines\_DepDelay\_10M} coverage collapse to $0.234$ is not repaired by it. The Introduction's warning
+that reject options can shape subgroup disparities~\citep{jones2021selective,kamiran2018reject} returns
+in the Folktables/ACS arm as a RAC1P race-subgroup coverage gap (\cref{fig:f5}).
+
+(iii)~\emph{The effect is model-agnostic, and neither FM auto-repairs it.} The two GBMs behave
+near-identically (\cref{fig:f3}A). TabICLv2~\citep{qu2026tabicl} and TabDPT~\citep{ma2024tabdpt} show the
+same grouped/temporal collapse as XGBoost and LightGBM (\cref{fig:f3}B), contrary to the hypothesis that
+a tabular foundation model would auto-correct shift~\citep{helli2024driftresilient,tabpfn_openenv2025,tfm_uncertainty_esann2026,beyondiid2026}.
+We did not run license-gated TabPFN~v2~\citep{hollmann2025tabpfn}; the token-free roster is the one the
+Introduction advertised.
+
+(iv)~\emph{The uncertainty-taxonomy Mondrian does not help.} Per-bin quantiles~\eqref{eq:mondrian} fail
+the Stage-2 majority bar, and the calibration-size explanation is split-fragile and key-dependent
+(\cref{fig:f4}), exactly the negative control previewed in the Introduction.
+
+H1 is REJECTed on the same held-out roster: no tested distribution-free remedy restores
+group-conditional coverage on a majority of evaluable tasks at the minimum across $K$
+(\cref{tab:p5verdict}; \eqref{eq:h1}). Weighted / covariate-shift conformal~\eqref{eq:weighted-cp} is the
+strongest of the two standard remedies and still short of a robust majority; inferred-group Mondrian
+never restores. Stronger subpopulation- and audited-CP estimators~\citep{subpop2025conformal,audited2026conformal}
+remain untested here. Adaptive conformal inference~\citep{gibbs2021adaptive} and the jackknife+~\citep{barber2021jackknife}
+likewise sit outside the audit. The recipe we recommend is therefore the one the Introduction scoped:
+plain split-conformal plus uncertainty abstention, for retained-set selective
+reliability~\citep{elyaniv2010selective,geifman2017selective,campagner2021threeway,he2025conjunction},
+not as a coverage fix.
+
+What we deliberately do not claim is a stable ``majority of datasets show a gap'' count: over repeated
+split draws, hyperparameter tuning, and key inclusion, that count ranges over roughly $5$--$12$ of $14$
+and is majority-robust in only three-quarters to four-fifths of draws with the group key included,
+falling to roughly half with the key excluded (\cref{sec:limitations}), whereas the repair beats random
+deferral on $13/14$ in every arm and every draw. The uncertainty-taxonomy Mondrian add-on is not a free
+win: it needs large per-stratum calibration, which grouped-shift tabular data rarely provides.
+The calibration-size explanation for that failure (\cref{sec:results}, \cref{fig:f4}) clears our
 preregistered bar only on a single frozen split with the group key retained, does not survive our own
 split-repeat robustness check, and collapses to chance once the key is dropped; we therefore treat it as a
 split-fragile, key-dependent association rather than an established mechanism, and recommend reporting all
 conditions rather than the favorable one alone.
 
 \section{Limitations}\label{sec:limitations}
-This section is this paper's dedicated rigor check: the preregistered Stage-2 gate's KILL verdict, the
+This section collects the rigor check: the preregistered Stage-2 gate's KILL verdict, the
 split-realization fragility behind Fig.~\ref{fig:f6}, and the key-inclusion sensitivity of the headline
-counts are stated here once, in full, rather than scattered across the paper, because the honest scope of a
+counts are stated here once, in full, rather than scattered across the paper, because the scope of a
 preregistered study belongs in one place a reader can check against the confirmatory claims above.
 \paragraph{Scope and future work.} The 14 keyed OpenML datasets are a convenience suite; we have already
 extended to the open TableShift-class benchmark (Folktables/ACS) above, where the abstention-repair finding
 replicates and the OOD reliability gap surfaces as a RAC1P subgroup coverage gap. As noted above
 (\cref{sec:results}), the ACS reliability-gap criterion was broadened to a 3-way disjunction because the
 narrow 2-way criterion alone replicated on only $1/4$ tasks per GBM under this milder spatial shift.
-The FM roster now covers all 14 keyed datasets for both TabICLv2 (leakage-ablated, \texttt{n\_estimators=16},
-de-staled reference) and TabDPT, so the ``larger-ensemble configurations remain future work'' caveat of earlier
-drafts is discharged; an earlier \texttt{n\_estimators=4} pass had left the $7$ regression datasets incomplete
-because the FM regressor checkpoint failed to download in-container, which a checkpoint pre-fetch resolved. The
-FM roster still omits a token-gated TabPFN-v2/2.5 arm~\citep{hollmann2025tabpfn,tabpfn25_2025}, parked behind
-a license review; we defend the current roster on license-cleanliness (all four configurations are open and
-token-free) and note that adding TabPFN is the cheapest response to a ``where is TabPFN'' referee question.
-The credentialed TableShift medical tasks (e.g.\ MIMIC/ICU loaders) remain future work behind their
+The FM roster covers all 14 keyed datasets for both TabICLv2 (leakage-ablated, ensemble of $16$,
+reconciled GBM reference) and TabDPT. The
+FM roster still omits TabPFN-v2/2.5~\citep{hollmann2025tabpfn,tabpfn25_2025}, which we leave
+for future work pending license review; we defend the current roster on license-cleanliness (all four configurations are open and
+token-free).
+The credentialed TableShift medical tasks (e.g.\ MIMIC/ICU) remain future work behind their
 data licenses.
 
-\paragraph{Cross-run reproducibility of XGBoost --- root-caused and fixed; the cost is one honest count
+\paragraph{Cross-run reproducibility of XGBoost --- root-caused and fixed; the cost is one count
 revision.} The two independent XGBoost runs behind earlier drafts (the Stage-1 and Stage-2 audits) diverged
 sharply on some datasets (e.g.\ \texttt{adult} grouped repair-ratio $0.635$ vs.\ $0.119$; grouped-gap count
-$8/14$ vs.\ $10/14$) despite fully seeded, internally deterministic scripts. The cause was a shared-RNG
-advancement order: both scripts drove every stochastic step through a single module-level generator, so
+$8/14$ vs.\ $10/14$) despite fully seeded, internally deterministic execution. The cause was a shared random-number
+stream: both analyses drew every stochastic step from a single generator, so
 Stage-2's second (LightGBM) arm advanced the stream before the next dataset's splits were drawn. Dataset
-\#1 (\texttt{electricity}) matched bit-for-bit across the two runs while every later dataset diverged,
+\#1 (\texttt{electricity}) matched exactly across the two runs while every later dataset diverged,
 confirming the two runs were evaluating different split realizations rather than exhibiting model
 irreproducibility. We replaced the shared stream with per-context deterministic RNGs (seeded per dataset
 $\times$ purpose $\times$ model): the two XGBoost arms now agree exactly on all 14 per-dataset records, and
@@ -804,7 +907,7 @@ $\times$ purpose $\times$ model): the two XGBoost arms now agree exactly on all 
 both GBMs share identical splits and calibration folds. Under the reconciled protocol the headline counts
 are those reported in \cref{sec:results} (gap $8/14$ XGBoost, $7/14$ LightGBM; repair $13/14$ both). LightGBM's
 gap count now sits one dataset below the preregistered majority threshold, so the conjunctive Stage-2 gate
-(gap-count Q1 $\wedge$ Mondrian Q2) evaluates to KILL under the reconciled protocol even though the repair
+(grouped-gap majority and Mondrian majority) evaluates to KILL under the reconciled protocol even though the repair
 sub-criterion replicates strongly; the confirmatory/exploratory split used throughout is accordingly a
 post-hoc reinterpretation, not an overall preregistered success (\cref{sec:results}). The gate is
 underpowered on the gap arm: Stage-1 (XGBoost) passed it at exactly the majority threshold ($8/14$, a
@@ -813,9 +916,9 @@ realizations have in fact ranged $7$--$10$ of $14$---\cref{fig:f6} and \cref{sec
 split-realization distribution behind that fragility. A verdict this sensitive to one re-draw carries
 little information, so we treat the Holm-robust repair as the confirmatory finding and the degradation
 direction as descriptive, not the gate outcome itself. The headline FM arm
-(\texttt{n\_estimators=16} leakage ablation) carries a de-staled Stage-1 GBM reference; only the superseded
+(ensemble of $16$, leakage ablation) uses the reconciled Stage-1 GBM reference; a smaller-ensemble
 % source: nd1_tabicl_fm_arm_leakage_ablation.json (gbm_reference_source field), nd1_tabicl_fm_arm_full14.json
-\texttt{n\_estimators=4} pass retains the pre-reconciliation reference and is no longer cited for any headline number.
+configuration that retained the pre-reconciliation reference is not cited for any headline number.
 
 \paragraph{Group-key feature leakage --- bounded by a key-excluded ablation.} In the main reported runs the
 leave-group-out/rolling-origin key (e.g.\ \texttt{native-country}, \texttt{date}) is retained as a
@@ -825,7 +928,7 @@ reasoning understates the risk in the other direction. Because leave-group-out t
 values never seen during training, a model that has learned to rely on key-specific patterns in-sample can
 behave erratically out-of-sample on the encoded key alone, so retaining the key can inflate, not just
 dampen, the apparent grouped-split collapse---confounding genuine group/time shift with an ID-generalization
-artifact. We re-ran the Stage-1 and Stage-2 pipelines with the split key dropped from the feature encoder (the
+artifact. We re-ran the Stage-1 and Stage-2 analyses with the split key dropped from the feature encoder (the
 key-excluded runs); we also re-ran both FM arms under the key-excluded
 % source: experiments/results/nd1_tabicl_fm_arm_leakage_ablation_keyexcluded.json, nd1_tabdpt_fm_arm_keyexcluded.json
 ablation (TabICLv2 and TabDPT, repair $13/14$ in both conditions), while the TableShift/ACS arm is out of scope
@@ -862,8 +965,7 @@ as an equally multiplicity-corrected result across all four configurations.
 models) were used, under the author's direction, to support implementation of analysis
 code, execution of the data-analysis workflow, and drafting/editing of manuscript text.
 The author reviewed all AI-assisted content for accuracy and takes full responsibility
-for it. No AI tool is credited as an author. All figures were produced by author-written
-plotting scripts from the underlying data; no generative-AI images were used in this work.
+for it. No AI tool is credited as an author. All figures were produced from the underlying data by the author; no generative-AI images were used in this work.
 
 \bmhead{Ethics approval and consent to participate} Not applicable (all datasets
 are public and de-identified).
@@ -871,16 +973,14 @@ are public and de-identified).
 \bmhead{Consent for publication} Not applicable.
 
 \bmhead{Data availability}
-All 14 datasets are public OpenML~\citep{vanschoren2014openml} (no auth); the
+All 14 datasets are public OpenML~\citep{vanschoren2014openml} tasks; the
 Folktables/ACS PUMS 2018 data are public US Census data. The frozen result records
 accompany this submission.
 
 \bmhead{Code availability}
-The experiment pipelines and the R figure scripts that regenerate every figure from
-the frozen result records accompany this submission; reliability metrics use the
-audit implementation vendored with the released code. Models are XGBoost~\citep{chen2016xgboost},
-LightGBM~\citep{ke2017lightgbm}, TabICLv2~\citep{qu2026tabicl} (\texttt{tabicl}
-package), and TabDPT~\citep{ma2024tabdpt} (\texttt{tabdpt} package), all
+The analysis code and the figure-generation code that regenerate every figure from
+the frozen result records accompany this submission. Models are XGBoost~\citep{chen2016xgboost},
+LightGBM~\citep{ke2017lightgbm}, TabICLv2~\citep{qu2026tabicl}, and TabDPT~\citep{ma2024tabdpt}, all
 open-weights and token-free. The development version is maintained at
 \url{https://github.com/PeterPonyu/structured-data-fm-reliability-research} and
 archived, per this journal's reproducible-research policy, at Zenodo under DOI

@@ -1,110 +1,247 @@
-% fig0_overview.tex -- symbolic TikZ schematic of the reliability-collapse audit design.
-% Standalone build (own Makefile target `fig0`); NOT part of the R figure
-% pipeline (which regenerates F1--F6 from on-disk result JSONs). Compile with:
-%   pdflatex -interaction=nonstopmode -halt-on-error fig0_overview.tex
-% Native width is held under the narrower of the two venue textwidths
-% (sn-jnl/DMKD: 372pt = 13.07cm) so \includegraphics never has to shrink the
-% embedded 8pt node text below the print floor in either paper.tex or
-% paper_svjour.tex.
-\documentclass[tikz,border=1pt]{standalone}
-\usetikzlibrary{arrows.meta,positioning,fit,backgrounds}
+% fig0_overview.tex -- symbolic TikZ schematic of the reliability-collapse audit.
+% Standalone (Makefile target `fig0`); not part of the R F1--F8 pipeline.
+% Compile: pdflatex -interaction=nonstopmode -halt-on-error fig0_overview.tex
+%
+% Native canvas ~130 mm, matched to the narrower venue measure (sn-jnl/DMKD
+% 31 pc = 131 mm) so \includegraphics[width=\linewidth] is near 1:1 there and
+% only a mild upscale on elsarticle preprint. Stage cards span the canvas
+% (banner layout); do not shrink a sparse drawing to fill the float.
+%
+% 2026-08-12: GEO/RotCert visual bar -- left accent + role wash, full arrow
+% shafts, role colors (blue random / yellow grouped / green restore /
+% vermillion fail), higher body fill.
+\documentclass[border=0.5pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,fit,backgrounds}
 
-% Okabe-Ito colorblind-safe palette (matches figures/ggtheme.R).
+% Okabe--Ito (matches figures/ggtheme.R). Role colors are meaningful.
 \definecolor{oiBlue}{HTML}{0072B2}
 \definecolor{oiOrange}{HTML}{E69F00}
 \definecolor{oiGreen}{HTML}{009E73}
 \definecolor{oiVermillion}{HTML}{D55E00}
-\definecolor{oiGrey}{HTML}{595959}
-
-% -- Small TikZ pictograms (shapes only, no photographic assets) used in place
-% of text-heavy box content; each is a self-contained mini tikzpicture sized
-% to sit on its own line above a short label inside a node.
-\newcommand{\iconDB}{\tikz[baseline=-0.5ex]{
-  \draw[oiGrey,thick] (0,0.9mm) ellipse (2.3mm and 0.8mm);
-  \draw[oiGrey,thick] (-2.3mm,0.9mm) -- (-2.3mm,-2mm);
-  \draw[oiGrey,thick] (2.3mm,0.9mm) -- (2.3mm,-2mm);
-  \draw[oiGrey,thick] (-2.3mm,-2mm) arc (180:360:2.3mm and 0.8mm);}}
-\newcommand{\iconSplit}[1]{\tikz[baseline=-0.5ex]{
-  \draw[#1,thick] (0,-1.6mm) -- (0,0);
-  \draw[#1,-{Latex[length=1.2mm,width=1mm]},thick] (0,0) -- (-1.9mm,1.7mm);
-  \draw[#1,-{Latex[length=1.2mm,width=1mm]},thick] (0,0) -- (1.9mm,1.7mm);}}
-\newcommand{\iconLock}{\tikz[baseline=-0.5ex]{
-  \draw[oiGrey,thick] (-1.6mm,-1.7mm) rectangle (1.6mm,0.5mm);
-  \draw[oiGrey,thick] (-1mm,0.5mm) arc (180:0:1mm and 1.5mm);}}
-\newcommand{\iconLadder}{\tikz[baseline=-0.5ex]{
-  \draw[oiGrey,thick] (-1.8mm,-2mm) -- (-1.8mm,2mm);
-  \draw[oiGrey,thick] (1.8mm,-2mm) -- (1.8mm,2mm);
-  \draw[oiGrey,thick] (-1.8mm,-1.1mm) -- (1.8mm,-1.1mm);
-  \draw[oiGrey,thick] (-1.8mm,0mm) -- (1.8mm,0mm);
-  \draw[oiGrey,thick] (-1.8mm,1.1mm) -- (1.8mm,1.1mm);}}
-\newcommand{\iconGauge}{\tikz[baseline=-0.5ex]{
-  \draw[oiGrey,thick] (-2.2mm,0) arc (180:0:2.2mm);
-  \draw[oiGrey,thick] (0,0) -- (-1.3mm,1.6mm);
-  \draw[oiGrey,thick] (-2.2mm,0) -- (2.2mm,0);}}
-\newcommand{\iconCheck}{\tikz[baseline=-0.5ex]{
-  \draw[oiGreen,line width=1pt] (-1.7mm,0) -- (-0.3mm,-1.5mm) -- (1.9mm,1.7mm);}}
-\newcommand{\iconCross}{\tikz[baseline=-0.5ex]{
-  \draw[oiVermillion,line width=1pt] (-1.5mm,-1.5mm) -- (1.5mm,1.5mm);
-  \draw[oiVermillion,line width=1pt] (-1.5mm,1.5mm) -- (1.5mm,-1.5mm);}}
+\definecolor{cInk}{HTML}{1A1A1A}
+\definecolor{cMute}{HTML}{4A4A4A}
+\definecolor{cLine}{HTML}{B0B0B0}
+\definecolor{cSurface}{HTML}{F1F1F1}
+\definecolor{cData}{HTML}{5A5A5A}
+\definecolor{cModel}{HTML}{3D3D3D}
+\definecolor{cAudit}{HTML}{6E6E6E}
 
 \begin{document}
 \begin{tikzpicture}[
-    font=\fontsize{8}{9.5}\selectfont,
-    node distance=4mm and 6mm,
-    box/.style={draw=oiGrey, thick, rounded corners=1.5pt, align=center,
-                fill=white, minimum height=6mm, text width=32mm, inner sep=2pt},
-    splitbox/.style={box, text width=22mm},
-    verdictbox/.style={box, text width=16mm, minimum height=6mm},
-    arr/.style={-{Latex[length=2mm,width=1.6mm]}, thick, oiGrey},
-    quarantine/.style={draw=oiOrange, thick, dash pattern=on 3pt off 2pt,
-                        rounded corners=2pt, inner sep=2.5mm}
+  x=1mm, y=1mm,
+  font=\rmfamily\fontsize{8.0}{9.2}\selectfont,
+  line cap=round, line join=round,
+  >=Latex,
+  flow/.style={draw=cMute, line width=1.25pt,
+    -{Latex[length=2.3mm,width=1.55mm]}, shorten >=0.15mm, shorten <=0.15mm},
+  flowplain/.style={draw=cMute, line width=1.25pt},
+  stage/.style={draw=cLine, line width=0.75pt, rounded corners=1.15mm,
+    fill=cSurface, minimum width=124mm, minimum height=14.6mm,
+    inner sep=0pt, outer sep=0pt, align=center},
+  pair/.style={stage, minimum width=59.5mm, minimum height=15.4mm},
+  verdict/.style={stage, minimum width=59.5mm, minimum height=14.8mm},
+  steplab/.style={font=\rmfamily\fontsize{6.3}{7.1}\selectfont, text=cMute},
+  rolelab/.style={font=\rmfamily\fontsize{5.9}{6.6}\selectfont\bfseries},
+  titlelab/.style={font=\rmfamily\fontsize{8.35}{9.5}\selectfont, text=cInk},
+  sublab/.style={font=\rmfamily\fontsize{6.85}{7.8}\selectfont, text=cMute},
+  bandlab/.style={font=\rmfamily\fontsize{7.45}{8.6}\selectfont, text=cInk},
 ]
 
-% -- Row 1: data
-\node[box] (data) {\iconDB\\ Keyed tabular dataset};
+\newcommand{\accentbar}[2]{%
+  \fill[#2] ([xshift=0.45mm,yshift=-0.7mm]#1.north west)
+    rectangle ([xshift=1.95mm,yshift=0.7mm]#1.south west);}
+\newcommand{\rolewash}[2]{%
+  \fill[#2, opacity=0.13] ([xshift=1.95mm,yshift=-0.45mm]#1.north west)
+    rectangle ([xshift=-0.45mm,yshift=-5.6mm]#1.north east);}
 
-% -- Row 2: split branch
-\node[splitbox, below left=of data, draw=oiBlue] (rsplit)
-  {\iconSplit{oiBlue}\\ Random split};
-\node[splitbox, below right=of data, draw=oiOrange] (gsplit)
-  {\iconSplit{oiOrange}\\ Grouped split};
+% =====================================================================
+% Vertical audit: full-width banners, pair cards share the same 124 mm.
+% Centers: data 0; splits -21.2; pred -42.6; ladder -71.0; eval -91.4;
+% verdicts -111.6. Shafts stay >=5.4 mm. Extra pad above the ladder so
+% the K=10 band sits in the quarantine, not on the AUDIT card.
+% =====================================================================
 
-% -- Row 3: frozen predictor
-\node[box, below=6mm of data] (pred)
-  {\iconLock\\ Frozen predictor};
+% -- 1 DATA --
+\node[stage] (data) at (0,0) {};
+\accentbar{data}{cData}
+\rolewash{data}{cData}
+\node[steplab, anchor=north west] at ($(data.north west)+(2.5mm,-1.15mm)$) {1};
+\node[rolelab, text=cData, anchor=north east]
+  at ($(data.north east)+(-1.2mm,-1.2mm)$) {DATA};
+\node[titlelab] at ($(data.center)+(1.1mm,1.15mm)$)
+  {Keyed tabular dataset};
+\node[sublab] at ($(data.center)+(1.1mm,-3.25mm)$)
+  {entity or time key};
 
-% -- Row 4: conformal + remedy ladder
-\node[box, below=10mm of pred, text width=50mm] (ladder)
-  {\iconLadder\\ Split-conformal + remedy ladder};
-
-% -- Row 5: worst-group coverage evaluation
-\node[box, below=6mm of ladder, text width=50mm] (eval)
-  {\iconGauge\\ Worst-group coverage evaluation};
-
-% -- Row 6: verdicts
-\node[verdictbox, below left=6mm and 3mm of eval, draw=oiGreen] (restore)
-  {\iconCheck\\ Restore (rare)};
-\node[verdictbox, below right=6mm and 3mm of eval, draw=oiVermillion] (fail)
-  {\iconCross\\ Fail (typical)};
-
-% -- arrows
-\draw[arr] (data) -- (rsplit);
-\draw[arr] (data) -- (gsplit);
-\draw[arr] (rsplit) -- (pred);
-\draw[arr] (gsplit) -- (pred);
-\draw[arr] (pred) -- (ladder);
-\draw[arr] (ladder) -- (eval);
-\draw[arr] (eval) -- (restore);
-\draw[arr] (eval) -- (fail);
-
-% -- exploratory/confirmatory quarantine (black annotation text; the dashed
-% border itself carries the orange color-coding, per the black-text-only rule)
-\begin{scope}[on background layer]
-  \node[quarantine, fit=(ladder)(eval)(restore)(fail), inner sep=4mm] (quar) {};
+\begin{scope}[shift={($(data.west)+(10.2mm,0.15mm)$)}, thick, cData]
+  \draw[line width=0.75pt] (0,1.05mm) ellipse (3.05mm and 1.05mm);
+  \draw[line width=0.75pt] (-3.05mm,1.05mm) -- (-3.05mm,-2.35mm);
+  \draw[line width=0.75pt] (3.05mm,1.05mm) -- (3.05mm,-2.35mm);
+  \draw[line width=0.75pt] (-3.05mm,-2.35mm) arc (180:360:3.05mm and 1.05mm);
 \end{scope}
-\node[black, align=center, above=0.8mm of quar.north, xshift=-2.5mm, font=\fontsize{8}{9.5}\selectfont] (quarlabel)
+
+% -- 2a RANDOM (blue) | 2b GROUPED (yellow) --
+\node[pair, draw=oiBlue, fill=oiBlue!8] (rsplit) at (-32.25,-21.2) {};
+\accentbar{rsplit}{oiBlue}
+\rolewash{rsplit}{oiBlue}
+\node[steplab, anchor=north west] at ($(rsplit.north west)+(2.5mm,-1.15mm)$) {2a};
+\node[rolelab, text=oiBlue, anchor=north east]
+  at ($(rsplit.north east)+(-1.15mm,-1.2mm)$) {RANDOM};
+\node[titlelab] at ($(rsplit.center)+(1.5mm,1.05mm)$)
+  {Random split};
+\node[sublab] at ($(rsplit.center)+(1.5mm,-3.35mm)$)
+  {row-wise};
+
+\begin{scope}[shift={($(rsplit.west)+(9.4mm,0.1mm)$)}, oiBlue]
+  \draw[line width=0.8pt] (0,-2.2mm) -- (0,0.15mm);
+  \draw[oiBlue,-{Latex[length=1.35mm,width=1.1mm]}, line width=0.8pt]
+    (0,0.15mm) -- (-2.35mm,2.35mm);
+  \draw[oiBlue,-{Latex[length=1.35mm,width=1.1mm]}, line width=0.8pt]
+    (0,0.15mm) -- (2.35mm,2.35mm);
+\end{scope}
+
+\node[pair, draw=oiOrange, fill=oiOrange!11] (gsplit) at (32.25,-21.2) {};
+\accentbar{gsplit}{oiOrange}
+\rolewash{gsplit}{oiOrange}
+\node[steplab, anchor=north west] at ($(gsplit.north west)+(2.5mm,-1.15mm)$) {2b};
+\node[rolelab, text=oiOrange!85!black, anchor=north east]
+  at ($(gsplit.north east)+(-1.15mm,-1.2mm)$) {GROUPED};
+\node[titlelab] at ($(gsplit.center)+(1.5mm,1.05mm)$)
+  {Grouped split};
+\node[sublab] at ($(gsplit.center)+(1.5mm,-3.35mm)$)
+  {leave-group-out / rolling-origin};
+
+\begin{scope}[shift={($(gsplit.west)+(9.4mm,0.1mm)$)}, oiOrange]
+  \draw[line width=0.8pt] (0,-2.2mm) -- (0,0.15mm);
+  \draw[oiOrange,-{Latex[length=1.35mm,width=1.1mm]}, line width=0.8pt]
+    (0,0.15mm) -- (-2.35mm,2.35mm);
+  \draw[oiOrange,-{Latex[length=1.35mm,width=1.1mm]}, line width=0.8pt]
+    (0,0.15mm) -- (2.35mm,2.35mm);
+\end{scope}
+
+% -- 3 MODEL --
+\node[stage] (pred) at (0,-42.6) {};
+\accentbar{pred}{cModel}
+\rolewash{pred}{cModel}
+\node[steplab, anchor=north west] at ($(pred.north west)+(2.5mm,-1.15mm)$) {3};
+\node[rolelab, text=cModel, anchor=north east]
+  at ($(pred.north east)+(-1.2mm,-1.2mm)$) {MODEL};
+\node[titlelab] at ($(pred.center)+(1.1mm,1.15mm)$)
+  {Frozen predictor};
+\node[sublab] at ($(pred.center)+(1.1mm,-3.25mm)$)
+  {GBM or tabular FM, interchangeable};
+
+\begin{scope}[shift={($(pred.west)+(10.2mm,0.2mm)$)}, thick, cModel]
+  \draw[line width=0.8pt] (-2.15mm,-2.25mm) rectangle (2.15mm,0.55mm);
+  \draw[line width=0.8pt] (-1.25mm,0.55mm) arc (180:0:1.25mm and 1.85mm);
+\end{scope}
+
+% -- 4 AUDIT + 5 EVAL + outcomes inside dashed quarantine --
+\node[stage] (ladder) at (0,-71.0) {};
+\accentbar{ladder}{cAudit}
+\rolewash{ladder}{cAudit}
+\node[steplab, anchor=north west] at ($(ladder.north west)+(2.5mm,-1.15mm)$) {4};
+\node[rolelab, text=cAudit, anchor=north east]
+  at ($(ladder.north east)+(-1.2mm,-1.2mm)$) {AUDIT};
+\node[titlelab] at ($(ladder.center)+(1.1mm,1.15mm)$)
+  {Split-conformal + remedy ladder};
+\node[sublab] at ($(ladder.center)+(1.1mm,-3.25mm)$)
+  {weighted CP $\cdot$ Mondrian $\cdot$ tuned selector};
+
+\begin{scope}[shift={($(ladder.west)+(10.2mm,0.15mm)$)}, thick, cAudit]
+  \draw[line width=0.75pt] (-2.35mm,-2.55mm) -- (-2.35mm,2.55mm);
+  \draw[line width=0.75pt] (2.35mm,-2.55mm) -- (2.35mm,2.55mm);
+  \draw[line width=0.7pt] (-2.35mm,-1.35mm) -- (2.35mm,-1.35mm);
+  \draw[line width=0.7pt] (-2.35mm,0.05mm) -- (2.35mm,0.05mm);
+  \draw[line width=0.7pt] (-2.35mm,1.45mm) -- (2.35mm,1.45mm);
+\end{scope}
+
+\node[stage] (eval) at (0,-91.4) {};
+\accentbar{eval}{cAudit}
+\rolewash{eval}{cAudit}
+\node[steplab, anchor=north west] at ($(eval.north west)+(2.5mm,-1.15mm)$) {5};
+\node[rolelab, text=cAudit, anchor=north east]
+  at ($(eval.north east)+(-1.2mm,-1.2mm)$) {EVAL};
+\node[titlelab] at ($(eval.center)+(1.1mm,1.15mm)$)
+  {Worst-group coverage evaluation};
+\node[sublab] at ($(eval.center)+(1.1mm,-3.25mm)$)
+  {versus the $0.90$ target};
+
+\begin{scope}[shift={($(eval.west)+(10.2mm,0.35mm)$)}, thick, cAudit]
+  \draw[line width=0.75pt] (-2.85mm,0) arc (180:0:2.85mm);
+  \draw[line width=0.75pt] (0,0) -- (-1.55mm,2.05mm);
+  \draw[line width=0.75pt] (-2.85mm,0) -- (2.85mm,0);
+\end{scope}
+
+% -- Restore (green) | Fail (vermillion) --
+\node[verdict, draw=oiGreen, fill=oiGreen!10] (restore) at (-32.25,-111.6) {};
+\accentbar{restore}{oiGreen}
+\rolewash{restore}{oiGreen}
+\node[rolelab, text=oiGreen!80!black, anchor=north east]
+  at ($(restore.north east)+(-1.15mm,-1.15mm)$) {RESTORE};
+\node[titlelab] at ($(restore.center)+(1.5mm,0.85mm)$)
+  {Restore (rare)};
+\node[sublab] at ($(restore.center)+(1.5mm,-3.45mm)$)
+  {coverage returns to $0.90$};
+
+\begin{scope}[shift={($(restore.west)+(9.2mm,0.05mm)$)}]
+  \draw[oiGreen, line width=1.15pt] (-2.15mm,0.05mm) -- (-0.35mm,-1.85mm)
+    -- (2.45mm,2.15mm);
+\end{scope}
+
+\node[verdict, draw=oiVermillion, fill=oiVermillion!10] (fail) at (32.25,-111.6) {};
+\accentbar{fail}{oiVermillion}
+\rolewash{fail}{oiVermillion}
+\node[rolelab, text=oiVermillion, anchor=north east]
+  at ($(fail.north east)+(-1.15mm,-1.15mm)$) {FAIL};
+\node[titlelab] at ($(fail.center)+(1.5mm,0.85mm)$)
+  {Fail (typical)};
+\node[sublab] at ($(fail.center)+(1.5mm,-3.45mm)$)
+  {coverage stays below target};
+
+\begin{scope}[shift={($(fail.west)+(9.2mm,0.05mm)$)}]
+  \draw[oiVermillion, line width=1.15pt] (-1.95mm,-1.95mm) -- (1.95mm,1.95mm);
+  \draw[oiVermillion, line width=1.15pt] (-1.95mm,1.95mm) -- (1.95mm,-1.95mm);
+\end{scope}
+
+% -- Full vertical shafts (aligned to card centers; no diagonal clip) --
+\draw[oiBlue, line width=1.25pt,
+  -{Latex[length=2.3mm,width=1.55mm]}, shorten >=0.15mm, shorten <=0.15mm]
+  (data.south -| rsplit) -- (rsplit.north);
+\draw[oiOrange, line width=1.25pt,
+  -{Latex[length=2.3mm,width=1.55mm]}, shorten >=0.15mm, shorten <=0.15mm]
+  (data.south -| gsplit) -- (gsplit.north);
+\draw[oiBlue, line width=1.25pt,
+  -{Latex[length=2.3mm,width=1.55mm]}, shorten >=0.15mm, shorten <=0.15mm]
+  (rsplit.south) -- (pred.north -| rsplit);
+\draw[oiOrange, line width=1.25pt,
+  -{Latex[length=2.3mm,width=1.55mm]}, shorten >=0.15mm, shorten <=0.15mm]
+  (gsplit.south) -- (pred.north -| gsplit);
+\draw[flow] (pred.south) -- (ladder.north);
+\draw[flow] (ladder.south) -- (eval.north);
+\draw[oiGreen, line width=1.25pt,
+  -{Latex[length=2.3mm,width=1.55mm]}, shorten >=0.15mm, shorten <=0.15mm]
+  (eval.south -| restore) -- (restore.north);
+\draw[oiVermillion, line width=1.25pt,
+  -{Latex[length=2.3mm,width=1.55mm]}, shorten >=0.15mm, shorten <=0.15mm]
+  (eval.south -| fail) -- (fail.north);
+
+% -- Exploratory quarantine (dashed gold). A north strut keeps the K=10
+% band in the pad above AUDIT; the pred→ladder shaft stays fully drawn
+% (label fill matches the wash so type stays readable). --
+\coordinate (qpad) at ($(ladder.north)+(0,5.4mm)$);
+\begin{scope}[on background layer]
+  \node[draw=oiOrange, line width=0.95pt, dash pattern=on 2.6pt off 1.7pt,
+        rounded corners=1.6mm, inner sep=3.0mm, fill=oiOrange!5,
+        fit=(qpad)(ladder)(eval)(restore)(fail)] (quar) {};
+\end{scope}
+\node[bandlab, fill=oiOrange!5, inner sep=0.45mm] at ($(ladder.north)+(0,3.15mm)$)
   {Exploratory quarantine ($K{=}10$ split-repeats)};
-\node[black, align=center, below=0.8mm of quar.south, font=\fontsize{8}{9.5}\selectfont] (quarnote)
+\node[bandlab, align=center] at ($(quar.south)+(0,-3.7mm)$)
   {held out from confirmatory $K{=}20$ TableShift arm};
 
 \end{tikzpicture}
