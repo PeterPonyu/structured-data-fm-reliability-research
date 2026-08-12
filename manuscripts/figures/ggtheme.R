@@ -91,7 +91,7 @@ PRETTY_MODEL <- c(
 PRETTY_ACS <- c(
   ACSEmployment      = "Employment",
   ACSIncome          = "Income",
-  ACSPublicCoverage  = "Pub. cov.",
+  ACSPublicCoverage  = "Public coverage",
   ACSMobility        = "Mobility"
 )
 # Folktables RAC1P codes present in the frozen ACS arm (1, 2, 6, 8, 9).

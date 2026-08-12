@@ -462,7 +462,7 @@ $6/14$. (A key-excluded robustness ablation---dropping the leave-group-out/rolli
 model features---lowers the single-draw gap counts to $6/14$ XGBoost and $5/14$ LightGBM while repair-beats-random
 % source: experiments/results/nd1_s2_lightgbm_mondrian_keyexcluded.json (per_model_summary)
 stays at $13/14$ for both; see \cref{sec:limitations}.)
-\begin{figure}[!htb]\centering\includegraphics[width=\linewidth]{F3_model_agnostic.pdf}
+\begin{figure}[!htb]\centering\includegraphics[width=\linewidth,height=0.55\textheight,keepaspectratio]{F3_model_agnostic.pdf}
 \caption{Model-agnosticism across four configurations spanning three architecture families.
 \textbf{A.} Grouped AURC for XGBoost versus LightGBM on all 14 datasets (log--log; points near the diagonal show the two gradient-boosted models behave near-identically).
 \textbf{B.} Split-conformal grouped coverage with the group key included, all four configurations; dashed line at target $0.90$.
@@ -518,9 +518,9 @@ below the oracle ceiling (Table~\ref{tab:learned}; oracle ranks by the true loss
 the \emph{repair ratio} is $\rho$ in \eqref{eq:repair-ratio}
 (higher is better; zero means no improvement over random deferral). In the paired head-to-head the uncertainty score
 wins on $8/14$ datasets and is never beaten on classification; the learned selector wins on only $3/14$,
-all regression (\texttt{Airlines\_DepDelay\_10M}, \texttt{nyc-taxi-green-dec-2016}, \texttt{house\_sales}), where
+all regression (Airline delays, NYC taxi, House sales), where
 it can exploit interval geometry beyond raw width, with $3$ ties. The learned selector also needs calibration
-errors to fit, which dominant-group splits barely supply (\texttt{adult} and \texttt{cylinder-bands}
+errors to fit, which dominant-group splits barely supply (Adult and Cylinder bands
 leave only $56$ and $45$ calibration rows), a structural disadvantage the free score does not share. We scope
 this claim: the selector is untuned and gets none of the $12$-trial hyperparameter budget our
 GBMs receive, so the head-to-head is asymmetric in the free score's favour, and the pattern is better read as
@@ -532,8 +532,8 @@ over $K{=}10$ grouped split-repeats with $N{=}400$ paired bootstraps) does not o
 % source: g1_remedies_2026-07-13/results.json (aggregate.n_uncertainty_ties_or_beats_tuned; per_k[0].summary)
 the free uncertainty score still ties-or-beats the budget-matched tuned selector on an aggregate median of
 $11.5$ of the $14$ datasets (min $9$, max $13$ across the ten split-repeats), and at the anchored single draw
-($k_0$) on $9$ of the $12$ non-degenerate datasets (the remaining $2$---\texttt{adult} and
-\texttt{cylinder-bands}---excluded because the tuned selector is untrainable on their dominant-group
+($k_0$) on $9$ of the $12$ non-degenerate datasets (the remaining $2$---Adult and
+Cylinder bands---excluded because the tuned selector is untrainable on their dominant-group
 calibration fold). Our claim is therefore the weaker, defensible one---the free uncertainty score is not
 a low bar (it is never beaten on classification, ties on median, and is not overturned by a budget-matched
 tuned selector), not that no learned selector can ever win. This arm is
@@ -615,8 +615,8 @@ leaves the repair at $13/14$ and lowers the AURC-degrade count to $4/14$, consis
 % source: experiments/results/nd1_tabdpt_fm_arm.json, nd1_tabdpt_fm_arm_keyexcluded.json (repair 13/14 both)
 collapse-plus-repair story now reproduces across four configurations spanning three architecture families
 (GBDT plus two distinct tabular-FM architectures; Fig.~\ref{fig:f3}B),
-no FM auto-repairing the gap. The hardest shifts remain temporal: \texttt{Airlines\_DepDelay\_10M} grouped
-coverage collapses to $0.234$ and \texttt{electricity} to $0.634$ (TabICLv2), comparable to or worse than the
+no FM auto-repairing the gap. The hardest shifts remain temporal: Airline delays grouped
+coverage collapses to $0.234$ and Electricity to $0.634$ (TabICLv2), comparable to or worse than the
 reconciled XGBoost baseline, confirming that the FMs require the same conformal + abstention recipe---not an
 auto-repair. These leakage-ablated ensemble-of-$16$ numbers, with the reconciled GBM reference, are the headline TabICLv2 results; a smaller-ensemble configuration agrees qualitatively on the shared classification datasets and is not used for any headline number (see
 \cref{sec:limitations}). \paragraph{Robustness checks.} A $30$-dataset breadth extension (the 14 keyed datasets
@@ -624,21 +624,21 @@ plus 16 OpenML datasets grouped on an arbitrary categorical feature, so the ``gr
 % source: experiments/results/nd1_tabicl_fm_arm_leakage_ablation.json (ext30: n_ok=29/30, repair 25/29),
 % nd1_fm_scaling_arm.json (64/64 cells)
 meaningful there) keeps abstention-repair ahead of random on $25/29$ completed datasets for TabICLv2 (the
-single non-completing dataset is \texttt{PhishingWebsites}, excluded before evaluation because no valid grouping key could be assigned), and an
+single non-completing dataset is Phishing websites, excluded before evaluation because no valid grouping key could be assigned), and an
 in-context scaling sweep (ensemble $\times$ context length, 64 cells) shows AURC improving smoothly with more
 context without altering the grouped-collapse conclusion; we report both as appendix-level robustness, not as
 the keyed-suite headline.
 
 \subsection*{Generalization to a TableShift-class benchmark (Folktables/ACS)}
-We test whether the model-agnostic finding survives on a canonical distribution-shift suite. TableShift's $11$ open tasks are publicly downloadable. Two of them, \texttt{assistments} and
-\texttt{college\_scorecard}, require Kaggle credentials and were excluded before any
+We test whether the model-agnostic finding survives on a canonical distribution-shift suite. TableShift's $11$ open tasks are publicly downloadable. Two of them, Assistments and
+College scorecard, require Kaggle credentials and were excluded before any
 confirmatory number was computed, leaving $9$ open tasks that enter the generalization test reported below, which
 resolves the held-out out-of-distribution test fold's often-single-domain endpoint ambiguity with a frozen
 evaluability rule fixed ahead of time. For the present, complementary generalization arm we use the open
 TableShift-class substitute~\citep{gardner2023tableshift}: four
-Folktables/ACS~\citep{ding2021retiring} binary tasks (\texttt{ACSIncome}, \texttt{ACSPublicCoverage},
-\texttt{ACSMobility}, \texttt{ACSEmployment}) over US Census ACS PUMS 2018, with a leave-states-out
-spatial OOD split (held-out \{MA, GA, MI\}) against a random in-domain split, same protocol as above
+Folktables/ACS~\citep{ding2021retiring} binary tasks (ACS Income, ACS Public Coverage,
+ACS Mobility, ACS Employment) over US Census ACS PUMS 2018, with a leave-states-out
+spatial OOD split (held-out \{MA, GA, MI\}) against a random in-domain split
 (XGBoost + LightGBM, split-conformal $\alpha=0.10$, $400$-bootstrap CIs). \paragraph{Abstention repair
 replicates.} Uncertainty-ranked abstention beats random deferral under OOD on $4/4$ tasks for both
 GBMs, every CI excluding $0$ (median OOD repair ratio $0.539$ XGBoost, $0.579$ LightGBM;
@@ -777,16 +777,16 @@ fragility scrutiny used elsewhere in this paper to the 14-dataset gap count, thi
 on only $6$ evaluable tasks ($4$ of $6$ on the fallback endpoint, Table~\ref{tab:p5roster}) and is not
 robust to which task is held out: recomputing the frozen $\lfloor n/2\rfloor{+}1$ majority rule at
 $n{=}5$ (leave-one-task-out) flips the verdict to CONFIRM if any of the three tasks where no remedy
-ever restores coverage across $K$ (\texttt{brfss\_diabetes}, \texttt{brfss\_blood\_pressure},
-\texttt{acsunemployment}) is dropped, and leaves it REJECT if any of the three tasks where a remedy
+ever restores coverage across $K$ (BRFSS diabetes, BRFSS blood pressure,
+ACS Unemployment) is dropped, and leaves it REJECT if any of the three tasks where a remedy
 % source: per-task p5-arm JSONs (p5_<task>.json, per_k[*].remedies.*.restores_coverage), leave-one-task-out recomputation
-restores coverage at every repeat (\texttt{acsincome}, \texttt{acspubcov}, \texttt{acsfoodstamps}) is
+restores coverage at every repeat (ACS Income, ACS Public Coverage, ACS Food Stamps) is
 dropped. Per remedy (min/median/max
 across $K$): weighted CP $3/3.0/4$, inferred-group Mondrian $0/0.0/0$, uncertainty-decile Mondrian $0/0.0/1$
 (Table~\ref{tab:p5verdict})---the same ordering as the exploratory audit, with weighted CP strongest and
 still short of a robust majority. A supplementary, non-decision-altering multiplicity correction
 (Holm--Bonferroni / Benjamini--Hochberg across the $6$ evaluable tasks, anchored single-draw $p$-values)
-rejects the gap-reduction null on $5/6$ tasks at $\alpha=0.05$ (all but \texttt{acsunemployment}, $p=0.165$):
+rejects the gap-reduction null on $5/6$ tasks at $\alpha=0.05$ (all but ACS Unemployment, $p=0.165$):
 % source: p5-arm results.json (aggregate.multiplicity_k0.gap_reduction)
 individual remedies do measurably shrink the gap on most tasks, just not far enough, and not consistently
 enough across $K$, to clear the conjunctive restoration bar on a majority.
@@ -825,11 +825,11 @@ uncertainty ties-or-beats tuned selector (min / median / max across $K$) & $6$ /
 
 \paragraph{Descriptive: the marginal in-domain versus out-of-domain coverage gap where available.} TableShift exposes an
 additional in-domain held-out test split for only $3$ of the $9$ tasks; where available, the
-marginal (non-group-conditional) coverage gap under plain split conformal is \texttt{physionet} $+0.094$,
-\texttt{brfss\_diabetes} $+0.040$, and \texttt{diabetes\_readmission} $-0.018$---two of three tasks show the
+marginal (non-group-conditional) coverage gap under plain split conformal is PhysioNet $+0.094$,
+BRFSS diabetes $+0.040$, and Diabetes readmission $-0.018$---two of three tasks show the
 % source: p5-arm results.json (per-task marginal_gap, id_test_available)
 same direction (out-of-domain coverage below in-domain) as the primary 14-dataset study's headline collapse,
-with \texttt{diabetes\_readmission}'s small negative gap the exception.
+with Diabetes readmission's small negative gap the exception.
 
 \paragraph{Disclosed loader adaptations.} Applying the frozen endpoint rule and remedy
 ladder to TableShift required three narrow adaptations that do not change the
@@ -862,7 +862,7 @@ of $0.339$ against an oracle ceiling of $0.745$ (\cref{tab:learned}). On the hel
 roster~\citep{gardner2023tableshift} the free score ties-or-beats a budget-matched tuned selector on all
 $6$ evaluable tasks at every one of $K{=}20$ repeats (\cref{tab:p5verdict}), so H2 is CONFIRMed.
 Abstention makes no coverage claim and does not restore \eqref{eq:cp-guarantee}; the
-\texttt{Airlines\_DepDelay\_10M} coverage collapse to $0.234$ is not repaired by it. The Introduction's warning
+Airline delays coverage collapse to $0.234$ is not repaired by it. The Introduction's warning
 that reject options can shape subgroup disparities~\citep{jones2021selective,kamiran2018reject} returns
 in the Folktables/ACS arm as a RAC1P race-subgroup coverage gap (\cref{fig:f5}).
 
@@ -920,11 +920,11 @@ data licenses.
 
 \paragraph{Cross-run reproducibility of XGBoost --- root-caused and fixed; the cost is one count
 revision.} The two independent XGBoost runs behind earlier drafts (the Stage-1 and Stage-2 audits) diverged
-sharply on some datasets (e.g.\ \texttt{adult} grouped repair-ratio $0.635$ vs.\ $0.119$; grouped-gap count
+sharply on some datasets (e.g.\ Adult grouped repair-ratio $0.635$ vs.\ $0.119$; grouped-gap count
 $8/14$ vs.\ $10/14$) despite fully seeded, internally deterministic execution. The cause was a shared random-number
 stream: both analyses drew every stochastic step from a single generator, so
 Stage-2's second (LightGBM) arm advanced the stream before the next dataset's splits were drawn. Dataset
-\#1 (\texttt{electricity}) matched exactly across the two runs while every later dataset diverged,
+\#1 (Electricity) matched exactly across the two runs while every later dataset diverged,
 confirming the two runs were evaluating different split realizations rather than exhibiting model
 irreproducibility. We replaced the shared stream with per-context deterministic RNGs (seeded per dataset
 $\times$ purpose $\times$ model): the two XGBoost arms now agree exactly on all 14 per-dataset records, and

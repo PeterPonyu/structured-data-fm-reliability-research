@@ -15,7 +15,7 @@
 #   make paper SHARED_BIB=/path/to/reliability-commons/shared.bib
 
 SHARED_BIB ?= ${COMMONS_ROOT}/shared.bib
-R_SCRIPTS  := figures/p4_figs.R figures/p5_tableshift.R
+R_SCRIPTS  := figures/p4_figs_expansions.R
 
 .PHONY: all figures fig0 bib paper clean
 

@@ -533,7 +533,7 @@ f6 <- (
         legend.position = "bottom",
         panel.border = element_rect(linewidth = 0.75, colour = "grey30"))
 if (want_fig("F6"))
-  save_fig(f6, file.path(SDIR, "F6_split_repeats_fragility"), w = W, h = 5.40)
+  save_fig(f6, file.path(SDIR, "F6_split_repeats_fragility"), w = W, h = 5.10)
 cat("F6: lgb_ki=", nrow(d_lgb_ki), " xgb_ki=", nrow(d_xgb_ki),
     " lgb_ke=", nrow(d_lgb_ke), " xgb_ke=", nrow(d_xgb_ke), "\n")
 cat("All expansions done.\n")

@@ -46,7 +46,9 @@
   title     = {Benchmarking Distribution Shift in Tabular Data with {TableShift}},
   author    = {Gardner, Josh and Popovi{\'c}, Zoran and Schmidt, Ludwig},
   booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS), Datasets and Benchmarks Track},
+  pages     = {53385--53432},
   year      = {2023},
+  doi       = {10.52202/075280-2324},
 }
 
 @inproceedings{ding2021retiring,
@@ -78,29 +80,30 @@
   howpublished  = {arXiv:2502.05564},
 }
 
-% author order corrected (Labach before Kamkari) against arXiv:2410.18164 abstract page, 2026-07-17
-@misc{ma2024tabdpt,
-  title         = {{TabDPT}: Scaling Tabular Foundation Models on Real Data},
-  author        = {Ma, Junwei and Thomas, Valentin and Hosseinzadeh, Rasa and Labach, Alex
-                   and Kamkari, Hamidreza and Cresswell, Jesse C. and Golestan, Keyvan and Yu, Guangwei
-                   and Caterini, Anthony L. and Volkovs, Maksims},
-  year          = {2024},
-  eprint        = {2410.18164},
+% venue/DOI/pages from Crossref 10.52202/085713-5748 (NeurIPS 2025); author list from arXiv:2410.18164 (Crossref dropped Kamkari)
+@inproceedings{ma2024tabdpt,
+  title     = {{TabDPT}: Scaling Tabular Foundation Models on Real Data},
+  author    = {Ma, Junwei and Thomas, Valentin and Hosseinzadeh, Rasa and Labach, Alex
+               and Kamkari, Hamidreza and Cresswell, Jesse C. and Golestan, Keyvan and Yu, Guangwei
+               and Caterini, Anthony L. and Volkovs, Maksims},
+  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},
+  pages     = {191387--191417},
+  year      = {2025},
+  doi       = {10.52202/085713-5748},
+  eprint    = {2410.18164},
   archivePrefix = {arXiv},
-  howpublished  = {arXiv:2410.18164},
-  note          = {\url{https://github.com/layer6ai-labs/TabDPT}},
+  note      = {\url{https://github.com/layer6ai-labs/TabDPT}},
 }
 
-% --- 2026 tabular-FM reliability wave (arXiv ids survey-verified 2026-07-10;
-%     author lists below are PENDING human verification before submission) ---
-@misc{tfm_uncertainty_esann2026,
-  title         = {High Performance, Low Reliability: Uncertainty Benchmarking for Tabular Foundation Models},
-  author        = {De Melo Costa, Jos{\'e} Lucas and Popineau, Fabrice and Rimmel, Arpad and Doan, Bich-Li{\^e}n},
-  year          = {2026},
-  eprint        = {2605.28554},
+@inproceedings{tfm_uncertainty_esann2026,
+  title     = {High Performance, Low Reliability: Uncertainty Benchmarking for Tabular Foundation Models},
+  author    = {De Melo Costa, Jos{\'e} Lucas and Popineau, Fabrice and Rimmel, Arpad and Doan, Bich-Li{\^e}n},
+  booktitle = {Proceedings of the European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning (ESANN)},
+  pages     = {115--120},
+  year      = {2026},
+  doi       = {10.14428/esann/2026.ES2026-261},
+  eprint    = {2605.28554},
   archivePrefix = {arXiv},
-  howpublished  = {arXiv:2605.28554},
-  note          = {ESANN 2026},
 }
 
 @misc{beyondiid2026,
@@ -124,8 +127,9 @@
   howpublished  = {arXiv:2505.16226},
 }
 
+% title updated to current arXiv:2602.04596 abstract (v1 was retitled; comment: "Major revision, retitled")
 @misc{tabpfn_uncdecomp2026,
-  title         = {A Principled Framework for Uncertainty Decomposition in {TabPFN}},
+  title         = {Uncertainty Decomposition for Bayes-Filtered Transformers via Bayesian Predictive Inference},
   author        = {Fortini, Sandra and Ng, Kenyon and Petrone, Sonia and Rousseau, Judith and Wei, Susan},
   year          = {2026},
   eprint        = {2602.04596},
@@ -143,14 +147,15 @@
   howpublished  = {arXiv:2603.08206},
 }
 
-@misc{helli2024driftresilient,
-  title         = {Drift-Resilient {TabPFN}: In-Context Learning Temporal Distribution Shifts on Tabular Data},
-  author        = {Helli, Kai and Schnurr, David and Hollmann, Noah and M{\"u}ller, Samuel and Hutter, Frank},
-  year          = {2024},
-  eprint        = {2411.10634},
+@inproceedings{helli2024driftresilient,
+  title     = {Drift-Resilient {TabPFN}: In-Context Learning Temporal Distribution Shifts on Tabular Data},
+  author    = {Helli, Kai and Schnurr, David and Hollmann, Noah and M{\"u}ller, Samuel and Hutter, Frank},
+  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},
+  pages     = {98742--98781},
+  year      = {2024},
+  doi       = {10.52202/079017-3134},
+  eprint    = {2411.10634},
   archivePrefix = {arXiv},
-  howpublished  = {arXiv:2411.10634},
-  note          = {NeurIPS 2024},
 }
 
 % Tabular OOD-generalization benchmarks (accuracy/robustness line, cited for
@@ -165,7 +170,9 @@
   title     = {On the Need for a Language Describing Distribution Shifts: Illustrations on Tabular Datasets},
   author    = {Liu, Jiashuo and Wang, Tianyu and Cui, Peng and Namkoong, Hongseok},
   booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS), Datasets and Benchmarks Track},
+  pages     = {51371--51408},
   year      = {2023},
+  doi       = {10.52202/075280-2237},
   note      = {Introduces the WhyShift benchmark; arXiv:2307.05284},
 }
 
@@ -199,6 +206,7 @@
   title     = {Conformal Prediction Under Covariate Shift},
   author    = {Tibshirani, Ryan J. and Foygel Barber, Rina and Cand{\`e}s, Emmanuel J. and Ramdas, Aaditya},
   booktitle = {Advances in Neural Information Processing Systems 32 (NeurIPS)},
+  pages     = {2526--2536},
   year      = {2019},
   eprint    = {1904.06019},
   archivePrefix = {arXiv},
@@ -323,6 +331,7 @@
   author    = {Papadopoulos, Harris and Proedrou, Kostas and Vovk, Volodya and Gammerman, Alex},
   booktitle = {Machine Learning: ECML 2002},
   series    = {Lecture Notes in Computer Science},
+  volume    = {2430},
   pages     = {345--356},
   year      = {2002},
   doi       = {10.1007/3-540-36755-1_29},
@@ -350,24 +359,24 @@
   doi     = {10.1214/20-AOS1965},
 }
 
-@misc{gibbs2021adaptive,
-  title         = {Adaptive Conformal Inference Under Distribution Shift},
-  author        = {Gibbs, Isaac and Cand{\`e}s, Emmanuel J.},
-  year          = {2021},
-  eprint        = {2106.00170},
+@inproceedings{gibbs2021adaptive,
+  title     = {Adaptive Conformal Inference Under Distribution Shift},
+  author    = {Gibbs, Isaac and Cand{\`e}s, Emmanuel J.},
+  booktitle = {Advances in Neural Information Processing Systems 34 (NeurIPS)},
+  pages     = {1660--1672},
+  year      = {2021},
+  eprint    = {2106.00170},
   archivePrefix = {arXiv},
-  howpublished  = {arXiv:2106.00170},
-  note          = {Advances in Neural Information Processing Systems 34 (NeurIPS)},
 }
 
-@misc{romano2019cqr,
-  title         = {Conformalized Quantile Regression},
-  author        = {Romano, Yaniv and Patterson, Evan and Cand{\`e}s, Emmanuel J.},
-  year          = {2019},
-  eprint        = {1905.03222},
+@inproceedings{romano2019cqr,
+  title     = {Conformalized Quantile Regression},
+  author    = {Romano, Yaniv and Patterson, Evan and Cand{\`e}s, Emmanuel J.},
+  booktitle = {Advances in Neural Information Processing Systems 32 (NeurIPS)},
+  pages     = {3538--3548},
+  year      = {2019},
+  eprint    = {1905.03222},
   archivePrefix = {arXiv},
-  howpublished  = {arXiv:1905.03222},
-  note          = {Advances in Neural Information Processing Systems 32 (NeurIPS)},
 }
 
 % ---- Reject option / selective classification lineage (DOIs verified via Crossref 2026-07-16) ----
@@ -398,30 +407,31 @@
   author    = {Cortes, Corinna and DeSalvo, Giulia and Mohri, Mehryar},
   booktitle = {Algorithmic Learning Theory (ALT)},
   series    = {Lecture Notes in Computer Science},
+  volume    = {9925},
   pages     = {67--82},
   year      = {2016},
   doi       = {10.1007/978-3-319-46379-7_5},
 }
 
-% ---- Tabular learning substrate (arXiv ids verified via arXiv API 2026-07-16) ----
-@misc{grinsztajn2022trees,
-  title         = {Why do tree-based models still outperform deep learning on tabular data?},
-  author        = {Grinsztajn, L{\'e}o and Oyallon, Edouard and Varoquaux, Ga{\"e}l},
-  year          = {2022},
-  eprint        = {2207.08815},
+@inproceedings{grinsztajn2022trees,
+  title     = {Why do tree-based models still outperform deep learning on typical tabular data?},
+  author    = {Grinsztajn, L{\'e}o and Oyallon, Edouard and Varoquaux, Ga{\"e}l},
+  booktitle = {Advances in Neural Information Processing Systems 35 (NeurIPS), Datasets and Benchmarks Track},
+  pages     = {507--520},
+  year      = {2022},
+  doi       = {10.52202/068431-0037},
+  eprint    = {2207.08815},
   archivePrefix = {arXiv},
-  howpublished  = {arXiv:2207.08815},
-  note          = {Advances in Neural Information Processing Systems 35 (NeurIPS), Datasets and Benchmarks Track},
 }
 
-@misc{gorishniy2021revisiting,
-  title         = {Revisiting Deep Learning Models for Tabular Data},
-  author        = {Gorishniy, Yury and Rubachev, Ivan and Khrulkov, Valentin and Babenko, Artem},
-  year          = {2021},
-  eprint        = {2106.11959},
+@inproceedings{gorishniy2021revisiting,
+  title     = {Revisiting Deep Learning Models for Tabular Data},
+  author    = {Gorishniy, Yury and Rubachev, Ivan and Khrulkov, Valentin and Babenko, Artem},
+  booktitle = {Advances in Neural Information Processing Systems 34 (NeurIPS)},
+  pages     = {18932--18943},
+  year      = {2021},
+  eprint    = {2106.11959},
   archivePrefix = {arXiv},
-  howpublished  = {arXiv:2106.11959},
-  note          = {Advances in Neural Information Processing Systems 34 (NeurIPS)},
 }
 
 @article{schultz2024convgen,
@@ -450,7 +460,7 @@
   author  = {Gawlikowski, Jakob and Njieutcheu Tassi, Cedrique Rovile and Ali, Mohsin and Lee, Jongseok and Humt, Matthias and Feng, Jianxiang and Kruspe, Anna and Triebel, Rudolph and Jung, Peter and Roscher, Ribana and Shahzad, Muhammad and Yang, Wen and Bamler, Richard and Zhu, Xiao Xiang},
   journal = {Artificial Intelligence Review},
   volume  = {56},
-  number  = {Suppl 1},
+  number  = {S1},
   pages   = {1513--1589},
   year    = {2023},
   doi     = {10.1007/s10462-023-10562-9},
