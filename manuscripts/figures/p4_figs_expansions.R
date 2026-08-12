@@ -313,17 +313,18 @@ pB3 <- make_cov_panel(cov4_ki, "Key included")
 pC3 <- make_cov_panel(cov4_ke, "Key excluded")
 pD3 <- make_cov_panel(gbm_cov_gb, "Tuned GBM")
 # Fully free A so its log–log axes are not aligned to B's dataset names.
-# Dedicated 4-key legend (not collect): `& legend.position=bottom` re-enabled
-# every panel guide and clipped the concatenated row.
-f3 <- (free(pA3 + labs(tag = "A")) | (pB3 + labs(tag = "B"))) /
-  ((pC3 + labs(tag = "C")) | (pD3 + labs(tag = "D"))) /
+# Dedicated 4-key legend (not collect). Do not `& theme(plot.tag=...)` or the
+# legend row inherits a spurious E tag.
+f3_tag <- theme(
+  plot.tag = element_text(family = PAPER_FONT, face = "bold",
+                          size = 11, colour = "black"),
+  plot.tag.position = "topleft")
+f3 <- (free(pA3 + labs(tag = "A") + f3_tag) | (pB3 + labs(tag = "B") + f3_tag)) /
+  ((pC3 + labs(tag = "C") + f3_tag) | (pD3 + labs(tag = "D") + f3_tag)) /
   (model_legend() + labs(tag = NULL) + theme(plot.tag = element_blank())) +
   plot_layout(heights = c(1, 1, 0.14),
               axes = "keep", axis_titles = "keep") &
-  theme(plot.margin = margin(t = 10, r = 8, b = 2, l = 10),
-        plot.tag = element_text(family = PAPER_FONT, face = "bold",
-                                size = 11, colour = "black"),
-        plot.tag.position = "topleft")
+  theme(plot.margin = margin(t = 10, r = 8, b = 2, l = 10))
 if (want_fig("F3"))
   save_fig(f3, file.path(SDIR, "F3_model_agnostic"), w = W_F12, h = 6.20)
 cat("F3: scatter n=", nrow(w), " cov4_ki=", nrow(cov4_ki), " cov4_ke=", nrow(cov4_ke),
