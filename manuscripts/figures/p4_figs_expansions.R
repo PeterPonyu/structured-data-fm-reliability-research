@@ -19,10 +19,61 @@ KEYED14 <- c("electricity","eucalyptus","adult","cylinder-bands","churn","Moneyb
              "sf-police-incidents")
 MODEL_LEVS <- c("LightGBM", "XGBoost", "TabICLv2", "TabDPT")
 SPLIT_LEVS <- c("random", "grouped")
+SPLIT_F1 <- c("random", "grouped/time")
 SHAPE_VALS <- c(LightGBM = 16, XGBoost = 17, TabICLv2 = 15, TabDPT = 18)
 COLOR_VALS <- setNames(okabe_ito[seq_along(MODEL_LEVS)], MODEL_LEVS)
 MODEL_COLOURS <- COLOR_VALS
 MODEL_SHAPES  <- SHAPE_VALS
+
+# One shared legend grob (not per-panel collect): patchwork concatenates
+# guides when panels train different model subsets, which clips names.
+legend_row <- function(p) {
+  wrap_elements(full = cowplot::get_legend(
+    p + theme(legend.position = "bottom",
+              legend.box = "vertical",
+              legend.justification = "center",
+              legend.margin = margin(0, 0, 0, 0),
+              legend.box.margin = margin(0, 0, 0, 0))
+  )) + labs(tag = NULL)
+}
+f12_legend <- function() {
+  d <- expand.grid(
+    split = factor(SPLIT_F1, levels = SPLIT_F1),
+    model = factor(MODEL_LEVS, levels = MODEL_LEVS),
+    stringsAsFactors = FALSE)
+  legend_row(
+    ggplot(d, aes(1, 1, colour = split, shape = model)) +
+      geom_point(size = 2.2) +
+      scale_colour_manual(values = c("random" = okabe_ito[1],
+                                     "grouped/time" = okabe_ito[2]),
+                          breaks = SPLIT_F1) +
+      scale_shape_manual(values = SHAPE_VALS, breaks = MODEL_LEVS,
+                         drop = FALSE) +
+      labs(colour = "Split", shape = "Model") +
+      guides(colour = guide_legend(order = 1, nrow = 1,
+                                   override.aes = list(shape = 16, size = 2.4)),
+             shape  = guide_legend(order = 2, nrow = 1,
+                                   override.aes = list(colour = "grey20",
+                                                       size = 2.4))) +
+      theme_paper()
+  )
+}
+model_legend <- function() {
+  d <- data.frame(model = factor(MODEL_LEVS, levels = MODEL_LEVS),
+                  x = 1, y = 1, stringsAsFactors = FALSE)
+  legend_row(
+    ggplot(d, aes(x, y, colour = model, shape = model)) +
+      geom_point(size = 2.4) +
+      scale_colour_manual(values = COLOR_VALS, breaks = MODEL_LEVS,
+                          drop = FALSE) +
+      scale_shape_manual(values = SHAPE_VALS, breaks = MODEL_LEVS,
+                         drop = FALSE) +
+      labs(colour = "Model", shape = "Model") +
+      guides(colour = guide_legend(nrow = 1, override.aes = list(size = 2.4)),
+             shape  = guide_legend(nrow = 1, override.aes = list(size = 2.4))) +
+      theme_paper()
+  )
+}
 
 # Native width matches the narrower venue textwidth (sn-jnl ~5.15 in) so
 # includegraphics[width=\linewidth] does not shrink 8--11 pt figure type.
@@ -83,35 +134,28 @@ compose4 <- function(pA, pB, pC, pD, heights = c(1, 1)) {
 
 # ============================================================================
 # F1 (paper Fig. 2): AURC dumbbell. Overlay models with shape (no per-model
-# facet) so 14 row labels stay one column. Local compose (not compose4) uses
-# tighter margins so the data area, not the tag gutter, takes the canvas.
+# facet) so 14 row labels stay one column. Dedicated legend row (not collect)
+# so Split + all four Model keys stay unclipped. Height is capped so
+# figure+caption stays inside \textheight.
 # ============================================================================
-SPLIT_F1 <- c("random", "grouped/time")
-# KBS preprint \linewidth ~390 pt (~5.42 in). Height is capped so
-# figure+caption stays inside \textheight (taller canvases overflow by >200 pt).
 W_F12 <- 5.42
-H_F12 <- 5.80
+H_F12 <- 6.00
 f12_panel <- theme(
   plot.title   = element_text(size = 10, margin = margin(b = 1)),
   axis.text.y  = element_text(size = 8.5, colour = "black", lineheight = 1.05),
   plot.margin  = margin(t = 4, r = 2, b = 0, l = 4),
-  legend.position = "bottom"
+  legend.position = "none"
 )
-compose_f12 <- function(pA, pB, pC, pD) {
-  ((pA | pB) / (pC | pD) / (guide_area() + labs(tag = NULL))) +
-    plot_layout(heights = c(1, 1, 0.12), guides = "collect") +
-    plot_annotation(tag_levels = "A") &
-    theme(
-      plot.tag = element_text(family = PAPER_FONT, face = "bold",
-                              size = 11, colour = "black"),
-      plot.tag.position = "topleft",
-      plot.margin = margin(t = 8, r = 4, b = 2, l = 6),
-      legend.position = "bottom",
-      legend.direction = "horizontal",
-      legend.box = "horizontal",
-      legend.margin = margin(0, 0, 0, 0),
-      legend.box.spacing = unit(2, "pt")
-    )
+compose_f12 <- function(pA, pB, pC, pD, legend, legend_h = 0.18) {
+  tag_th <- theme(
+    plot.tag = element_text(family = PAPER_FONT, face = "bold",
+                            size = 11, colour = "black"),
+    plot.tag.position = "topleft")
+  ((pA + tag_th | pB + tag_th) / (pC + tag_th | pD + tag_th) /
+   (legend + theme(plot.tag = element_blank()))) +
+    plot_layout(heights = c(1, 1, legend_h)) +
+    plot_annotation(tag_levels = list(c("A", "B", "C", "D", ""))) &
+    theme(plot.margin = margin(t = 8, r = 4, b = 2, l = 6))
 }
 
 make_dumbbell <- function(d, ttl) {
@@ -122,7 +166,6 @@ make_dumbbell <- function(d, ttl) {
                aurc = d$aurc_grouped, stringsAsFactors = FALSE))
   m$split <- factor(m$split, levels = SPLIT_F1)
   m$model <- factor(as.character(m$model), levels = MODEL_LEVS)
-  n_mod <- nlevels(droplevels(m$model))
   p <- ggplot(m, aes(aurc, reorder(name, aurc))) +
     geom_line(aes(group = interaction(model, name)), colour = "grey70",
               linewidth = 0.4) +
@@ -130,17 +173,12 @@ make_dumbbell <- function(d, ttl) {
     scale_colour_manual(values = c("random" = okabe_ito[1],
                                    "grouped/time" = okabe_ito[2]),
                         breaks = SPLIT_F1) +
-    scale_shape_manual(values = SHAPE_VALS, drop = TRUE) +
-    scale_x_log10() +
+    scale_shape_manual(values = SHAPE_VALS, breaks = MODEL_LEVS, drop = FALSE) +
+    scale_x_log10(labels = label_number(drop0trailing = TRUE, big.mark = ",")) +
     scale_y_discrete(expand = expansion(add = 0.22)) +
     labs(title = ttl, x = "AURC (log; lower=better)", y = NULL,
          colour = "Split", shape = "Model") +
-    guides(colour = guide_legend(order = 1, nrow = 1),
-           shape  = guide_legend(order = 2, nrow = 1)) +
     theme_paper() + f12_panel
-  if (n_mod == 1) {
-    p <- p + guides(shape = "none")
-  }
   p
 }
 dfKI  <- arm_df(S2KI)
@@ -151,7 +189,8 @@ f1 <- compose_f12(
   make_dumbbell(dfKI,  "GBMs, key included"),
   make_dumbbell(dfFM,  "TabICLv2"),
   make_dumbbell(dfDPT, "TabDPT"),
-  make_dumbbell(dfGB,  "Tuned GBMs"))
+  make_dumbbell(dfGB,  "Tuned GBMs"),
+  f12_legend(), legend_h = 0.20)
 if (want_fig("F1"))
   save_fig(f1, file.path(SDIR, "F1_aurc_random_vs_grouped"), w = W_F12, h = H_F12)
 cat("F1: n rows GBM=", nrow(dfKI), " FM=", nrow(dfFM), " DPT=", nrow(dfDPT),
@@ -186,7 +225,8 @@ f2 <- compose_f12(
   make_repair(dfKI,   "GBMs, key included"),
   make_repair(dfFM2,  "TabICLv2 + TabDPT"),
   make_repair(dfKE,   "GBMs, key excluded"),
-  make_repair(dfFMKE, "TabICLv2, key excluded"))
+  make_repair(dfFMKE, "TabICLv2, key excluded"),
+  model_legend(), legend_h = 0.12)
 if (want_fig("F2"))
   save_fig(f2, file.path(SDIR, "F2_repair_ratio"), w = W_F12, h = H_F12)
 cat("F2: KI=", nrow(dfKI), " FM2=", nrow(dfFM2), " KE=", nrow(dfKE),
@@ -273,28 +313,19 @@ pB3 <- make_cov_panel(cov4_ki, "Key included")
 pC3 <- make_cov_panel(cov4_ke, "Key excluded")
 pD3 <- make_cov_panel(gbm_cov_gb, "Tuned GBM")
 # Fully free A so its log–log axes are not aligned to B's dataset names.
-# guide_area() is a third row so the collected 4-key legend sits under the 2x2
-# (a bottom legend on B alone lands between the rows).
-f3 <- (free(pA3) | pB3) / (pC3 | pD3) / (guide_area() + labs(tag = NULL)) +
-  plot_layout(heights = c(1, 1, 0.16), guides = "collect",
-              axes = "keep", axis_titles = "keep") +
-  plot_annotation(tag_levels = "A") &
-  theme(
-    plot.tag = element_text(family = PAPER_FONT, face = "bold",
-                            size = 11, colour = "black"),
-    plot.tag.position = "topleft",
-    plot.margin = margin(t = 10, r = 8, b = 2, l = 10),
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.box = "horizontal",
-    legend.margin = margin(0, 0, 0, 0),
-    legend.box.spacing = unit(2, "pt"),
-    legend.key.width = unit(12, "pt"),
-    legend.key.height = unit(12, "pt"),
-    legend.key.spacing.x = unit(12, "pt")
-  )
+# Dedicated 4-key legend (not collect): `& legend.position=bottom` re-enabled
+# every panel guide and clipped the concatenated row.
+f3 <- (free(pA3 + labs(tag = "A")) | (pB3 + labs(tag = "B"))) /
+  ((pC3 + labs(tag = "C")) | (pD3 + labs(tag = "D"))) /
+  (model_legend() + labs(tag = NULL) + theme(plot.tag = element_blank())) +
+  plot_layout(heights = c(1, 1, 0.14),
+              axes = "keep", axis_titles = "keep") &
+  theme(plot.margin = margin(t = 10, r = 8, b = 2, l = 10),
+        plot.tag = element_text(family = PAPER_FONT, face = "bold",
+                                size = 11, colour = "black"),
+        plot.tag.position = "topleft")
 if (want_fig("F3"))
-  save_fig(f3, file.path(SDIR, "F3_model_agnostic"), w = W_F12, h = 8.00)
+  save_fig(f3, file.path(SDIR, "F3_model_agnostic"), w = W_F12, h = 6.20)
 cat("F3: scatter n=", nrow(w), " cov4_ki=", nrow(cov4_ki), " cov4_ke=", nrow(cov4_ke),
     " gbmb=", nrow(gbm_cov_gb),
     " models_C=", paste(sort(unique(as.character(cov4_ke$model))), collapse = ","),
@@ -374,7 +405,7 @@ pD4 <- ggplot(plan_agg, aes(factor(frac), mond, colour = name, group = name)) +
   scale_colour_manual(values = DS_COL4) +
   scale_x_discrete(labels = function(x) {
     v <- as.numeric(as.character(x))
-    ifelse(abs(v - 1) < 1e-9, "1", format(v, trim = TRUE))
+    ifelse(abs(v - 1) < 1e-9, "1", sub("^0", "", sprintf("%.2f", v)))
   }) +
   scale_y_continuous(expand = expansion(mult = c(0.04, 0.08))) +
   facet_wrap(~side, ncol = 2) +
@@ -383,8 +414,8 @@ pD4 <- ggplot(plan_agg, aes(factor(frac), mond, colour = name, group = name)) +
        colour = "Dataset") +
   guides(colour = guide_legend(nrow = 2, byrow = TRUE)) +
   theme_paper() +
-  theme(panel.spacing.x = unit(10, "pt"),
-        axis.text.x = element_text(size = 9))
+  theme(panel.spacing.x = unit(12, "pt"),
+        axis.text.x = element_text(size = 8))
 # Keep Model (C) and Dataset (D) as separate legend rows spanning the full
 # width so the six dataset names are not clipped at the panel edge.
 f4 <- ((f4a$plot | f4b$plot) / (pC4 | pD4)) +

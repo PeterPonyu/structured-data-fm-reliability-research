@@ -58,14 +58,15 @@ f1 <- ggplot(m1, aes(aurc, reorder(name, aurc))) +
   scale_x_log10() +
   labs(x = "risk-coverage AURC (log scale; lower=better)", y = NULL, colour = "split") +
   theme_paper()
-save_fig(f1, file.path(SDIR, "F1_aurc_random_vs_grouped"), w = 5.7, h = 3.56)
+# F1/F2 4-panel assets come from p4_figs_expansions.R; do not overwrite.
+# save_fig(f1, file.path(SDIR, "F1_aurc_random_vs_grouped"), w = 5.7, h = 3.56)
 
 # F2: grouped repair ratio per dataset (fraction of random-deferral AURC removed; >0 = improves)
 f2 <- ggplot(df, aes(reorder(name, repair_grouped), repair_grouped, colour = model)) +
   geom_hline(yintercept = 0, linetype = 2, colour = "grey60") +
   geom_point(size = 2.5) + coord_flip() + scale_color_paper() +
   labs(x = NULL, y = "grouped repair ratio\n(share of random-deferral AURC removed)") + theme_paper()
-save_fig(f2, file.path(SDIR, "F2_repair_ratio"), w = 4.36, h = 3.35)
+# save_fig(f2, file.path(SDIR, "F2_repair_ratio"), w = 4.36, h = 3.35)
 
 # F3: model-agnosticism — two panels
 #   Panel A: XGB vs LGBM grouped AURC scatter (14 datasets)
