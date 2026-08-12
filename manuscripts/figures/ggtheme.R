@@ -53,12 +53,64 @@ theme_paper <- function(base_size = 11) {
 
 # Shared multi-panel tag theme: every patchwork composition (F3, F4, F5) adds
 # this after `+ plot_annotation(tag_levels = "A")` so the bold/position rule
-# is centralised instead of re-typed per figure.
+# is centralised instead of re-typed per figure. Tags sit in the margin,
+# outside the panel spine; left/top plot.margin must be large enough that
+# the tag is not clipped by the device.
 paper_tag_theme <- theme(
   plot.tag          = element_text(family = PAPER_FONT, face = "bold",
                                     size = 11, colour = "black"),
-  plot.tag.position = c(-0.045, 1.03)
+  plot.tag.position = c(-0.02, 1.04),
+  plot.margin       = margin(t = 12, r = 8, b = 6, l = 16)
 )
+
+# Human-readable dataset / model / ACS / RAC1P labels (never plot OpenML ids).
+PRETTY_DATASET <- c(
+  electricity              = "Electricity",
+  eucalyptus               = "Eucalyptus",
+  adult                    = "Adult",
+  "cylinder-bands"         = "Cylinder bands",
+  churn                    = "Churn",
+  Moneyball                = "Moneyball",
+  kick                     = "Kick",
+  black_friday             = "Black Friday",
+  house_prices_nominal     = "House prices",
+  colleges                 = "Colleges",
+  Airlines_DepDelay_10M    = "Airline delays",
+  "nyc-taxi-green-dec-2016"= "NYC taxi",
+  house_sales              = "House sales",
+  "sf-police-incidents"    = "SF police"
+)
+PRETTY_MODEL <- c(
+  lightgbm = "LightGBM",
+  xgboost  = "XGBoost",
+  LightGBM = "LightGBM",
+  XGBoost  = "XGBoost",
+  TabICLv2 = "TabICLv2",
+  TabDPT   = "TabDPT"
+)
+PRETTY_ACS <- c(
+  ACSEmployment      = "Employment",
+  ACSIncome          = "Income",
+  ACSPublicCoverage  = "Pub. cov.",
+  ACSMobility        = "Mobility"
+)
+# Folktables RAC1P codes present in the frozen ACS arm (1, 2, 6, 8, 9).
+PRETTY_RAC1P <- c(
+  "1" = "White",
+  "2" = "Black",
+  "6" = "Asian",
+  "8" = "Other",
+  "9" = "Two or more"
+)
+pretty_map <- function(x, table) {
+  x <- as.character(x)
+  y <- unname(table[x])
+  ifelse(is.na(y), x, y)
+}
+pretty_dataset <- function(x) pretty_map(x, PRETTY_DATASET)
+pretty_model   <- function(x) pretty_map(x, PRETTY_MODEL)
+pretty_acs     <- function(x) pretty_map(x, PRETTY_ACS)
+pretty_rac1p   <- function(x) pretty_map(x, PRETTY_RAC1P)
 
 scale_color_paper <- function(...) scale_colour_manual(values = okabe_ito, ...)
 scale_fill_paper  <- function(...) scale_fill_manual(values = okabe_ito, ...)

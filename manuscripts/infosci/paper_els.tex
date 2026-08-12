@@ -372,13 +372,15 @@ $6/14$. (A key-excluded robustness ablation---dropping the leave-group-out/rolli
 model features---lowers the single-draw gap counts to $6/14$ XGBoost and $5/14$ LightGBM while repair-beats-random
 % source: experiments/results/nd1_s2_lightgbm_mondrian_keyexcluded.json (per_model_summary)
 stays at $13/14$ for both; see \cref{sec:limitations}.)
-\begin{figure}[!htb]\centering\includegraphics[width=0.72\linewidth]{F3_model_agnostic.pdf}
+\begin{figure}[!htb]\centering\includegraphics[width=\linewidth]{F3_model_agnostic.pdf}
 \caption{Model-agnosticism across four configurations spanning three architecture families.
-A Grouped AURC for XGBoost vs.\ LightGBM across all 14 datasets (points near the diagonal
+\textbf{A.} Grouped AURC for XGBoost vs.\ LightGBM across all 14 datasets (points near the diagonal
 confirm that the two GBMs behave near-identically, i.e.\ are effectively one GBDT family).
-B Split-conformal grouped coverage for all four configurations (XGBoost, LightGBM, and the
+\textbf{B.} Split-conformal grouped coverage for all four configurations (XGBoost, LightGBM, and the
 TabICLv2 and TabDPT foundation models) on all 14 datasets; dashed line at target $0.90$. Both FMs show the
-same collapse as the GBMs under grouped/time shift, with no auto-repair.}\label{fig:f3}\end{figure}\FloatBarrier
+same collapse as the GBMs under grouped/time shift, with no auto-repair.
+\textbf{C.} The same coverage comparison with the group/time key dropped from the features (XGBoost, LightGBM, and TabICLv2). TabDPT is omitted: this panel has no key-excluded coverage points for that configuration. The collapse remains, so it is not an artifact of retaining the key.
+\textbf{D.} Leakage-safe hyperparameter-tuned XGBoost and LightGBM on the same 14 datasets; dashed line at target $0.90$. Tuning moves the single-draw gap count without a consistent sign (XGBoost $8\to6/14$, LightGBM $7\to8/14$) and does not restore grouped coverage, while repair stays at $13/14$ (XGBoost) and $12/14$ (LightGBM).}\label{fig:f3}\end{figure}\FloatBarrier
 \begin{figure}[!htb]\centering\includegraphics[width=0.65\linewidth]{F6_split_repeats_fragility.pdf}
 \caption{Split-realization fragility of the four headline counts (LightGBM, key-included, $K$ repeated
 grouped-split draws). Three of the four counts sit at or below the preregistered majority threshold of $8$
@@ -407,14 +409,13 @@ zero, best separation $\mathrm{bacc}=0.548$, $p=0.867$, chance level, preregiste
 We report the mechanism as real but split-fragile and key-dependent, not a confirmed explanation, per the
 paper's own split-sensitivity standard.
 
-\begin{figure}[!htb]\centering\includegraphics[width=0.65\linewidth]{F4_calsize_vs_mondrian.pdf}
-\caption{Why Mondrian conformal fails, and why that explanation is key-dependent (reconciled RNG).
-A Key-included: per-bin calibration fold size predicts Mondrian's coverage improvement
-(Spearman $\rho=0.50$, CI excluding zero; clean-threshold separation $\mathrm{bacc}=0.854$, $p=0.0011$)---the
-mechanism passes the preregistered bar. B Key-excluded: dropping the group key from the
-model features collapses the relationship ($\rho=-0.12$, no significant predictors, threshold
-$\mathrm{bacc}=0.548$), flipping the preregistered verdict to KILL. The calibration-size mechanism is real but
-key-dependent---the paper's protocol-sensitivity finding applied to its own mechanism.}\label{fig:f4}\end{figure}\FloatBarrier
+\begin{figure}[!htb]\centering\includegraphics[width=\linewidth]{F4_calsize_vs_mondrian.pdf}
+\caption{Why Mondrian conformal fails, and why that explanation is key-dependent (reconciled random-number stream).
+\textbf{A.} With the group key included, per-bin calibration-fold size predicts Mondrian coverage improvement (Spearman $\rho=0.50$, CI excluding zero; clean-threshold separation $\mathrm{bacc}=0.854$, $p=0.0011$, $n=28$)---the mechanism passes the preregistered bar.
+\textbf{B.} Dropping the group key from the model features collapses the relationship ($\rho=-0.12$, no significant predictors, threshold $\mathrm{bacc}=0.548$, $n=28$), flipping the preregistered verdict to KILL.
+\textbf{C.} The same $n=28$ pairs as A, coloured by model (LightGBM, XGBoost): the key-included association is not confined to one booster.
+\textbf{D.} Within-dataset calibration-fraction sweep (LightGBM), split into datasets where Mondrian helps versus hurts: raising the calibration fraction does not uniformly improve coverage, and can worsen it where Mondrian already hurts.
+The calibration-size mechanism is real but key-dependent.}\label{fig:f4}\end{figure}\FloatBarrier
 \subsection*{Is the repair a low bar? A learned selector does not beat the free uncertainty score}
 To check that abstention's advantage over random deferral is not merely the low bar of beating a coin flip, we
 compare the free model-native uncertainty score against a learned post-hoc selector---a small
