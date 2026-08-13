@@ -25,6 +25,7 @@ site/
   templates/page.html
   content/*.md
   data/                    # frozen table extracts (no workstation paths)
+  figures/                 # web-only binaries the runner cannot rasterize
 docs/                      # generated; not the manuscript tree
 ```
 

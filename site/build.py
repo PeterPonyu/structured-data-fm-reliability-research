@@ -564,22 +564,27 @@ def rasterize_pdf(pdf: Path, dest_png: Path) -> None:
 
 
 def copy_figures() -> list[str]:
-    src_dir = REPO / "manuscripts" / "figures"
+    src_dirs = [SITE / "figures", REPO / "manuscripts" / "figures"]
     dest = OUT / "figures"
     dest.mkdir(parents=True, exist_ok=True)
     copied = []
     stems = [f["stem"] for f in FIGURES]
     for fig in FIGURES:
         stems.extend(s for s, _ in fig.get("crops") or [])
+    cairo = shutil.which("pdftocairo")
     for stem in stems:
         for ext in (".png", ".pdf"):
-            src = src_dir / f"{stem}{ext}"
-            if src.exists():
-                shutil.copy2(src, dest / src.name)
-                copied.append(src.name)
+            for src_dir in src_dirs:
+                src = src_dir / f"{stem}{ext}"
+                if src.exists():
+                    shutil.copy2(src, dest / src.name)
+                    copied.append(src.name)
+                    break
         png = dest / f"{stem}.png"
-        pdf = src_dir / f"{stem}.pdf"
-        if not png.exists() and pdf.exists():
+        if png.exists():
+            continue
+        pdf = next((d / f"{stem}.pdf" for d in src_dirs if (d / f"{stem}.pdf").exists()), None)
+        if pdf is not None and cairo:
             rasterize_pdf(pdf, png)
             copied.append(png.name)
     return copied
