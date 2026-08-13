@@ -1,0 +1,11 @@
+{
+  "h1": "REJECT",
+  "h2": "CONFIRM",
+  "stage2": "KILL",
+  "repair_exploratory": "13/14",
+  "median_worst_group_coverage_tableshift": 0.81,
+  "median_repair_vs_oracle": {
+    "repair": 0.34,
+    "oracle": 0.75
+  }
+}

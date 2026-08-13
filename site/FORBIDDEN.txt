@@ -1,0 +1,12 @@
+# Stems that must not appear in rendered companion HTML/CSS/JS.
+# Identity fence: Structure / KBS only.
+F1_debt
+Matbench
+MVTec
+paper_rie
+inspect-gate
+asr-gate
+peaceiris
+/home/
+/root/
+checkpoint-

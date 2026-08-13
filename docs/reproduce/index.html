@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reproduce — tabular reliability audit</title>
+  <meta name="description" content="Smoke test, data licenses, figure regeneration, archive filenames.">
+  <link rel="stylesheet" href="../css/portal.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <p class="brand">Paper companion · submitted to Knowledge-Based Systems</p>
+      <details class="nav-toggle">
+        <summary>Menu</summary>
+        <nav class="primary" aria-label="Sections"><a href="../index.html">Thesis</a><a href="../protocol/index.html">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html" aria-current="page">Reproduce</a><a href="../cite/index.html">Cite</a></nav>
+      </details>
+      <nav class="primary" aria-label="Primary"><a href="../index.html">Thesis</a><a href="../protocol/index.html">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html" aria-current="page">Reproduce</a><a href="../cite/index.html">Cite</a></nav>
+    </div>
+  </header>
+  <main class="prose wrap">
+<h1>Reproduce</h1>
+<p>Frozen numbers on this site are stamped from committed table extracts shipped with the companion. Figures regenerate from on-disk result records via <code>make figures</code> in the manuscript tree. This page is the only place that names archive filenames.</p>
+<h2>Smoke test</h2>
+<p>Offline, under two minutes: core imports, Stage-1 pipeline on a synthetic fixture, validation of tracked result records.</p>
+<pre><code>./smoke_test.sh</code></pre>
+<h2>Data</h2>
+<p>No bulk data is stored in the repository. OpenML datasets are fetched on demand (no authentication). Folktables / ACS PUMS 2018 is downloaded on demand. See <code>DATA_MANIFEST.md</code> for licenses: they are <strong>not</strong> covered by this repository’s MIT license.</p>
+<h2>Figures from result records</h2>
+<pre><code>cd manuscripts
+make figures</code></pre>
+<p>Requires R ≥ 4 with ggplot2, jsonlite, scales, and patchwork, plus the vendored plot theme. Python experiment code used the <code>dl</code> environment with pins in <code>requirements.txt</code>.</p>
+<h2>Archive pointers (filenames only)</h2>
+<ul><li><code>nd1_s2_lightgbm_mondrian.json</code> and <code>nd1_s2_lightgbm_mondrian_keyexcluded.json</code> — CORE14 GBM coverage, repair, Mondrian, Stage-2 gate</li><li><code>nd1_tabicl_fm_arm_leakage_ablation.json</code> — TabICLv2 CORE14 table</li><li><code>nd1_tabdpt_fm_arm.json</code> — TabDPT key-included arm (no key-out coverage points)</li><li><code>nd1_learned_selector_baseline.json</code> — learned vs free vs oracle headline</li><li><code>p4_tableshift_result.json</code> — ACS exploratory arm</li><li><code>p5-arm results.json</code> — held-out TableShift roster and H1/H2 aggregate</li><li><code>aggregate-split-repeats-2026-07-02.json</code> — F6 split-realization counts</li><li><code>nd2_mini_spike.json</code> — blocked-run error log (not a result)</li></ul>
+<h2>Links</h2>
+<ul><li>GitHub: https://github.com/PeterPonyu/structured-data-fm-reliability-research</li><li>Reserved DOI: https://doi.org/10.5281/zenodo.21130297 (draft deposition)</li><li>Submitted PDF: https://github.com/PeterPonyu/structured-data-fm-reliability-research/blob/main/manuscripts/kbs/paper_kbs.pdf (not copied into this Pages artifact)</li></ul>
+  </main>
+  <footer class="site">
+    <div class="wrap">
+      <p>Submitted to <em>Knowledge-Based Systems</em>. DMKD track superseded. Code MIT; dataset licenses are not MIT.</p>
+      <p>No financial, medical, or business deployment claims.</p>
+    </div>
+  </footer>
+  
+</body>
+</html>

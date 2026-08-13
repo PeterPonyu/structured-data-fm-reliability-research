@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision rule — tabular reliability audit</title>
+  <meta name="description" content="Keyed split comparison, coverage test, uncertainty abstention fallback.">
+  <link rel="stylesheet" href="../css/portal.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <p class="brand">Paper companion · submitted to Knowledge-Based Systems</p>
+      <details class="nav-toggle">
+        <summary>Menu</summary>
+        <nav class="primary" aria-label="Sections"><a href="../index.html">Thesis</a><a href="../protocol/index.html" aria-current="page">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html">Reproduce</a><a href="../cite/index.html">Cite</a></nav>
+      </details>
+      <nav class="primary" aria-label="Primary"><a href="../index.html">Thesis</a><a href="../protocol/index.html" aria-current="page">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html">Reproduce</a><a href="../cite/index.html">Cite</a></nav>
+    </div>
+  </header>
+  <main class="prose wrap">
+<h1>Decision rule</h1>
+<p>A practitioner procedure matching the paper’s two contributions.</p>
+<ol><li>Compare <strong>random</strong> vs <strong>leave-group-out / rolling-origin</strong> on a dataset that actually has an entity or time key.</li><li>Test whether split-conformal coverage at alpha = 0.10 (target 0.90) survives the deployment split; report worst-group coverage, not only marginal.</li><li>If it does not, rank abstention by the model-native uncertainty score (classification: 1 − max p; regression: quantile-interval width). Scope: retained-set selective risk, <strong>not</strong> restoring a coverage guarantee.</li></ol>
+<p>The K=10 remedy audit is <strong>quarantined</strong> from the K=20 TableShift confirmatory arm (no data overlap). That is this paper’s use of “quarantine,” not a data-quality dump.</p>
+<h2>Stages</h2>
+<ol class="stage-list">
+<p>  &lt;li&gt;Data with an entity or time key&lt;/li&gt;   &lt;li&gt;Random split | grouped / rolling-origin split&lt;/li&gt;   &lt;li&gt;Frozen predictor (GBM or tabular foundation model)&lt;/li&gt;   &lt;li&gt;Remedy ladder (weighted conformal, Mondrian variants, tuned selector)&lt;/li&gt;   &lt;li&gt;Worst-group evaluation → Restore | Fail&lt;/li&gt;</p>
+</ol>
+<p class="legend">
+<p>  &lt;span&gt;&lt;i class=&quot;swatch random&quot;&gt;&lt;/i&gt;random split&lt;/span&gt;   &lt;span&gt;&lt;i class=&quot;swatch grouped&quot;&gt;&lt;/i&gt;grouped / time split&lt;/span&gt;   &lt;span&gt;&lt;i class=&quot;swatch restore&quot;&gt;&lt;/i&gt;Restore (coverage at or above 0.90)&lt;/span&gt;   &lt;span&gt;&lt;i class=&quot;swatch fail&quot;&gt;&lt;/i&gt;Fail (coverage below 0.90)&lt;/span&gt;</p>
+</p>
+<section id="overview">
+<h2>Overview</h2>
+<figure class="panel">
+<img src="../figures/fig0_overview.png" alt="Overview">
+<figcaption>Keyed tabular data is split randomly or by group/time; a frozen predictor is wrapped in split-conformal prediction; a remedy ladder is scored by worst-group coverage (Restore or Fail). The exploratory remedy ladder is quarantined from the held-out TableShift arm.</figcaption>
+</figure>
+<p class="print-link"><a href="../figures/fig0_overview.pdf">Print PDF</a></p>
+</section>
+  </main>
+  <footer class="site">
+    <div class="wrap">
+      <p>Submitted to <em>Knowledge-Based Systems</em>. DMKD track superseded. Code MIT; dataset licenses are not MIT.</p>
+      <p>No financial, medical, or business deployment claims.</p>
+    </div>
+  </footer>
+  
+</body>
+</html>

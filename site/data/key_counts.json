@@ -1,0 +1,61 @@
+{
+  "key_included": {
+    "verdict": "KILL",
+    "models": {
+      "xgboost": {
+        "n_datasets_ok": 14,
+        "majority_threshold": 8,
+        "grouped_gap": 8,
+        "aurc_degrade": 7,
+        "undercover": 4,
+        "repair": 13,
+        "median_repair": 0.32936,
+        "mondrian_improves": 4,
+        "holm_repair": 13,
+        "holm_aurc": 6
+      },
+      "lightgbm": {
+        "n_datasets_ok": 14,
+        "majority_threshold": 8,
+        "grouped_gap": 7,
+        "aurc_degrade": 6,
+        "undercover": 4,
+        "repair": 13,
+        "median_repair": 0.3416,
+        "mondrian_improves": 3,
+        "holm_repair": 13,
+        "holm_aurc": 5
+      }
+    }
+  },
+  "key_excluded": {
+    "verdict": "KILL",
+    "models": {
+      "xgboost": {
+        "n_datasets_ok": 14,
+        "majority_threshold": 8,
+        "grouped_gap": 6,
+        "aurc_degrade": 6,
+        "undercover": 4,
+        "repair": 13,
+        "median_repair": 0.31189,
+        "mondrian_improves": 2,
+        "holm_repair": 13,
+        "holm_aurc": 5
+      },
+      "lightgbm": {
+        "n_datasets_ok": 14,
+        "majority_threshold": 8,
+        "grouped_gap": 5,
+        "aurc_degrade": 5,
+        "undercover": 4,
+        "repair": 13,
+        "median_repair": 0.34513,
+        "mondrian_improves": 3,
+        "holm_repair": 13,
+        "holm_aurc": 4
+      }
+    }
+  },
+  "note": "Headline KBS numbers are key-included. Key-excluded is the conservative degradation bound."
+}

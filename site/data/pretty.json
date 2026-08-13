@@ -1,0 +1,64 @@
+{
+  "dataset": {
+    "electricity": "Electricity",
+    "eucalyptus": "Eucalyptus",
+    "adult": "Adult",
+    "cylinder-bands": "Cylinder bands",
+    "churn": "Churn",
+    "Moneyball": "Moneyball",
+    "kick": "Kick",
+    "black_friday": "Black Friday",
+    "house_prices_nominal": "House prices",
+    "colleges": "Colleges",
+    "Airlines_DepDelay_10M": "Airline delays",
+    "nyc-taxi-green-dec-2016": "NYC taxi",
+    "house_sales": "House sales",
+    "sf-police-incidents": "SF police"
+  },
+  "model": {
+    "xgboost": "XGBoost",
+    "lightgbm": "LightGBM",
+    "TabICLv2": "TabICLv2",
+    "TabDPT": "TabDPT"
+  },
+  "acs": {
+    "ACSEmployment": "Employment",
+    "ACSIncome": "Income",
+    "ACSPublicCoverage": "Public coverage",
+    "ACSMobility": "Mobility"
+  },
+  "rac1p": {
+    "1": "White",
+    "2": "Black",
+    "6": "Asian",
+    "8": "Other",
+    "9": "Two or more"
+  },
+  "tableshift_task": {
+    "diabetes_readmission": "Diabetes readmission",
+    "nhanes_lead": "NHANES lead",
+    "physionet": "PhysioNet",
+    "brfss_diabetes": "BRFSS diabetes",
+    "brfss_blood_pressure": "BRFSS blood pressure",
+    "acsincome": "ACS income",
+    "acspubcov": "ACS public coverage",
+    "acsfoodstamps": "ACS food stamps",
+    "acsunemployment": "ACS unemployment"
+  },
+  "core14_order": [
+    "electricity",
+    "eucalyptus",
+    "adult",
+    "cylinder-bands",
+    "churn",
+    "Moneyball",
+    "kick",
+    "black_friday",
+    "house_prices_nominal",
+    "colleges",
+    "Airlines_DepDelay_10M",
+    "nyc-taxi-green-dec-2016",
+    "house_sales",
+    "sf-police-incidents"
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "majority_threshold": 8,
+  "n_datasets": 14,
+  "stage2": {
+    "key_included": {
+      "n_k": 20,
+      "xgboost": {
+        "grouped_gap": {
+          "n_k": 20,
+          "median": 9.0,
+          "mean": 9.1,
+          "ci95_percentile": [
+            6.475,
+            12.0
+          ],
+          "min": 6,
+          "max": 12,
+          "frac_k_ge_majority": 0.8,
+          "majority_robust": false
+        },
+        "repair": {
+          "n_k": 20,
+          "median": 13.0,
+          "mean": 13.2,
+          "ci95_percentile": [
+            13.0,
+            14.0
+          ],
+          "min": 13,
+          "max": 14,
+          "frac_k_ge_majority": 1.0,
+          "majority_robust": true
+        },
+        "aurc_degrade": {
+          "n_k": 20,
+          "median": 8.0,
+          "mean": 8.2,
+          "ci95_percentile": [
+            6.0,
+            11.0
+          ],
+          "min": 6,
+          "max": 11,
+          "frac_k_ge_majority": 0.7,
+          "majority_robust": false
+        },
+        "undercover": {
+          "n_k": 20,
+          "median": 6.0,
+          "mean": 5.8,
+          "ci95_percentile": [
+            4.0,
+            9.0
+          ],
+          "min": 4,
+          "max": 9,
+          "frac_k_ge_majority": 0.15,
+          "majority_robust": false
+        }
+      },
+      "lightgbm": {
+        "grouped_gap": {
+          "n_k": 20,
+          "median": 9.0,
+          "mean": 8.6,
+          "ci95_percentile": [
+            5.475,
+            11.05
+          ],
+          "min": 5,
+          "max": 12,
+          "frac_k_ge_majority": 0.75,
+          "majority_robust": false
+        },
+        "repair": {
+          "n_k": 20,
+          "median": 13.0,
+          "mean": 13.1,
+          "ci95_percentile": [
+            12.0,
+            14.0
+          ],
+          "min": 12,
+          "max": 14,
+          "frac_k_ge_majority": 1.0,
+          "majority_robust": true
+        },
+        "aurc_degrade": {
+          "n_k": 20,
+          "median": 8.0,
+          "mean": 7.75,
+          "ci95_percentile": [
+            5.475,
+            10.0
+          ],
+          "min": 5,
+          "max": 10,
+          "frac_k_ge_majority": 0.65,
+          "majority_robust": false
+        },
+        "undercover": {
+          "n_k": 20,
+          "median": 5.0,
+          "mean": 5.25,
+          "ci95_percentile": [
+            2.0,
+            8.05
+          ],
+          "min": 2,
+          "max": 9,
+          "frac_k_ge_majority": 0.05,
+          "majority_robust": false
+        }
+      }
+    },
+    "key_excluded": {
+      "n_k": 20,
+      "xgboost": {
+        "grouped_gap": {
+          "n_k": 20,
+          "median": 8.0,
+          "mean": 7.6,
+          "ci95_percentile": [
+            5.0,
+            10.0
+          ],
+          "min": 5,
+          "max": 10,
+          "frac_k_ge_majority": 0.55,
+          "majority_robust": false
+        },
+        "repair": {
+          "n_k": 20,
+          "median": 13.0,
+          "mean": 13.1,
+          "ci95_percentile": [
+            12.475,
+            14.0
+          ],
+          "min": 12,
+          "max": 14,
+          "frac_k_ge_majority": 1.0,
+          "majority_robust": true
+        },
+        "aurc_degrade": {
+          "n_k": 20,
+          "median": 7.0,
+          "mean": 6.6,
+          "ci95_percentile": [
+            4.0,
+            8.525
+          ],
+          "min": 4,
+          "max": 9,
+          "frac_k_ge_majority": 0.2,
+          "majority_robust": false
+        },
+        "undercover": {
+          "n_k": 20,
+          "median": 5.0,
+          "mean": 4.95,
+          "ci95_percentile": [
+            2.95,
+            7.0
+          ],
+          "min": 2,
+          "max": 7,
+          "frac_k_ge_majority": 0.0,
+          "majority_robust": false
+        }
+      },
+      "lightgbm": {
+        "grouped_gap": {
+          "n_k": 20,
+          "median": 7.5,
+          "mean": 7.65,
+          "ci95_percentile": [
+            5.475,
+            10.525
+          ],
+          "min": 5,
+          "max": 11,
+          "frac_k_ge_majority": 0.5,
+          "majority_robust": false
+        },
+        "repair": {
+          "n_k": 20,
+          "median": 13.0,
+          "mean": 13.2,
+          "ci95_percentile": [
+            12.0,
+            14.0
+          ],
+          "min": 12,
+          "max": 14,
+          "frac_k_ge_majority": 1.0,
+          "majority_robust": true
+        },
+        "aurc_degrade": {
+          "n_k": 20,
+          "median": 7.0,
+          "mean": 6.75,
+          "ci95_percentile": [
+            4.475,
+            9.05
+          ],
+          "min": 4,
+          "max": 10,
+          "frac_k_ge_majority": 0.3,
+          "majority_robust": false
+        },
+        "undercover": {
+          "n_k": 20,
+          "median": 5.0,
+          "mean": 5.2,
+          "ci95_percentile": [
+            2.95,
+            7.525
+          ],
+          "min": 2,
+          "max": 8,
+          "frac_k_ge_majority": 0.05,
+          "majority_robust": false
+        }
+      }
+    }
+  }
+}

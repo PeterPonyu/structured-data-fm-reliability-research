@@ -1,0 +1,106 @@
+{
+  "model": "TabDPT",
+  "key_excluded_coverage_points": false,
+  "note": "TabDPT has no key-excluded coverage points in the key-out coverage panel; do not impute.",
+  "key_included_core14": [
+    {
+      "name": "electricity",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.6646,
+      "repair_ratio_grouped": 0.32032,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "eucalyptus",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.8552,
+      "repair_ratio_grouped": 0.53135,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "adult",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.8819,
+      "repair_ratio_grouped": 0.6987,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "cylinder-bands",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.8857,
+      "repair_ratio_grouped": 0.35466,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "churn",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.9054,
+      "repair_ratio_grouped": 0.47421,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "Moneyball",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.8892,
+      "repair_ratio_grouped": -0.03625,
+      "repair_excludes0_pos": false
+    },
+    {
+      "name": "kick",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.8935,
+      "repair_ratio_grouped": 0.48759,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "black_friday",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.889,
+      "repair_ratio_grouped": 0.23024,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "house_prices_nominal",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.9577,
+      "repair_ratio_grouped": 0.18874,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "colleges",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.9008,
+      "repair_ratio_grouped": 0.22138,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "Airlines_DepDelay_10M",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.8904,
+      "repair_ratio_grouped": 0.20499,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "nyc-taxi-green-dec-2016",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.9024,
+      "repair_ratio_grouped": 0.38495,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "house_sales",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.8393,
+      "repair_ratio_grouped": 0.39413,
+      "repair_excludes0_pos": true
+    },
+    {
+      "name": "sf-police-incidents",
+      "exclude_key": false,
+      "conformal_cov_grouped": 0.8969,
+      "repair_ratio_grouped": 0.22578,
+      "repair_excludes0_pos": true
+    }
+  ],
+  "n_repair_core14": 13
+}
