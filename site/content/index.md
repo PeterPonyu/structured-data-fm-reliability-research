@@ -2,8 +2,6 @@
 
 <p class="meta">Zeyu Fu · State Key Laboratory of Trauma and Chemical Poisoning, Institute of Combined Injury, Army Medical University, Chongqing, China</p>
 
-<p class="meta">Submitted to <em>Knowledge-Based Systems</em>. DMKD track superseded.</p>
-
 {{verdict_table}}
 
 <p>Scope: no financial, medical, or business deployment claims.</p>

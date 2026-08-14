@@ -1,5 +1,5 @@
 # Stems that must not appear in rendered companion HTML/CSS/JS.
-# Identity fence: Structure / KBS only.
+# Identity fence: Structure science only (keyed splits, H1/H2, quarantine, abstention).
 F1_debt
 Matbench
 MVTec
@@ -10,3 +10,14 @@ peaceiris
 /home/
 /root/
 checkpoint-
+KBS
+DMKD
+Knowledge-Based
+paper_kbs
+this paper
+the paper
+manuscript
+submitted
+journal
+InfoSci
+Paper companion

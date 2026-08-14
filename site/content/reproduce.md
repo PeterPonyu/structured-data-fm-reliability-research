@@ -1,6 +1,6 @@
 # Reproduce
 
-Frozen numbers on this site are stamped from committed table extracts. Figures are the same plots as the submitted manuscript, served as web images.
+Frozen numbers on this site are stamped from committed table extracts. Figures use the same frozen plots as the tables.
 
 ## What to obtain
 

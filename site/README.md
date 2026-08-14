@@ -1,19 +1,17 @@
-# Structure paper companion
+# Structure tabular reliability audit (Pages source)
 
-Static HTML companion for the KBS tabular reliability audit.
+Static HTML for keyed-split coverage, H1/H2, quarantine, and abstention.
 No npm. Python 3 stdlib only.
 
 ```bash
 python site/build.py
 ```
 
-Writes `docs/` (GitHub Pages artifact). Does not overwrite `manuscripts/figures/`
-or any manuscript TeX/PDF.
+Writes `docs/` (GitHub Pages artifact). Does not restyle source figure binaries.
 
 GitHub Actions (`.github/workflows/pages.yml`) runs the same command and uploads
 `docs/` with the official Pages actions. The workflow watches
-`pages/structure-companion` only (no `main`, no PR deploy). `paper_*.pdf` is not
-copied into `docs/` on this isolation stretch.
+`pages/structure-companion` only (no `main`, no PR deploy).
 
 ## Layout
 
@@ -26,9 +24,10 @@ site/
   content/*.md
   data/                    # frozen table extracts (no workstation paths)
   figures/                 # web-only binaries the runner cannot rasterize
-docs/                      # generated; not the manuscript tree
+docs/                      # generated
 ```
 
 ## Identity
 
-Structure / KBS only. Do not copy GEO, JCP, RotCert, ASR, or Inspect assets.
+Structure science only (keyed splits, H1/H2, quarantine, abstention).
+Do not copy GEO, JCP, RotCert, ASR, or Inspect assets.

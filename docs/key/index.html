@@ -10,21 +10,21 @@
 <body>
   <header class="site">
     <div class="wrap">
-      <p class="brand">Paper companion · submitted to Knowledge-Based Systems</p>
+      <p class="brand">Tabular reliability audit</p>
       <details class="nav-toggle">
         <summary>Menu</summary>
-        <nav class="primary" aria-label="Sections"><a href="../index.html">Thesis</a><a href="../protocol/index.html">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html" aria-current="page">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html">Reproduce</a><a href="../cite/index.html">Cite</a></nav>
+        <nav class="primary" aria-label="Sections"><a href="../index.html">Thesis</a><a href="../protocol/index.html">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html" aria-current="page">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html">Reproduce</a><a href="../cite/index.html">Record</a></nav>
       </details>
-      <nav class="primary" aria-label="Primary"><a href="../index.html">Thesis</a><a href="../protocol/index.html">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html" aria-current="page">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html">Reproduce</a><a href="../cite/index.html">Cite</a></nav>
+      <nav class="primary" aria-label="Primary"><a href="../index.html">Thesis</a><a href="../protocol/index.html">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html" aria-current="page">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html">Reproduce</a><a href="../cite/index.html">Record</a></nav>
     </div>
   </header>
   <main class="wide wrap">
 <h1>Key included vs key excluded</h1>
 <p>This comparison is first-class, not a buried limitation.</p>
-<ul><li><strong>Default (KBS headline) = key included.</strong> The leave-group-out / rolling-origin key stays in the feature matrix.</li><li><strong>Conservative bound = key excluded.</strong> The split key is dropped from features.</li></ul>
+<ul><li><strong>Default (headline) = key included.</strong> The leave-group-out / rolling-origin key stays in the feature matrix.</li><li><strong>Conservative bound = key excluded.</strong> The split key is dropped from features.</li></ul>
 <p>Leave-group-out test keys are unseen categories. Retaining the encoded key can inflate collapse (an ID-generalization artifact), so key-out is the conservative degradation bound.</p>
 <p>Grouped-gap count shifts 8/14 → 6/14 (XGBoost) and 7/14 → 5/14 (LightGBM). Repair stays 13/14 in both conditions. TabDPT has no key-excluded coverage points in the key-out coverage panel; that absence is disclosed, not imputed.</p>
-<p>Visual evidence in the print figures: F2 C/D, F3 C, F6 C/D, and F4 B. Both conditions remain in the page source if scripting is disabled.</p>
+<p>Visual evidence: F2 C/D, F3 C, F6 C/D, and F4 B. Both conditions remain in the page source if scripting is disabled.</p>
 <div class="key-controls" role="radiogroup" aria-label="Key condition">
 <p>  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;key-condition&quot; value=&quot;included&quot; checked&gt; Key included (headline)&lt;/label&gt;   &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;key-condition&quot; value=&quot;excluded&quot;&gt; Key excluded (conservative bound)&lt;/label&gt;</p>
 </div>
@@ -33,7 +33,7 @@
   </main>
   <footer class="site">
     <div class="wrap">
-      <p>Submitted to <em>Knowledge-Based Systems</em>. DMKD track superseded. Code MIT; dataset licenses are not MIT.</p>
+      <p>Code MIT; dataset licenses are not MIT.</p>
       <p>No financial, medical, or business deployment claims.</p>
     </div>
   </footer>

@@ -1,6 +1,6 @@
 # Figures
 
-Print panels (same frozen numbers as the KBS submission). A web-specific redraw is not in this build. Coverage target 0.90 is the dashed line in the print coverage panels.
+Same frozen numbers as the tables. Coverage target 0.90 is the dashed line in the coverage panels.
 
 <p class="legend">
   <span><i class="swatch random"></i>random</span>

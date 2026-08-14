@@ -1,12 +1,12 @@
 # Decision rule
 
-A practitioner procedure matching the paper’s two contributions.
+A practitioner procedure with two load-bearing steps: a keyed-split coverage test, then uncertainty abstention if coverage fails.
 
 1. Compare **random** vs **leave-group-out / rolling-origin** on a dataset that actually has an entity or time key.
 2. Test whether split-conformal coverage at alpha = 0.10 (target 0.90) survives the deployment split; report worst-group coverage, not only marginal.
 3. If it does not, rank abstention by the model-native uncertainty score (classification: 1 − max p; regression: quantile-interval width). Scope: retained-set selective risk, **not** restoring a coverage guarantee.
 
-The K=10 remedy audit is **quarantined** from the K=20 TableShift confirmatory arm (no data overlap). That is this paper’s use of “quarantine,” not a data-quality dump.
+The K=10 remedy audit is **quarantined** from the K=20 TableShift confirmatory arm (no data overlap). That split of roles is what “quarantine” means here, not a data-quality dump.
 
 ## Stages
 

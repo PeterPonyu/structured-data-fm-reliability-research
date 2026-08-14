@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Stamp the Structure paper companion into docs/ (GitHub Pages artifact).
+"""Stamp the Structure tabular reliability audit into docs/ (GitHub Pages artifact).
 
-Stdlib only. Reads frozen extracts in site/data/, copies print figure binaries
-from manuscripts/figures/ (does not restyle them). Does not copy paper_*.pdf
-into docs/ this stretch.
+Stdlib only. Reads frozen extracts in site/data/ and copies figure binaries
+(does not restyle them). Does not copy paper_*.pdf into docs/.
 """
 
 from __future__ import annotations
@@ -33,7 +32,7 @@ NAV = [
     ("Key in/out", "key/index.html", "key"),
     ("Quarantine", "quarantine/index.html", "quarantine"),
     ("Reproduce", "reproduce/index.html", "reproduce"),
-    ("Cite", "cite/index.html", "cite"),
+    ("Record", "cite/index.html", "cite"),
 ]
 
 FIGURES = [
@@ -41,7 +40,7 @@ FIGURES = [
         "id": "overview",
         "stem": "fig0_overview",
         "title": "Overview",
-        "kbs": True,
+        "supporting": False,
         "caption": (
             "Keyed tabular data is split randomly or by group/time; a frozen "
             "predictor is wrapped in split-conformal prediction; a remedy ladder "
@@ -53,7 +52,7 @@ FIGURES = [
         "id": "f1",
         "stem": "F1_aurc_random_vs_grouped",
         "title": "F1 — AURC, random vs grouped/time",
-        "kbs": True,
+        "supporting": False,
         "caption": (
             "Per-dataset risk-coverage AURC under random vs grouped/time split, "
             "on a log-scaled AURC axis. Grouped points to the right are worse. "
@@ -64,7 +63,7 @@ FIGURES = [
         "id": "f2",
         "stem": "F2_repair_ratio",
         "title": "F2 — repair ratio",
-        "kbs": True,
+        "supporting": False,
         "caption": (
             "Uncertainty-ranked abstention vs random deferral under the grouped "
             "split. The zero line is the claim boundary: points to the right beat "
@@ -75,7 +74,7 @@ FIGURES = [
         "id": "f3",
         "stem": "F3_model_agnostic",
         "title": "F3 — model-agnostic coverage",
-        "kbs": True,
+        "supporting": False,
         "caption": (
             "Four configurations spanning three architecture families. Grouped "
             "coverage vs the 0.90 target is the coverage-failure evidence. "
@@ -87,7 +86,7 @@ FIGURES = [
         "id": "f6",
         "stem": "F6_split_repeats_fragility",
         "title": "F6 — split-realization fragility",
-        "kbs": True,
+        "supporting": False,
         "caption": (
             "Headline counts across repeated grouped-split draws. The dashed "
             "majority threshold is 8/14. Only “repair beats random” never drops "
@@ -99,7 +98,7 @@ FIGURES = [
         "id": "f4",
         "stem": "F4_calsize_vs_mondrian",
         "title": "F4 — Mondrian vs calibration size",
-        "kbs": True,
+        "supporting": False,
         "caption": (
             "Key-dependent flip. Key included: calibration-fold size predicts "
             "Mondrian improvement (Spearman rho = 0.50, threshold balanced "
@@ -111,7 +110,7 @@ FIGURES = [
         "id": "f5",
         "stem": "F5_tableshift",
         "title": "F5 — TableShift-class ACS generalization",
-        "kbs": True,
+        "supporting": False,
         "caption": (
             "Folktables ACS leave-states-out spatial OOD. Repair on four tasks "
             "with 400-bootstrap intervals, then RAC1P worst−best coverage gap. "
@@ -125,8 +124,8 @@ FIGURES = [
     {
         "id": "f7",
         "stem": "F7_power_mde",
-        "title": "F7 — post-hoc power / MDE (not in the KBS PDF)",
-        "kbs": False,
+        "title": "F7 — post-hoc power / MDE (supporting)",
+        "supporting": True,
         "caption": (
             "Supporting. Post-hoc power on observed flip frequencies, not a "
             "priori design. Independence idealization overstates power "
@@ -137,10 +136,10 @@ FIGURES = [
     {
         "id": "f8",
         "stem": "F8_calsize_planning",
-        "title": "F8 — within-dataset calibration-size sweep (negative; not in the KBS PDF)",
-        "kbs": False,
+        "title": "F8 — within-dataset calibration-size sweep (negative result)",
+        "supporting": True,
         "caption": (
-            "Optional appendix. Negative result: the within-dataset calibration-size "
+            "Negative result: the within-dataset calibration-size "
             "sweep does not reproduce the cross-sectional dose-response. No trend "
             "line on the “helps” side (sign disagreement)."
         ),
@@ -528,7 +527,7 @@ def figure_block(fig: dict, root: str, extra_table: str = "") -> str:
     stem = fig["stem"]
     png = f"figures/{stem}.png"
     pdf = f"figures/{stem}.pdf"
-    tag = "" if fig["kbs"] else '<p class="note">Not in the KBS PDF.</p>'
+    tag = '<p class="note">Supporting figure.</p>' if fig.get("supporting") else ""
     html = [
         f'<section id="{escape(fig["id"])}">',
         f'<h2>{escape(fig["title"])}</h2>',
@@ -537,7 +536,7 @@ def figure_block(fig: dict, root: str, extra_table: str = "") -> str:
         f'<img src="{root}{png}" alt="{escape(fig["title"])}">',
         f"<figcaption>{escape(fig['caption'])}</figcaption>",
         "</figure>",
-        f'<p class="print-link"><a href="{root}{pdf}">Print PDF</a></p>',
+        f'<p class="fig-link"><a href="{root}{pdf}">Download figure</a></p>',
     ]
     for crop_stem, crop_title in fig.get("crops") or []:
         html.append(
@@ -545,7 +544,7 @@ def figure_block(fig: dict, root: str, extra_table: str = "") -> str:
             f'<img src="{root}figures/{crop_stem}.png" alt="{escape(crop_title)}">'
             f"<figcaption>{escape(crop_title)}. Crop of the TableShift figure for narrow viewports.</figcaption>"
             f"</figure>"
-            f'<p class="print-link"><a href="{root}figures/{crop_stem}.pdf">Print PDF</a></p>'
+            f'<p class="fig-link"><a href="{root}figures/{crop_stem}.pdf">Download figure</a></p>'
         )
     if extra_table:
         html.append("<h3>Values</h3>")
@@ -636,6 +635,17 @@ def leak_scan(reproduce_rel: str) -> None:
         "paper_kbs.pdf",
         "@gmail.com",
         "fuzeyu09",
+        "KBS",
+        "DMKD",
+        "Knowledge-Based",
+        "this paper",
+        "the paper",
+        "manuscript",
+        "submitted",
+        "journal",
+        "InfoSci",
+        "Paper companion",
+        "Print PDF",
     )
     json_ok_prefix = reproduce_rel
     problems: list[str] = []
@@ -709,6 +719,33 @@ def verify() -> None:
         raise SystemExit("verify: reproduce missing reserved DOI")
     if "github.com/PeterPonyu/structured-data-fm-reliability-research" not in repro:
         raise SystemExit("verify: reproduce missing public code archive")
+    for rel in (
+        "index.html",
+        "protocol/index.html",
+        "tables/index.html",
+        "figures/index.html",
+        "key/index.html",
+        "quarantine/index.html",
+        "reproduce/index.html",
+        "cite/index.html",
+    ):
+        text = (OUT / rel).read_text(encoding="utf-8")
+        for banned in (
+            "KBS",
+            "DMKD",
+            "Knowledge-Based",
+            "this paper",
+            "the paper",
+            "manuscript",
+            "submitted",
+            "journal",
+            "paper_kbs",
+            "InfoSci",
+            "Paper companion",
+            "Print PDF",
+        ):
+            if banned in text:
+                raise SystemExit(f"verify: {rel} contains {banned!r}")
     print("verify: ok")
 
 
@@ -842,11 +879,11 @@ def build() -> None:
     bib = (
         "<pre><code>"
         + escape(
-            "@unpublished{fu2026conformal,\n"
+            "@misc{fu2026conformal,\n"
             f'  title   = {{{cite["title"]}}},\n'
             f'  author  = {{{cite["author"]}}},\n'
             f'  year    = {{{cite["year"]}}},\n'
-            f'  note    = {{{cite["venue"]}; reserved DOI {cite["doi"]} (draft)}},\n'
+            f'  howpublished = {{Zenodo reserved draft {cite["doi"]}}},\n'
             f'  url     = {{{cite["github"]}}}\n'
             "}"
         )
@@ -859,7 +896,7 @@ def build() -> None:
             "index.md",
             "thesis",
             cite["title"],
-            "Preregistered tabular reliability audit companion.",
+            "Preregistered tabular reliability audit.",
             "",
             False,
             {"verdict_table": verdict_table, "root": ""},
@@ -898,7 +935,7 @@ def build() -> None:
             "figures.md",
             "figures",
             "Figures",
-            "Audit figures in KBS argument order, with values tables.",
+            "Audit figures in argument order, with values tables.",
             "",
             True,
             {"figure_gallery": gallery, "root": "../"},
@@ -923,7 +960,7 @@ def build() -> None:
             "quarantine.md",
             "quarantine",
             "Honesty ledger",
-            "Quarantine, KILL, blocked, and superseded items.",
+            "Quarantine, KILL, and blocked items.",
             "",
             True,
             {"quarantine_table": q_html, "root": "../"},
@@ -942,8 +979,8 @@ def build() -> None:
             "cite/index.html",
             "cite.md",
             "cite",
-            "Cite",
-            "BibTeX, submitted PDF, GitHub, reserved Zenodo DOI.",
+            "Record",
+            "Code archive and reserved Zenodo DOI.",
             "",
             False,
             {"bibtex": bib, "root": "../"},

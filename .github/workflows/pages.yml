@@ -63,6 +63,17 @@ jobs:
               "paper_kbs.pdf",
               "@gmail.com",
               "fuzeyu09",
+              "KBS",
+              "DMKD",
+              "Knowledge-Based",
+              "this paper",
+              "the paper",
+              "manuscript",
+              "submitted",
+              "journal",
+              "InfoSci",
+              "Paper companion",
+              "Print PDF",
           )
           problems = []
           root = Path("docs")

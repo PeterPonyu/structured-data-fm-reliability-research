@@ -9,7 +9,7 @@ Tables are the native object of this audit. Coverage below 0.90 is vermillion; c
 
 ## CORE14 — XGBoost and LightGBM (key included)
 
-AURC, grouped split-conformal coverage, and grouped repair ratio on the 14 keyed OpenML datasets. Headline KBS numbers.
+AURC, grouped split-conformal coverage, and grouped repair ratio on the 14 keyed OpenML datasets. Headline numbers, key included.
 
 {{core14_table}}
 

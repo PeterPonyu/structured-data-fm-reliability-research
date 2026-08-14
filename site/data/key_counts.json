@@ -57,5 +57,5 @@
       }
     }
   },
-  "note": "Headline KBS numbers are key-included. Key-excluded is the conservative degradation bound."
+  "note": "Headline numbers are key-included. Key-excluded is the conservative degradation bound."
 }

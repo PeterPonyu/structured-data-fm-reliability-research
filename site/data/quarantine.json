@@ -33,16 +33,11 @@
     [
       "Zenodo 10.5281/zenodo.21130297",
       "Reserved on a draft deposition",
-      "Cite as reserved until published"
-    ],
-    [
-      "DMKD / InfoSci manuscripts",
-      "Superseded / stale",
-      "No as the active venue"
+      "Cite as reserved until the record is public"
     ],
     [
       "F7 post-hoc power",
-      "Supporting figure; not in the KBS PDF; independence idealization overstates power",
+      "Supporting figure; independence idealization overstates power",
       "Yes, with those caveats"
     ],
     [
@@ -52,7 +47,7 @@
     ],
     [
       "Mock / fabricated artifacts",
-      "None in the nested repo",
+      "None",
       "\u2014"
     ]
   ]
