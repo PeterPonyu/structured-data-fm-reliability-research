@@ -726,6 +726,11 @@ def verify() -> None:
         raise SystemExit("verify: reproduce missing reserved DOI")
     if "github.com/PeterPonyu/structured-data-fm-reliability-research" not in repro:
         raise SystemExit("verify: reproduce missing public code archive")
+    cite_page = (OUT / "cite/index.html").read_text(encoding="utf-8")
+    if "<pre><code>@misc{fu2026conformal," not in cite_page:
+        raise SystemExit("verify: cite missing rendered BibTeX block")
+    if "&lt;/code&gt;" in cite_page or "&lt;/pre&gt;" in cite_page:
+        raise SystemExit("verify: cite still has escaped code-block tags (document fallback)")
     for rel in (
         "index.html",
         "protocol/index.html",
@@ -892,17 +897,15 @@ def build() -> None:
     key_script = '<script src="../js/keytoggle.js"></script>'
 
     bib = (
-        "<pre><code>"
-        + escape(
-            "@misc{fu2026conformal,\n"
-            f'  title   = {{{cite["title"]}}},\n'
-            f'  author  = {{{cite["author"]}}},\n'
-            f'  year    = {{{cite["year"]}}},\n'
-            f'  howpublished = {{Zenodo reserved draft {cite["doi"]}}},\n'
-            f'  url     = {{{cite["github"]}}}\n'
-            "}"
-        )
-        + "</code></pre>"
+        "```bibtex\n"
+        "@misc{fu2026conformal,\n"
+        f'  title   = {{{cite["title"]}}},\n'
+        f'  author  = {{{cite["author"]}}},\n'
+        f'  year    = {{{cite["year"]}}},\n'
+        f'  howpublished = {{Zenodo reserved draft {cite["doi"]}}},\n'
+        f'  url     = {{{cite["github"]}}}\n'
+        "}\n"
+        "```"
     )
 
     pages = [
