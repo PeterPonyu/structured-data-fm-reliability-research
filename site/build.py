@@ -38,7 +38,8 @@ NAV = [
 FIGURES = [
     {
         "id": "overview",
-        "stem": "fig0_overview",
+        "stem": "overview",
+        "source": "fig0_overview",
         "title": "Overview",
         "supporting": False,
         "caption": (
@@ -49,9 +50,10 @@ FIGURES = [
         ),
     },
     {
-        "id": "f1",
-        "stem": "F1_aurc_random_vs_grouped",
-        "title": "F1 — AURC, random vs grouped/time",
+        "id": "aurc-random-vs-grouped",
+        "stem": "aurc-random-vs-grouped",
+        "source": "F1_aurc_random_vs_grouped",
+        "title": "AURC, random vs grouped/time",
         "supporting": False,
         "caption": (
             "Per-dataset risk-coverage AURC under random vs grouped/time split, "
@@ -60,9 +62,10 @@ FIGURES = [
         ),
     },
     {
-        "id": "f2",
-        "stem": "F2_repair_ratio",
-        "title": "F2 — repair ratio",
+        "id": "repair-ratio",
+        "stem": "repair-ratio",
+        "source": "F2_repair_ratio",
+        "title": "Repair ratio",
         "supporting": False,
         "caption": (
             "Uncertainty-ranked abstention vs random deferral under the grouped "
@@ -71,9 +74,10 @@ FIGURES = [
         ),
     },
     {
-        "id": "f3",
-        "stem": "F3_model_agnostic",
-        "title": "F3 — model-agnostic coverage",
+        "id": "model-agnostic",
+        "stem": "model-agnostic",
+        "source": "F3_model_agnostic",
+        "title": "Model-agnostic coverage",
         "supporting": False,
         "caption": (
             "Four configurations spanning three architecture families. Grouped "
@@ -83,9 +87,10 @@ FIGURES = [
         ),
     },
     {
-        "id": "f6",
-        "stem": "F6_split_repeats_fragility",
-        "title": "F6 — split-realization fragility",
+        "id": "split-repeats-fragility",
+        "stem": "split-repeats-fragility",
+        "source": "F6_split_repeats_fragility",
+        "title": "Split-realization fragility",
         "supporting": False,
         "caption": (
             "Headline counts across repeated grouped-split draws. The dashed "
@@ -95,9 +100,10 @@ FIGURES = [
         ),
     },
     {
-        "id": "f4",
-        "stem": "F4_calsize_vs_mondrian",
-        "title": "F4 — Mondrian vs calibration size",
+        "id": "calsize-vs-mondrian",
+        "stem": "calsize-vs-mondrian",
+        "source": "F4_calsize_vs_mondrian",
+        "title": "Mondrian vs calibration size",
         "supporting": False,
         "caption": (
             "Key-dependent flip. Key included: calibration-fold size predicts "
@@ -107,24 +113,35 @@ FIGURES = [
         ),
     },
     {
-        "id": "f5",
-        "stem": "F5_tableshift",
-        "title": "F5 — TableShift-class ACS generalization",
+        "id": "tableshift",
+        "stem": "tableshift",
+        "source": "F5_tableshift",
+        "title": "TableShift-class ACS generalization",
         "supporting": False,
         "caption": (
             "Folktables ACS leave-states-out spatial OOD. Repair on four tasks "
             "with 400-bootstrap intervals, then RAC1P worst−best coverage gap. "
-            "Narrow viewports can use the F5a / F5b crops below."
+            "Narrow viewports can use the ACS repair and RAC1P coverage-gap "
+            "crops below."
         ),
         "crops": [
-            ("F5a_tableshift_repair", "F5a — ACS repair"),
-            ("F5b_tableshift_subgroup_gap", "F5b — RAC1P coverage gap"),
+            {
+                "stem": "tableshift-repair",
+                "source": "F5a_tableshift_repair",
+                "title": "ACS repair",
+            },
+            {
+                "stem": "tableshift-subgroup-gap",
+                "source": "F5b_tableshift_subgroup_gap",
+                "title": "RAC1P coverage gap",
+            },
         ],
     },
     {
-        "id": "f7",
-        "stem": "F7_power_mde",
-        "title": "F7 — post-hoc power / MDE (supporting)",
+        "id": "power-mde",
+        "stem": "power-mde",
+        "source": "F7_power_mde",
+        "title": "Post-hoc power / MDE",
         "supporting": True,
         "caption": (
             "Supporting. Post-hoc power on observed flip frequencies, not a "
@@ -134,9 +151,10 @@ FIGURES = [
         ),
     },
     {
-        "id": "f8",
-        "stem": "F8_calsize_planning",
-        "title": "F8 — within-dataset calibration-size sweep (negative result)",
+        "id": "calsize-planning",
+        "stem": "calsize-planning",
+        "source": "F8_calsize_planning",
+        "title": "Within-dataset calibration-size sweep (negative result)",
         "supporting": True,
         "caption": (
             "Negative result: the within-dataset calibration-size "
@@ -541,7 +559,9 @@ def figure_block(fig: dict, root: str, extra_table: str = "") -> str:
         "</figure>",
         f'<p class="fig-link"><a href="{root}{pdf}">Download figure</a></p>',
     ]
-    for crop_stem, crop_title in fig.get("crops") or []:
+    for crop in fig.get("crops") or []:
+        crop_stem = crop["stem"] if isinstance(crop, dict) else crop[0]
+        crop_title = crop["title"] if isinstance(crop, dict) else crop[1]
         html.append(
             f'<figure class="panel" id="{escape(crop_stem)}">'
             f'<img src="{root}figures/{crop_stem}.png" alt="{escape(crop_title)}">'
@@ -565,27 +585,48 @@ def rasterize_pdf(pdf: Path, dest_png: Path) -> None:
     )
 
 
+def figure_copy_pairs(fig: dict) -> list[tuple[str, str]]:
+    """(public_stem, source_stem) pairs for the main panel and any crops."""
+    pairs = [(fig["stem"], fig.get("source", fig["stem"]))]
+    for crop in fig.get("crops") or []:
+        if isinstance(crop, dict):
+            pairs.append((crop["stem"], crop.get("source", crop["stem"])))
+        else:
+            pairs.append((crop[0], crop[0]))
+    return pairs
+
+
 def copy_figures() -> list[str]:
     src_dirs = [SITE / "figures", REPO / "manuscripts" / "figures"]
     dest = OUT / "figures"
     dest.mkdir(parents=True, exist_ok=True)
     copied = []
-    stems = [f["stem"] for f in FIGURES]
+    pairs: list[tuple[str, str]] = []
     for fig in FIGURES:
-        stems.extend(s for s, _ in fig.get("crops") or [])
+        pairs.extend(figure_copy_pairs(fig))
     cairo = shutil.which("pdftocairo")
-    for stem in stems:
+    for public, source in pairs:
         for ext in (".png", ".pdf"):
             for src_dir in src_dirs:
-                src = src_dir / f"{stem}{ext}"
+                src = src_dir / f"{source}{ext}"
+                if not src.exists() and source != public:
+                    src = src_dir / f"{public}{ext}"
                 if src.exists():
-                    shutil.copy2(src, dest / src.name)
-                    copied.append(src.name)
+                    shutil.copy2(src, dest / f"{public}{ext}")
+                    copied.append(f"{public}{ext}")
                     break
-        png = dest / f"{stem}.png"
+        png = dest / f"{public}.png"
         if png.exists():
             continue
-        pdf = next((d / f"{stem}.pdf" for d in src_dirs if (d / f"{stem}.pdf").exists()), None)
+        pdf = None
+        for d in src_dirs:
+            for name in (source, public):
+                candidate = d / f"{name}.pdf"
+                if candidate.exists():
+                    pdf = candidate
+                    break
+            if pdf is not None:
+                break
         if pdf is not None and cairo:
             rasterize_pdf(pdf, png)
             copied.append(png.name)
@@ -689,9 +730,9 @@ def verify() -> None:
         "fonts/IBMPlexSans-normal-400.woff2",
         ".nojekyll",
         "data/p4_table.csv",
-        "figures/fig0_overview.png",
-        "figures/F1_aurc_random_vs_grouped.png",
-        "figures/F6_split_repeats_fragility.png",
+        "figures/overview.png",
+        "figures/aurc-random-vs-grouped.png",
+        "figures/split-repeats-fragility.png",
     ]
     missing = [r for r in required if not (OUT / r).exists()]
     if missing:
@@ -836,10 +877,10 @@ def build() -> None:
     )
 
     fig_tables = {
-        "f1": gbm_coverage_table(
+        "aurc-random-vs-grouped": gbm_coverage_table(
             core["key_included"], pretty=dmap, models=("xgboost", "lightgbm"), order=order
         ),
-        "f2": table_html(
+        "repair-ratio": table_html(
             ["Dataset", "Model", "Repair grouped", "Repair CI", "Beats random"],
             [
                 [
@@ -853,9 +894,9 @@ def build() -> None:
             ],
             numeric={2},
         ),
-        "f3": fm_html,
-        "f6": f6_table(f6),
-        "f4": two_col_table(
+        "model-agnostic": fm_html,
+        "split-repeats-fragility": f6_table(f6),
+        "calsize-vs-mondrian": two_col_table(
             [
                 ["Key included Spearman rho", "0.50"],
                 ["Key included threshold balanced accuracy", "0.854"],
@@ -865,10 +906,10 @@ def build() -> None:
                 ["Key excluded gate", "KILL"],
             ]
         ),
-        "f5": acs_html,
+        "tableshift": acs_html,
         "overview": "",
-        "f7": "",
-        "f8": "",
+        "power-mde": "",
+        "calsize-planning": "",
     }
     gallery = "\n".join(figure_block(fig, "../", fig_tables.get(fig["id"], "")) for fig in FIGURES)
 
