@@ -1,0 +1,13 @@
+{
+  "key_included": {
+    "spearman_rho": 0.5,
+    "threshold_bacc": 0.854,
+    "gate": "SUCCESS"
+  },
+  "key_excluded": {
+    "spearman_rho": -0.12,
+    "threshold_bacc": 0.548,
+    "gate": "KILL"
+  },
+  "note": "The science is the key-dependent flip. Do not lead with the SUCCESS panel alone."
+}

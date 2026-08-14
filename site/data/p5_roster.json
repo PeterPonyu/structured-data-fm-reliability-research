@@ -1,0 +1,58 @@
+{
+  "rows": [
+    {
+      "task": "diabetes_readmission",
+      "endpoint": "marginal gap only",
+      "n_groups": 0,
+      "in_tally": false
+    },
+    {
+      "task": "nhanes_lead",
+      "endpoint": "marginal gap only",
+      "n_groups": 0,
+      "in_tally": false
+    },
+    {
+      "task": "physionet",
+      "endpoint": "marginal gap only",
+      "n_groups": 0,
+      "in_tally": false
+    },
+    {
+      "task": "brfss_diabetes",
+      "endpoint": "primary worst-group domain",
+      "n_groups": 5,
+      "in_tally": true
+    },
+    {
+      "task": "brfss_blood_pressure",
+      "endpoint": "fallback (secondary: AGEG5YR)",
+      "n_groups": 7,
+      "in_tally": true
+    },
+    {
+      "task": "acsincome",
+      "endpoint": "fallback (secondary: AGEP)",
+      "n_groups": 71,
+      "in_tally": true
+    },
+    {
+      "task": "acspubcov",
+      "endpoint": "fallback (secondary: AGEP)",
+      "n_groups": 50,
+      "in_tally": true
+    },
+    {
+      "task": "acsfoodstamps",
+      "endpoint": "fallback (secondary: AGEP)",
+      "n_groups": 44,
+      "in_tally": true
+    },
+    {
+      "task": "acsunemployment",
+      "endpoint": "primary worst-group domain",
+      "n_groups": 15,
+      "in_tally": true
+    }
+  ]
+}

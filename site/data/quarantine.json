@@ -1,0 +1,54 @@
+{
+  "rows": [
+    [
+      "Exploratory remedy ladder vs TableShift confirmatory arm",
+      "Quarantined (no overlap; K=10 vs K=20)",
+      "Cite the split of roles, not a pooled count"
+    ],
+    [
+      "Stage-2 conjunctive gate",
+      "KILL (gap count + Mondrian majority)",
+      "Yes, as KILL"
+    ],
+    [
+      "Mondrian mechanism, key excluded",
+      "KILL",
+      "Yes, as KILL"
+    ],
+    [
+      "Grouped-gap / AURC-degrade majority",
+      "Split-realization distribution; not a confirmed majority",
+      "No as a headline majority"
+    ],
+    [
+      "TabPFN-2.5",
+      "Blocked (license token); never downloaded",
+      "No"
+    ],
+    [
+      "ND2 time-series / M4 via GluonTS",
+      "Blocked (token + SSL); the blocked-run record is an error log",
+      "No"
+    ],
+    [
+      "Zenodo 10.5281/zenodo.21130297",
+      "Reserved on a draft deposition",
+      "Cite as reserved until the record is public"
+    ],
+    [
+      "F7 post-hoc power",
+      "Supporting figure; independence idealization overstates power",
+      "Yes, with those caveats"
+    ],
+    [
+      "F8 within-dataset calibration-size sweep",
+      "Negative; does not reproduce the cross-sectional dose-response",
+      "Yes, as negative"
+    ],
+    [
+      "Mock / fabricated artifacts",
+      "None",
+      "\u2014"
+    ]
+  ]
+}

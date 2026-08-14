@@ -1,0 +1,46 @@
+{
+  "k_repeats": 20,
+  "n_boot": 400,
+  "majority_threshold": 4,
+  "n_evaluable": 6,
+  "rows": [
+    [
+      "Median split-conformal worst-group coverage (target 0.90)",
+      "0.797"
+    ],
+    [
+      "Median split-conformal worst\u2212best group gap",
+      "0.135"
+    ],
+    [
+      "Any-remedy restores coverage (min / median / max across K)",
+      "3 / 3.0 / 4"
+    ],
+    [
+      "Weighted CP",
+      "3 / 3.0 / 4"
+    ],
+    [
+      "Inferred-group Mondrian",
+      "0 / 0.0 / 0"
+    ],
+    [
+      "Uncertainty-decile Mondrian",
+      "0 / 0.0 / 1"
+    ],
+    [
+      "H1 (coverage restoration)",
+      "REJECT"
+    ],
+    [
+      "Uncertainty ties-or-beats tuned selector (min / median / max across K)",
+      "6 / 6.0 / 6"
+    ],
+    [
+      "H2 (selective prescription)",
+      "CONFIRM"
+    ]
+  ],
+  "h1": "REJECT",
+  "h2": "CONFIRM"
+}

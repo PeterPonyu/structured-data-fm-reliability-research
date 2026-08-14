@@ -1,0 +1,1689 @@
+{
+  "alpha": 0.1,
+  "coverage_target": 0.9,
+  "n_boot": 400,
+  "key_included": [
+    {
+      "name": "electricity",
+      "model": "xgboost",
+      "key": "date",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.03084,
+      "aurc_grouped": 0.22391,
+      "aurc_delta_med": 0.19293,
+      "aurc_delta_ci": [
+        0.18306,
+        0.2026
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9063,
+      "conformal_cov_grouped_split": 0.6193,
+      "conformal_cov_grouped_mondrian": 0.7219,
+      "coverage_gap_split": 0.2871,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.38899,
+      "repair_grouped_ci": [
+        0.3711,
+        0.40543
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.1023,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "electricity",
+      "model": "lightgbm",
+      "key": "date",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.02946,
+      "aurc_grouped": 0.24417,
+      "aurc_delta_med": 0.2145,
+      "aurc_delta_ci": [
+        0.20437,
+        0.2258
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9034,
+      "conformal_cov_grouped_split": 0.5865,
+      "conformal_cov_grouped_mondrian": 0.6965,
+      "coverage_gap_split": 0.317,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.39195,
+      "repair_grouped_ci": [
+        0.37646,
+        0.40878
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.1105,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "eucalyptus",
+      "model": "xgboost",
+      "key": "Year",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.19177,
+      "aurc_grouped": 0.22083,
+      "aurc_delta_med": 0.02542,
+      "aurc_delta_ci": [
+        -0.04877,
+        0.10554
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9136,
+      "conformal_cov_grouped_split": 0.8966,
+      "conformal_cov_grouped_mondrian": 0.9379,
+      "coverage_gap_split": 0.0171,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.33979,
+      "repair_grouped_ci": [
+        0.21784,
+        0.46972
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0276,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "eucalyptus",
+      "model": "lightgbm",
+      "key": "Year",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.20058,
+      "aurc_grouped": 0.14291,
+      "aurc_delta_med": -0.0552,
+      "aurc_delta_ci": [
+        -0.12424,
+        0.01279
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9091,
+      "conformal_cov_grouped_split": 0.8828,
+      "conformal_cov_grouped_mondrian": 0.8828,
+      "coverage_gap_split": 0.0263,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.56375,
+      "repair_grouped_ci": [
+        0.50103,
+        0.63842
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "adult",
+      "model": "xgboost",
+      "key": "native-country",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.02904,
+      "aurc_grouped": 0.06092,
+      "aurc_delta_med": 0.03201,
+      "aurc_delta_ci": [
+        0.02847,
+        0.03549
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9009,
+      "conformal_cov_grouped_split": 0.8932,
+      "conformal_cov_grouped_mondrian": 0.9171,
+      "coverage_gap_split": 0.0077,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.67121,
+      "repair_grouped_ci": [
+        0.66208,
+        0.67996
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0099,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "adult",
+      "model": "lightgbm",
+      "key": "native-country",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.02965,
+      "aurc_grouped": 0.06315,
+      "aurc_delta_med": 0.0336,
+      "aurc_delta_ci": [
+        0.03002,
+        0.03682
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9001,
+      "conformal_cov_grouped_split": 0.8892,
+      "conformal_cov_grouped_mondrian": 0.8477,
+      "coverage_gap_split": 0.0109,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.66888,
+      "repair_grouped_ci": [
+        0.66098,
+        0.67622
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0415,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "cylinder-bands",
+      "model": "xgboost",
+      "key": "paper_mill_location",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.10463,
+      "aurc_grouped": 0.28121,
+      "aurc_delta_med": 0.17859,
+      "aurc_delta_ci": [
+        0.09534,
+        0.25303
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.8765,
+      "conformal_cov_grouped_split": 0.6603,
+      "conformal_cov_grouped_mondrian": 0.727,
+      "coverage_gap_split": 0.2162,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.29136,
+      "repair_grouped_ci": [
+        0.15852,
+        0.41198
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0667,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "cylinder-bands",
+      "model": "lightgbm",
+      "key": "paper_mill_location",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.11271,
+      "aurc_grouped": 0.26035,
+      "aurc_delta_med": 0.14739,
+      "aurc_delta_ci": [
+        0.06631,
+        0.22901
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.8642,
+      "conformal_cov_grouped_split": 0.7175,
+      "conformal_cov_grouped_mondrian": 0.8063,
+      "coverage_gap_split": 0.1467,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.28062,
+      "repair_grouped_ci": [
+        0.14667,
+        0.40652
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0889,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "churn",
+      "model": "xgboost",
+      "key": "state",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.02704,
+      "aurc_grouped": 0.02652,
+      "aurc_delta_med": 0.00038,
+      "aurc_delta_ci": [
+        -0.0147,
+        0.01512
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8873,
+      "conformal_cov_grouped_split": 0.9126,
+      "conformal_cov_grouped_mondrian": 0.9294,
+      "coverage_gap_split": -0.0252,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.48165,
+      "repair_grouped_ci": [
+        0.2895,
+        0.63051
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0168,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "churn",
+      "model": "lightgbm",
+      "key": "state",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.02284,
+      "aurc_grouped": 0.02463,
+      "aurc_delta_med": 0.00172,
+      "aurc_delta_ci": [
+        -0.01338,
+        0.0137
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8927,
+      "conformal_cov_grouped_split": 0.8996,
+      "conformal_cov_grouped_mondrian": 0.9294,
+      "coverage_gap_split": -0.0069,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.51241,
+      "repair_grouped_ci": [
+        0.33834,
+        0.64781
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.024,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "Moneyball",
+      "model": "xgboost",
+      "key": "Team",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 17.9307,
+      "aurc_grouped": 19.50624,
+      "aurc_delta_med": 1.52129,
+      "aurc_delta_ci": [
+        -1.72472,
+        4.83821
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9051,
+      "conformal_cov_grouped_split": 0.9194,
+      "conformal_cov_grouped_mondrian": 0.9446,
+      "coverage_gap_split": -0.0142,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": -0.02483,
+      "repair_grouped_ci": [
+        -0.11024,
+        0.06326
+      ],
+      "repair_excludes0_pos": false,
+      "mondrian_improvement_med": -0.0252,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "Moneyball",
+      "model": "lightgbm",
+      "key": "Team",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 17.5669,
+      "aurc_grouped": 18.70917,
+      "aurc_delta_med": 1.16744,
+      "aurc_delta_ci": [
+        -1.64513,
+        4.03123
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9214,
+      "conformal_cov_grouped_split": 0.9169,
+      "conformal_cov_grouped_mondrian": 0.9673,
+      "coverage_gap_split": 0.0045,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.01014,
+      "repair_grouped_ci": [
+        -0.0692,
+        0.08019
+      ],
+      "repair_excludes0_pos": false,
+      "mondrian_improvement_med": -0.0504,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "kick",
+      "model": "xgboost",
+      "key": "VNZIP1",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.05264,
+      "aurc_grouped": 0.05744,
+      "aurc_delta_med": 0.00479,
+      "aurc_delta_ci": [
+        -0.00353,
+        0.01314
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8986,
+      "conformal_cov_grouped_split": 0.8929,
+      "conformal_cov_grouped_mondrian": 0.9013,
+      "coverage_gap_split": 0.0057,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.46055,
+      "repair_grouped_ci": [
+        0.42134,
+        0.50192
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0049,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "kick",
+      "model": "lightgbm",
+      "key": "VNZIP1",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.05274,
+      "aurc_grouped": 0.05589,
+      "aurc_delta_med": 0.00306,
+      "aurc_delta_ci": [
+        -0.00449,
+        0.01165
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8973,
+      "conformal_cov_grouped_split": 0.8913,
+      "conformal_cov_grouped_mondrian": 0.8958,
+      "coverage_gap_split": 0.006,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.47125,
+      "repair_grouped_ci": [
+        0.43392,
+        0.50663
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0041,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "black_friday",
+      "model": "xgboost",
+      "key": "City_Category",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 1972.99008,
+      "aurc_grouped": 2106.7129,
+      "aurc_delta_med": 132.03238,
+      "aurc_delta_ci": [
+        87.76393,
+        186.55873
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9064,
+      "conformal_cov_grouped_split": 0.8862,
+      "conformal_cov_grouped_mondrian": 0.8986,
+      "coverage_gap_split": 0.0202,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.26624,
+      "repair_grouped_ci": [
+        0.25701,
+        0.27562
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0115,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "black_friday",
+      "model": "lightgbm",
+      "key": "City_Category",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 1988.89825,
+      "aurc_grouped": 2054.5947,
+      "aurc_delta_med": 62.54561,
+      "aurc_delta_ci": [
+        9.96762,
+        118.33192
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9041,
+      "conformal_cov_grouped_split": 0.8928,
+      "conformal_cov_grouped_mondrian": 0.8803,
+      "coverage_gap_split": 0.0113,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.26609,
+      "repair_grouped_ci": [
+        0.2573,
+        0.2744
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0127,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "house_prices_nominal",
+      "model": "xgboost",
+      "key": "Neighborhood",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 11169.55148,
+      "aurc_grouped": 11206.26364,
+      "aurc_delta_med": 155.01342,
+      "aurc_delta_ci": [
+        -1668.13957,
+        1954.2276
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9475,
+      "conformal_cov_grouped_split": 0.9471,
+      "conformal_cov_grouped_mondrian": 0.9653,
+      "coverage_gap_split": 0.0004,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.26336,
+      "repair_grouped_ci": [
+        0.21504,
+        0.31378
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0181,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "house_prices_nominal",
+      "model": "lightgbm",
+      "key": "Neighborhood",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 10816.53987,
+      "aurc_grouped": 11520.57967,
+      "aurc_delta_med": 638.96736,
+      "aurc_delta_ci": [
+        -847.55259,
+        2026.40878
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9566,
+      "conformal_cov_grouped_split": 0.935,
+      "conformal_cov_grouped_mondrian": 0.9456,
+      "coverage_gap_split": 0.0216,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.27351,
+      "repair_grouped_ci": [
+        0.22092,
+        0.32787
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0106,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "colleges",
+      "model": "xgboost",
+      "key": "state",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 0.06645,
+      "aurc_grouped": 0.07074,
+      "aurc_delta_med": 0.00416,
+      "aurc_delta_ci": [
+        0.00039,
+        0.00877
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9117,
+      "conformal_cov_grouped_split": 0.8868,
+      "conformal_cov_grouped_mondrian": 0.8835,
+      "coverage_gap_split": 0.0249,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.33907,
+      "repair_grouped_ci": [
+        0.31386,
+        0.36116
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0042,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "colleges",
+      "model": "lightgbm",
+      "key": "state",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 0.06541,
+      "aurc_grouped": 0.06897,
+      "aurc_delta_med": 0.00345,
+      "aurc_delta_ci": [
+        -0.00126,
+        0.00719
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9098,
+      "conformal_cov_grouped_split": 0.8994,
+      "conformal_cov_grouped_mondrian": 0.8761,
+      "coverage_gap_split": 0.0104,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.35214,
+      "repair_grouped_ci": [
+        0.33159,
+        0.37399
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0188,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "Airlines_DepDelay_10M",
+      "model": "xgboost",
+      "key": "DayofMonth",
+      "kind": "time",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 10.64881,
+      "aurc_grouped": 11.4141,
+      "aurc_delta_med": 0.71466,
+      "aurc_delta_ci": [
+        -0.21499,
+        1.7448
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9021,
+      "conformal_cov_grouped_split": 0.8718,
+      "conformal_cov_grouped_mondrian": 0.9017,
+      "coverage_gap_split": 0.0303,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.31965,
+      "repair_grouped_ci": [
+        0.27808,
+        0.35516
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0257,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "Airlines_DepDelay_10M",
+      "model": "lightgbm",
+      "key": "DayofMonth",
+      "kind": "time",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 10.43579,
+      "aurc_grouped": 10.85868,
+      "aurc_delta_med": 0.41133,
+      "aurc_delta_ci": [
+        -0.36024,
+        1.36775
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9097,
+      "conformal_cov_grouped_split": 0.8746,
+      "conformal_cov_grouped_mondrian": 0.901,
+      "coverage_gap_split": 0.0351,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.33106,
+      "repair_grouped_ci": [
+        0.29545,
+        0.35924
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0234,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "nyc-taxi-green-dec-2016",
+      "model": "xgboost",
+      "key": "PULocationID",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 0.34898,
+      "aurc_grouped": 0.40624,
+      "aurc_delta_med": 0.0572,
+      "aurc_delta_ci": [
+        0.0376,
+        0.07584
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9029,
+      "conformal_cov_grouped_split": 0.8915,
+      "conformal_cov_grouped_mondrian": 0.9006,
+      "coverage_gap_split": 0.0114,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.51335,
+      "repair_grouped_ci": [
+        0.49379,
+        0.53661
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0063,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "nyc-taxi-green-dec-2016",
+      "model": "lightgbm",
+      "key": "PULocationID",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 0.36444,
+      "aurc_grouped": 0.42507,
+      "aurc_delta_med": 0.06045,
+      "aurc_delta_ci": [
+        0.04516,
+        0.076
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9017,
+      "conformal_cov_grouped_split": 0.8945,
+      "conformal_cov_grouped_mondrian": 0.9048,
+      "coverage_gap_split": 0.0071,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.50284,
+      "repair_grouped_ci": [
+        0.48379,
+        0.52484
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0007,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "house_sales",
+      "model": "xgboost",
+      "key": "zipcode",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 34323.65064,
+      "aurc_grouped": 58225.29456,
+      "aurc_delta_med": 23992.19064,
+      "aurc_delta_ci": [
+        19043.51259,
+        31985.92326
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9087,
+      "conformal_cov_grouped_split": 0.8474,
+      "conformal_cov_grouped_mondrian": 0.8373,
+      "coverage_gap_split": 0.0613,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.26779,
+      "repair_grouped_ci": [
+        0.17341,
+        0.32284
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0102,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "house_sales",
+      "model": "lightgbm",
+      "key": "zipcode",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 35973.43626,
+      "aurc_grouped": 55921.19598,
+      "aurc_delta_med": 19925.47192,
+      "aurc_delta_ci": [
+        18112.53095,
+        21871.66274
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9073,
+      "conformal_cov_grouped_split": 0.8561,
+      "conformal_cov_grouped_mondrian": 0.8228,
+      "coverage_gap_split": 0.0512,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.31715,
+      "repair_grouped_ci": [
+        0.2943,
+        0.34186
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0334,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "sf-police-incidents",
+      "model": "xgboost",
+      "key": "PdDistrict",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.09624,
+      "aurc_grouped": 0.09918,
+      "aurc_delta_med": 0.00247,
+      "aurc_delta_ci": [
+        -0.0087,
+        0.01427
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8958,
+      "conformal_cov_grouped_split": 0.9018,
+      "conformal_cov_grouped_mondrian": 0.9016,
+      "coverage_gap_split": -0.006,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.14348,
+      "repair_grouped_ci": [
+        0.08873,
+        0.18838
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0001,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "sf-police-incidents",
+      "model": "lightgbm",
+      "key": "PdDistrict",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.09589,
+      "aurc_grouped": 0.09647,
+      "aurc_delta_med": 0.00107,
+      "aurc_delta_ci": [
+        -0.01227,
+        0.01168
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8976,
+      "conformal_cov_grouped_split": 0.9051,
+      "conformal_cov_grouped_mondrian": 0.9029,
+      "coverage_gap_split": -0.0075,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.20505,
+      "repair_grouped_ci": [
+        0.1552,
+        0.25173
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0019,
+      "mondrian_improves_excl0": false
+    }
+  ],
+  "key_excluded": [
+    {
+      "name": "electricity",
+      "model": "xgboost",
+      "key": "date",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.06413,
+      "aurc_grouped": 0.1598,
+      "aurc_delta_med": 0.09545,
+      "aurc_delta_ci": [
+        0.08624,
+        0.10444
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9068,
+      "conformal_cov_grouped_split": 0.8033,
+      "conformal_cov_grouped_mondrian": 0.8199,
+      "coverage_gap_split": 0.1034,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.41231,
+      "repair_grouped_ci": [
+        0.39111,
+        0.43241
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0167,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "electricity",
+      "model": "lightgbm",
+      "key": "date",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.06605,
+      "aurc_grouped": 0.163,
+      "aurc_delta_med": 0.09683,
+      "aurc_delta_ci": [
+        0.08612,
+        0.10798
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9056,
+      "conformal_cov_grouped_split": 0.7946,
+      "conformal_cov_grouped_mondrian": 0.8162,
+      "coverage_gap_split": 0.111,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.40842,
+      "repair_grouped_ci": [
+        0.38547,
+        0.43118
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0214,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "eucalyptus",
+      "model": "xgboost",
+      "key": "Year",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.20265,
+      "aurc_grouped": 0.21163,
+      "aurc_delta_med": 0.00426,
+      "aurc_delta_ci": [
+        -0.07758,
+        0.09107
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9045,
+      "conformal_cov_grouped_split": 0.9069,
+      "conformal_cov_grouped_mondrian": 0.9207,
+      "coverage_gap_split": -0.0024,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.33291,
+      "repair_grouped_ci": [
+        0.20114,
+        0.4779
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0069,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "eucalyptus",
+      "model": "lightgbm",
+      "key": "Year",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.20865,
+      "aurc_grouped": 0.14577,
+      "aurc_delta_med": -0.05915,
+      "aurc_delta_ci": [
+        -0.13187,
+        0.01054
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9182,
+      "conformal_cov_grouped_split": 0.8931,
+      "conformal_cov_grouped_mondrian": 0.8897,
+      "coverage_gap_split": 0.0251,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.55966,
+      "repair_grouped_ci": [
+        0.48333,
+        0.64518
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "adult",
+      "model": "xgboost",
+      "key": "native-country",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.02906,
+      "aurc_grouped": 0.06788,
+      "aurc_delta_med": 0.03896,
+      "aurc_delta_ci": [
+        0.03517,
+        0.04295
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9013,
+      "conformal_cov_grouped_split": 0.859,
+      "conformal_cov_grouped_mondrian": 0.8881,
+      "coverage_gap_split": 0.0423,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.65186,
+      "repair_grouped_ci": [
+        0.64156,
+        0.66085
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0291,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "adult",
+      "model": "lightgbm",
+      "key": "native-country",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.02965,
+      "aurc_grouped": 0.0703,
+      "aurc_delta_med": 0.04069,
+      "aurc_delta_ci": [
+        0.03708,
+        0.044
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.897,
+      "conformal_cov_grouped_split": 0.8643,
+      "conformal_cov_grouped_mondrian": 0.8886,
+      "coverage_gap_split": 0.0327,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.65408,
+      "repair_grouped_ci": [
+        0.64638,
+        0.66121
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0243,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "cylinder-bands",
+      "model": "xgboost",
+      "key": "paper_mill_location",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.09577,
+      "aurc_grouped": 0.29265,
+      "aurc_delta_med": 0.19879,
+      "aurc_delta_ci": [
+        0.12029,
+        0.27701
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9012,
+      "conformal_cov_grouped_split": 0.6508,
+      "conformal_cov_grouped_mondrian": 0.6667,
+      "coverage_gap_split": 0.2504,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.29087,
+      "repair_grouped_ci": [
+        0.16843,
+        0.41529
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0159,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "cylinder-bands",
+      "model": "lightgbm",
+      "key": "paper_mill_location",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.10821,
+      "aurc_grouped": 0.26035,
+      "aurc_delta_med": 0.1511,
+      "aurc_delta_ci": [
+        0.07169,
+        0.23747
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9012,
+      "conformal_cov_grouped_split": 0.7175,
+      "conformal_cov_grouped_mondrian": 0.8063,
+      "coverage_gap_split": 0.1838,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.28062,
+      "repair_grouped_ci": [
+        0.14667,
+        0.40652
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0889,
+      "mondrian_improves_excl0": true
+    },
+    {
+      "name": "churn",
+      "model": "xgboost",
+      "key": "state",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.0254,
+      "aurc_grouped": 0.02447,
+      "aurc_delta_med": -7e-05,
+      "aurc_delta_ci": [
+        -0.01392,
+        0.01312
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8927,
+      "conformal_cov_grouped_split": 0.9067,
+      "conformal_cov_grouped_mondrian": 0.8996,
+      "coverage_gap_split": -0.0141,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.50929,
+      "repair_grouped_ci": [
+        0.34713,
+        0.64011
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0025,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "churn",
+      "model": "lightgbm",
+      "key": "state",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.02467,
+      "aurc_grouped": 0.02429,
+      "aurc_delta_med": -0.00094,
+      "aurc_delta_ci": [
+        -0.01497,
+        0.01281
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8887,
+      "conformal_cov_grouped_split": 0.921,
+      "conformal_cov_grouped_mondrian": 0.8983,
+      "coverage_gap_split": -0.0323,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.48635,
+      "repair_grouped_ci": [
+        0.31315,
+        0.64521
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0149,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "Moneyball",
+      "model": "xgboost",
+      "key": "Team",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 17.92294,
+      "aurc_grouped": 19.88062,
+      "aurc_delta_med": 1.84038,
+      "aurc_delta_ci": [
+        -1.42583,
+        5.04638
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9268,
+      "conformal_cov_grouped_split": 0.9043,
+      "conformal_cov_grouped_mondrian": 0.9446,
+      "coverage_gap_split": 0.0225,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": -0.0077,
+      "repair_grouped_ci": [
+        -0.08882,
+        0.07434
+      ],
+      "repair_excludes0_pos": false,
+      "mondrian_improvement_med": -0.0345,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "Moneyball",
+      "model": "lightgbm",
+      "key": "Team",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 18.72694,
+      "aurc_grouped": 19.3413,
+      "aurc_delta_med": 0.70753,
+      "aurc_delta_ci": [
+        -2.10067,
+        3.4461
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9106,
+      "conformal_cov_grouped_split": 0.8816,
+      "conformal_cov_grouped_mondrian": 0.932,
+      "coverage_gap_split": 0.029,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": -0.00458,
+      "repair_grouped_ci": [
+        -0.07915,
+        0.06873
+      ],
+      "repair_excludes0_pos": false,
+      "mondrian_improvement_med": -0.0161,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "kick",
+      "model": "xgboost",
+      "key": "VNZIP1",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.05309,
+      "aurc_grouped": 0.05819,
+      "aurc_delta_med": 0.00514,
+      "aurc_delta_ci": [
+        -0.00349,
+        0.01346
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8983,
+      "conformal_cov_grouped_split": 0.8917,
+      "conformal_cov_grouped_mondrian": 0.8944,
+      "coverage_gap_split": 0.0066,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.4489,
+      "repair_grouped_ci": [
+        0.40487,
+        0.49143
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0027,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "kick",
+      "model": "lightgbm",
+      "key": "VNZIP1",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.05441,
+      "aurc_grouped": 0.05791,
+      "aurc_delta_med": 0.00379,
+      "aurc_delta_ci": [
+        -0.0042,
+        0.01246
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8972,
+      "conformal_cov_grouped_split": 0.891,
+      "conformal_cov_grouped_mondrian": 0.8903,
+      "coverage_gap_split": 0.0063,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.45275,
+      "repair_grouped_ci": [
+        0.41355,
+        0.48566
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0007,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "black_friday",
+      "model": "xgboost",
+      "key": "City_Category",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 1984.73306,
+      "aurc_grouped": 2054.92368,
+      "aurc_delta_med": 69.98263,
+      "aurc_delta_ci": [
+        19.54781,
+        126.37142
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.902,
+      "conformal_cov_grouped_split": 0.8997,
+      "conformal_cov_grouped_mondrian": 0.8978,
+      "coverage_gap_split": 0.0023,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.26796,
+      "repair_grouped_ci": [
+        0.2578,
+        0.27685
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0005,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "black_friday",
+      "model": "lightgbm",
+      "key": "City_Category",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 2002.30222,
+      "aurc_grouped": 2053.34892,
+      "aurc_delta_med": 49.09235,
+      "aurc_delta_ci": [
+        -5.68362,
+        104.44485
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9031,
+      "conformal_cov_grouped_split": 0.8979,
+      "conformal_cov_grouped_mondrian": 0.8947,
+      "coverage_gap_split": 0.0052,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.26908,
+      "repair_grouped_ci": [
+        0.25946,
+        0.27698
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0024,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "house_prices_nominal",
+      "model": "xgboost",
+      "key": "Neighborhood",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 12152.11179,
+      "aurc_grouped": 11871.93145,
+      "aurc_delta_med": -162.90524,
+      "aurc_delta_ci": [
+        -1850.91287,
+        1360.47508
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9452,
+      "conformal_cov_grouped_split": 0.923,
+      "conformal_cov_grouped_mondrian": 0.9607,
+      "coverage_gap_split": 0.0222,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.24201,
+      "repair_grouped_ci": [
+        0.19562,
+        0.28799
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0378,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "house_prices_nominal",
+      "model": "lightgbm",
+      "key": "Neighborhood",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 11102.39137,
+      "aurc_grouped": 11914.61002,
+      "aurc_delta_med": 879.89363,
+      "aurc_delta_ci": [
+        -935.05089,
+        2392.77194
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9315,
+      "conformal_cov_grouped_split": 0.9532,
+      "conformal_cov_grouped_mondrian": 0.9773,
+      "coverage_gap_split": -0.0217,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.23145,
+      "repair_grouped_ci": [
+        0.17118,
+        0.28581
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0242,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "colleges",
+      "model": "xgboost",
+      "key": "state",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 0.06447,
+      "aurc_grouped": 0.06951,
+      "aurc_delta_med": 0.00495,
+      "aurc_delta_ci": [
+        0.00078,
+        0.00944
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9136,
+      "conformal_cov_grouped_split": 0.8948,
+      "conformal_cov_grouped_mondrian": 0.8999,
+      "coverage_gap_split": 0.0188,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.34388,
+      "repair_grouped_ci": [
+        0.31864,
+        0.36585
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0011,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "colleges",
+      "model": "lightgbm",
+      "key": "state",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 0.06465,
+      "aurc_grouped": 0.06954,
+      "aurc_delta_med": 0.00484,
+      "aurc_delta_ci": [
+        0.00035,
+        0.00893
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9037,
+      "conformal_cov_grouped_split": 0.9036,
+      "conformal_cov_grouped_mondrian": 0.9018,
+      "coverage_gap_split": 0.0,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.34263,
+      "repair_grouped_ci": [
+        0.32007,
+        0.36217
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": 0.0003,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "Airlines_DepDelay_10M",
+      "model": "xgboost",
+      "key": "DayofMonth",
+      "kind": "time",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 10.71554,
+      "aurc_grouped": 10.59689,
+      "aurc_delta_med": -0.11284,
+      "aurc_delta_ci": [
+        -0.96208,
+        0.72689
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9067,
+      "conformal_cov_grouped_split": 0.9025,
+      "conformal_cov_grouped_mondrian": 0.9051,
+      "coverage_gap_split": 0.0042,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.28849,
+      "repair_grouped_ci": [
+        0.26473,
+        0.31319
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0021,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "Airlines_DepDelay_10M",
+      "model": "lightgbm",
+      "key": "DayofMonth",
+      "kind": "time",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 10.44891,
+      "aurc_grouped": 10.51836,
+      "aurc_delta_med": 0.08741,
+      "aurc_delta_ci": [
+        -0.71676,
+        1.01242
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9034,
+      "conformal_cov_grouped_split": 0.9081,
+      "conformal_cov_grouped_mondrian": 0.9116,
+      "coverage_gap_split": -0.0047,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.28341,
+      "repair_grouped_ci": [
+        0.24977,
+        0.31306
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0037,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "nyc-taxi-green-dec-2016",
+      "model": "xgboost",
+      "key": "PULocationID",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 0.33844,
+      "aurc_grouped": 0.34774,
+      "aurc_delta_med": 0.00745,
+      "aurc_delta_ci": [
+        -0.01131,
+        0.02839
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9063,
+      "conformal_cov_grouped_split": 0.9022,
+      "conformal_cov_grouped_mondrian": 0.9139,
+      "coverage_gap_split": 0.0042,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.5513,
+      "repair_grouped_ci": [
+        0.52493,
+        0.57719
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0111,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "nyc-taxi-green-dec-2016",
+      "model": "lightgbm",
+      "key": "PULocationID",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 0.34621,
+      "aurc_grouped": 0.34384,
+      "aurc_delta_med": -0.00226,
+      "aurc_delta_ci": [
+        -0.01661,
+        0.01185
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.9006,
+      "conformal_cov_grouped_split": 0.8997,
+      "conformal_cov_grouped_mondrian": 0.9138,
+      "coverage_gap_split": 0.0008,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.55481,
+      "repair_grouped_ci": [
+        0.53787,
+        0.57452
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0112,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "house_sales",
+      "model": "xgboost",
+      "key": "zipcode",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 37152.26045,
+      "aurc_grouped": 56279.75989,
+      "aurc_delta_med": 19279.49418,
+      "aurc_delta_ci": [
+        13032.99863,
+        27326.26437
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9096,
+      "conformal_cov_grouped_split": 0.8704,
+      "conformal_cov_grouped_mondrian": 0.8353,
+      "coverage_gap_split": 0.0392,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.27165,
+      "repair_grouped_ci": [
+        0.1766,
+        0.33973
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0349,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "house_sales",
+      "model": "lightgbm",
+      "key": "zipcode",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "aurc_random": 35867.17349,
+      "aurc_grouped": 51089.92901,
+      "aurc_delta_med": 15183.44927,
+      "aurc_delta_ci": [
+        13381.69534,
+        17086.83214
+      ],
+      "aurc_delta_excludes0_degrade": true,
+      "conformal_cov_random_split": 0.9082,
+      "conformal_cov_grouped_split": 0.8629,
+      "conformal_cov_grouped_mondrian": 0.8492,
+      "coverage_gap_split": 0.0453,
+      "grouped_undercovers_split": true,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.34764,
+      "repair_grouped_ci": [
+        0.32496,
+        0.37033
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0138,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "sf-police-incidents",
+      "model": "xgboost",
+      "key": "PdDistrict",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.0943,
+      "aurc_grouped": 0.09968,
+      "aurc_delta_med": 0.005,
+      "aurc_delta_ci": [
+        -0.00706,
+        0.01611
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.898,
+      "conformal_cov_grouped_split": 0.906,
+      "conformal_cov_grouped_mondrian": 0.9068,
+      "coverage_gap_split": -0.008,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.15453,
+      "repair_grouped_ci": [
+        0.10558,
+        0.20353
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0006,
+      "mondrian_improves_excl0": false
+    },
+    {
+      "name": "sf-police-incidents",
+      "model": "lightgbm",
+      "key": "PdDistrict",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "aurc_random": 0.09328,
+      "aurc_grouped": 0.10122,
+      "aurc_delta_med": 0.0083,
+      "aurc_delta_ci": [
+        -0.00432,
+        0.01955
+      ],
+      "aurc_delta_excludes0_degrade": false,
+      "conformal_cov_random_split": 0.8989,
+      "conformal_cov_grouped_split": 0.9031,
+      "conformal_cov_grouped_mondrian": 0.9046,
+      "coverage_gap_split": -0.0042,
+      "grouped_undercovers_split": false,
+      "conformal_target": 0.9,
+      "repair_ratio_grouped": 0.15273,
+      "repair_grouped_ci": [
+        0.09538,
+        0.20762
+      ],
+      "repair_excludes0_pos": true,
+      "mondrian_improvement_med": -0.0013,
+      "mondrian_improves_excl0": false
+    }
+  ]
+}

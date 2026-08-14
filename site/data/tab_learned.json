@@ -1,0 +1,37 @@
+{
+  "caption": "A learned post-hoc abstention selector vs the free uncertainty score vs random deferral (grouped split, 14 keyed datasets, XGBoost).",
+  "rows": [
+    [
+      "Uncertainty abstention beats random deferral",
+      "13/14"
+    ],
+    [
+      "Learned selector beats random deferral",
+      "12/14"
+    ],
+    [
+      "Head-to-head: uncertainty wins",
+      "8/14"
+    ],
+    [
+      "Head-to-head: learned selector wins",
+      "3/14 (all regression)"
+    ],
+    [
+      "Head-to-head: tie",
+      "3/14"
+    ],
+    [
+      "Median repair ratio \u2014 uncertainty",
+      "0.339"
+    ],
+    [
+      "Median repair ratio \u2014 learned selector",
+      "0.338"
+    ],
+    [
+      "Median repair ratio \u2014 oracle (true-loss ranking)",
+      "0.745"
+    ]
+  ]
+}

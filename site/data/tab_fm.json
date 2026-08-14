@@ -1,0 +1,304 @@
+{
+  "model": "TabICLv2",
+  "n_estimators": 16,
+  "key_retained": true,
+  "coverage_target": 0.9,
+  "n_boot": 400,
+  "n_core14": 14,
+  "rows": [
+    {
+      "name": "electricity",
+      "model": "TabICLv2",
+      "key": "date",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.8981,
+      "conformal_cov_grouped": 0.6341,
+      "coverage_gap": 0.264,
+      "repair_ratio_grouped": 0.4173,
+      "repair_grouped_ci": [
+        0.39554,
+        0.43944
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 0.02084,
+      "aurc_grouped": 0.16988,
+      "grouped_undercovers": true
+    },
+    {
+      "name": "eucalyptus",
+      "model": "TabICLv2",
+      "key": "Year",
+      "kind": "time",
+      "task": "clf",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9045,
+      "conformal_cov_grouped": 0.8379,
+      "coverage_gap": 0.0666,
+      "repair_ratio_grouped": 0.50291,
+      "repair_grouped_ci": [
+        0.39961,
+        0.58766
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 0.17665,
+      "aurc_grouped": 0.14056,
+      "grouped_undercovers": true
+    },
+    {
+      "name": "adult",
+      "model": "TabICLv2",
+      "key": "native-country",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9019,
+      "conformal_cov_grouped": 0.8584,
+      "coverage_gap": 0.0435,
+      "repair_ratio_grouped": 0.70293,
+      "repair_grouped_ci": [
+        0.6958,
+        0.70972
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 0.02925,
+      "aurc_grouped": 0.05111,
+      "grouped_undercovers": true
+    },
+    {
+      "name": "cylinder-bands",
+      "model": "TabICLv2",
+      "key": "paper_mill_location",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.8765,
+      "conformal_cov_grouped": 0.7651,
+      "coverage_gap": 0.1115,
+      "repair_ratio_grouped": 0.33736,
+      "repair_grouped_ci": [
+        0.21917,
+        0.45055
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 0.0973,
+      "aurc_grouped": 0.2335,
+      "grouped_undercovers": true
+    },
+    {
+      "name": "churn",
+      "model": "TabICLv2",
+      "key": "state",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9067,
+      "conformal_cov_grouped": 0.9126,
+      "coverage_gap": -0.0059,
+      "repair_ratio_grouped": 0.44337,
+      "repair_grouped_ci": [
+        0.24749,
+        0.59331
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 0.01857,
+      "aurc_grouped": 0.02127,
+      "grouped_undercovers": false
+    },
+    {
+      "name": "Moneyball",
+      "model": "TabICLv2",
+      "key": "Team",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9051,
+      "conformal_cov_grouped": 0.8892,
+      "coverage_gap": 0.016,
+      "repair_ratio_grouped": 0.06402,
+      "repair_grouped_ci": [
+        -0.01092,
+        0.13005
+      ],
+      "repair_excludes0_pos": false,
+      "aurc_random": 14.92747,
+      "aurc_grouped": 16.18596,
+      "grouped_undercovers": false
+    },
+    {
+      "name": "kick",
+      "model": "TabICLv2",
+      "key": "VNZIP1",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.8954,
+      "conformal_cov_grouped": 0.8931,
+      "coverage_gap": 0.0024,
+      "repair_ratio_grouped": 0.48857,
+      "repair_grouped_ci": [
+        0.44657,
+        0.52521
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 0.0474,
+      "aurc_grouped": 0.05281,
+      "grouped_undercovers": false
+    },
+    {
+      "name": "black_friday",
+      "model": "TabICLv2",
+      "key": "City_Category",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9054,
+      "conformal_cov_grouped": 0.8986,
+      "coverage_gap": 0.0069,
+      "repair_ratio_grouped": 0.29524,
+      "repair_grouped_ci": [
+        0.28665,
+        0.30345
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 1892.56647,
+      "aurc_grouped": 1941.75488,
+      "grouped_undercovers": false
+    },
+    {
+      "name": "house_prices_nominal",
+      "model": "TabICLv2",
+      "key": "Neighborhood",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9521,
+      "conformal_cov_grouped": 0.9396,
+      "coverage_gap": 0.0125,
+      "repair_ratio_grouped": 0.26417,
+      "repair_grouped_ci": [
+        0.2044,
+        0.31324
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 8169.02464,
+      "aurc_grouped": 8962.70432,
+      "grouped_undercovers": false
+    },
+    {
+      "name": "colleges",
+      "model": "TabICLv2",
+      "key": "state",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9141,
+      "conformal_cov_grouped": 0.8915,
+      "coverage_gap": 0.0226,
+      "repair_ratio_grouped": 0.4002,
+      "repair_grouped_ci": [
+        0.38121,
+        0.42055
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 0.05817,
+      "aurc_grouped": 0.06106,
+      "grouped_undercovers": false
+    },
+    {
+      "name": "Airlines_DepDelay_10M",
+      "model": "TabICLv2",
+      "key": "DayofMonth",
+      "kind": "time",
+      "task": "reg",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9059,
+      "conformal_cov_grouped": 0.2337,
+      "coverage_gap": 0.6722,
+      "repair_ratio_grouped": 0.19526,
+      "repair_grouped_ci": [
+        0.18408,
+        0.20447
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 9.46156,
+      "aurc_grouped": 27.42795,
+      "grouped_undercovers": true
+    },
+    {
+      "name": "nyc-taxi-green-dec-2016",
+      "model": "TabICLv2",
+      "key": "PULocationID",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9013,
+      "conformal_cov_grouped": 0.8951,
+      "coverage_gap": 0.0063,
+      "repair_ratio_grouped": 0.37827,
+      "repair_grouped_ci": [
+        0.35769,
+        0.40036
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 0.51822,
+      "aurc_grouped": 0.56611,
+      "grouped_undercovers": false
+    },
+    {
+      "name": "house_sales",
+      "model": "TabICLv2",
+      "key": "zipcode",
+      "kind": "group",
+      "task": "reg",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.9093,
+      "conformal_cov_grouped": 0.817,
+      "coverage_gap": 0.0923,
+      "repair_ratio_grouped": 0.44016,
+      "repair_grouped_ci": [
+        0.42247,
+        0.45789
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 28810.75534,
+      "aurc_grouped": 45978.86568,
+      "grouped_undercovers": true
+    },
+    {
+      "name": "sf-police-incidents",
+      "model": "TabICLv2",
+      "key": "PdDistrict",
+      "kind": "group",
+      "task": "clf",
+      "status": "ok",
+      "exclude_key": false,
+      "conformal_cov_random": 0.8944,
+      "conformal_cov_grouped": 0.8914,
+      "coverage_gap": 0.003,
+      "repair_ratio_grouped": 0.24125,
+      "repair_grouped_ci": [
+        0.19403,
+        0.28483
+      ],
+      "repair_excludes0_pos": true,
+      "aurc_random": 0.09088,
+      "aurc_grouped": 0.08571,
+      "grouped_undercovers": false
+    }
+  ]
+}
