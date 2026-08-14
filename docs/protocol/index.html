@@ -25,18 +25,25 @@
 <p>The K=10 remedy audit is <strong>quarantined</strong> from the K=20 TableShift confirmatory arm (no data overlap). That split of roles is what “quarantine” means here, not a data-quality dump.</p>
 <h2>Stages</h2>
 <ol class="stage-list">
-<p>  &lt;li&gt;Data with an entity or time key&lt;/li&gt;   &lt;li&gt;Random split | grouped / rolling-origin split&lt;/li&gt;   &lt;li&gt;Frozen predictor (GBM or tabular foundation model)&lt;/li&gt;   &lt;li&gt;Remedy ladder (weighted conformal, Mondrian variants, tuned selector)&lt;/li&gt;   &lt;li&gt;Worst-group evaluation → Restore | Fail&lt;/li&gt;</p>
+<li>Data with an entity or time key</li>
+<li>Random split | grouped / rolling-origin split</li>
+<li>Frozen predictor (GBM or tabular foundation model)</li>
+<li>Remedy ladder (weighted conformal, Mondrian variants, tuned selector)</li>
+<li>Worst-group evaluation → Restore | Fail</li>
 </ol>
 <p class="legend">
-<p>  &lt;span&gt;&lt;i class=&quot;swatch random&quot;&gt;&lt;/i&gt;random split&lt;/span&gt;   &lt;span&gt;&lt;i class=&quot;swatch grouped&quot;&gt;&lt;/i&gt;grouped / time split&lt;/span&gt;   &lt;span&gt;&lt;i class=&quot;swatch restore&quot;&gt;&lt;/i&gt;Restore (coverage at or above 0.90)&lt;/span&gt;   &lt;span&gt;&lt;i class=&quot;swatch fail&quot;&gt;&lt;/i&gt;Fail (coverage below 0.90)&lt;/span&gt;</p>
+<span><i class="swatch random"></i>random split</span>
+<span><i class="swatch grouped"></i>grouped / time split</span>
+<span><i class="swatch restore"></i>Restore (coverage at or above 0.90)</span>
+<span><i class="swatch fail"></i>Fail (coverage below 0.90)</span>
 </p>
 <section id="overview">
 <h2>Overview</h2>
 <figure class="panel">
-<img src="../figures/fig0_overview.png" alt="Overview">
+<img src="../figures/overview.png" alt="Overview">
 <figcaption>Keyed tabular data is split randomly or by group/time; a frozen predictor is wrapped in split-conformal prediction; a remedy ladder is scored by worst-group coverage (Restore or Fail). The exploratory remedy ladder is quarantined from the held-out TableShift arm.</figcaption>
 </figure>
-<p class="fig-link"><a href="../figures/fig0_overview.pdf">Download figure</a></p>
+<p class="fig-link"><a href="../figures/overview.pdf">Download figure</a></p>
 </section>
   </main>
   <footer class="site">
