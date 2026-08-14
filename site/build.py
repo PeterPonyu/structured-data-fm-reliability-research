@@ -253,8 +253,9 @@ def md_to_html(src: str) -> str:
             i += 1
             out.append("<pre><code>" + "\n".join(fence) + "</code></pre>")
             continue
-        if line.startswith("<") or line.startswith("{{"):
-            out.append(line)
+        stripped = line.lstrip()
+        if stripped.startswith("<") or stripped.startswith("{{"):
+            out.append(stripped)
             i += 1
             continue
         if not line.strip():
@@ -282,7 +283,9 @@ def md_to_html(src: str) -> str:
             continue
         para: list[str] = [line]
         i += 1
-        while i < n and lines[i].strip() and not re.match(r"^(#|[-*] |\d+\. |<|```|{{)", lines[i]):
+        while i < n and lines[i].strip() and not re.match(
+            r"^(#|[-*] |\d+\. |<|```|{{)", lines[i].lstrip()
+        ):
             para.append(lines[i])
             i += 1
         flush_para(para)
@@ -682,6 +685,8 @@ def verify() -> None:
         "reproduce/index.html",
         "cite/index.html",
         "css/portal.css",
+        "fonts/ibm-plex.css",
+        "fonts/IBMPlexSans-normal-400.woff2",
         ".nojekyll",
         "data/p4_table.csv",
         "figures/fig0_overview.png",
@@ -706,6 +711,8 @@ def verify() -> None:
     ):
         if token not in home:
             raise SystemExit(f"verify: index missing {token!r}")
+    if "&lt;li" in home or "&lt;a " in home or "&lt;strong" in home:
+        raise SystemExit("verify: index still has escaped HTML (document fallback)")
     tables = (OUT / "tables/index.html").read_text(encoding="utf-8")
     if "cov-fail" not in tables or "cov-ok" not in tables:
         raise SystemExit("verify: coverage coloring missing")
@@ -743,6 +750,8 @@ def verify() -> None:
             "InfoSci",
             "Paper companion",
             "Print PDF",
+            "fonts.googleapis.com",
+            "fonts.gstatic.com",
         ):
             if banned in text:
                 raise SystemExit(f"verify: {rel} contains {banned!r}")
@@ -757,6 +766,12 @@ def build() -> None:
     css_dest = OUT / "css"
     css_dest.mkdir(parents=True, exist_ok=True)
     shutil.copy2(SITE / "css" / "portal.css", css_dest / "portal.css")
+    fonts_src = SITE / "fonts"
+    if fonts_src.is_dir():
+        fonts_dest = OUT / "fonts"
+        if fonts_dest.exists():
+            shutil.rmtree(fonts_dest)
+        shutil.copytree(fonts_src, fonts_dest)
     js_dest = OUT / "js"
     js_dest.mkdir(parents=True, exist_ok=True)
     shutil.copy2(SITE / "js" / "keytoggle.js", js_dest / "keytoggle.js")
