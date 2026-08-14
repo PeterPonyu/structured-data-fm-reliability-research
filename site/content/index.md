@@ -1,6 +1,6 @@
 # Conformal Coverage Fails Under Grouped and Temporal Shift but Uncertainty Abstention Repairs Selective Risk: A Preregistered Tabular Audit
 
-<p class="meta">Zeyu Fu · State Key Laboratory of Trauma and Chemical Poisoning, Institute of Combined Injury, Army Medical University, Chongqing, China · <a href="mailto:fuzeyu09@gmail.com">fuzeyu09@gmail.com</a></p>
+<p class="meta">Zeyu Fu · State Key Laboratory of Trauma and Chemical Poisoning, Institute of Combined Injury, Army Medical University, Chongqing, China</p>
 
 <p class="meta">Submitted to <em>Knowledge-Based Systems</em>. DMKD track superseded.</p>
 
@@ -9,9 +9,7 @@
 <p>Scope: no financial, medical, or business deployment claims.</p>
 
 <p>
-  <a href="https://github.com/PeterPonyu/structured-data-fm-reliability-research/blob/main/manuscripts/kbs/paper_kbs.pdf">Submitted PDF</a>
-  ·
-  <a href="https://github.com/PeterPonyu/structured-data-fm-reliability-research">GitHub</a>
+  <a href="https://github.com/PeterPonyu/structured-data-fm-reliability-research">Code</a>
   ·
   Zenodo DOI <a href="https://doi.org/10.5281/zenodo.21130297">10.5281/zenodo.21130297</a> (reserved draft; not yet public)
 </p>

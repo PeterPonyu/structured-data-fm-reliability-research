@@ -20,20 +20,14 @@
   </header>
   <main class="prose wrap">
 <h1>Reproduce</h1>
-<p>Frozen numbers on this site are stamped from committed table extracts shipped with the companion. Figures regenerate from on-disk result records via <code>make figures</code> in the manuscript tree. This page is the only place that names archive filenames.</p>
-<h2>Smoke test</h2>
-<p>Offline, under two minutes: core imports, Stage-1 pipeline on a synthetic fixture, validation of tracked result records.</p>
-<pre><code>./smoke_test.sh</code></pre>
-<h2>Data</h2>
-<p>No bulk data is stored in the repository. OpenML datasets are fetched on demand (no authentication). Folktables / ACS PUMS 2018 is downloaded on demand. See <code>DATA_MANIFEST.md</code> for licenses: they are <strong>not</strong> covered by this repository’s MIT license.</p>
-<h2>Figures from result records</h2>
-<pre><code>cd manuscripts
-make figures</code></pre>
-<p>Requires R ≥ 4 with ggplot2, jsonlite, scales, and patchwork, plus the vendored plot theme. Python experiment code used the <code>dl</code> environment with pins in <code>requirements.txt</code>.</p>
-<h2>Archive pointers (filenames only)</h2>
-<ul><li><code>nd1_s2_lightgbm_mondrian.json</code> and <code>nd1_s2_lightgbm_mondrian_keyexcluded.json</code> — CORE14 GBM coverage, repair, Mondrian, Stage-2 gate</li><li><code>nd1_tabicl_fm_arm_leakage_ablation.json</code> — TabICLv2 CORE14 table</li><li><code>nd1_tabdpt_fm_arm.json</code> — TabDPT key-included arm (no key-out coverage points)</li><li><code>nd1_learned_selector_baseline.json</code> — learned vs free vs oracle headline</li><li><code>p4_tableshift_result.json</code> — ACS exploratory arm</li><li><code>p5-arm results.json</code> — held-out TableShift roster and H1/H2 aggregate</li><li><code>aggregate-split-repeats-2026-07-02.json</code> — F6 split-realization counts</li><li><code>nd2_mini_spike.json</code> — blocked-run error log (not a result)</li></ul>
+<p>Frozen numbers on this site are stamped from committed table extracts. Figures are the same plots as the submitted manuscript, served as web images.</p>
+<h2>What to obtain</h2>
+<ol><li>The public code archive.</li><li>The reserved Zenodo record (draft; not yet public).</li><li>OpenML datasets on demand (no authentication). Folktables / ACS PUMS 2018 is downloaded on demand. Dataset licenses are <strong>not</strong> covered by the code archive’s MIT license.</li></ol>
+<h2>What is frozen</h2>
+<p>CORE14 coverage, repair, Mondrian, and Stage-2 gate counts; TabICLv2 and TabDPT arms; learned versus free versus oracle headlines; the ACS exploratory arm; the held-out TableShift roster and H1/H2 aggregate; and the split-realization fragility counts used for Figure 6.</p>
+<p>No bulk data is stored in the public archive.</p>
 <h2>Links</h2>
-<ul><li>GitHub: https://github.com/PeterPonyu/structured-data-fm-reliability-research</li><li>Reserved DOI: https://doi.org/10.5281/zenodo.21130297 (draft deposition)</li><li>Submitted PDF: https://github.com/PeterPonyu/structured-data-fm-reliability-research/blob/main/manuscripts/kbs/paper_kbs.pdf (not copied into this Pages artifact)</li></ul>
+<ul><li>Code: https://github.com/PeterPonyu/structured-data-fm-reliability-research</li><li>Reserved DOI: https://doi.org/10.5281/zenodo.21130297 (draft deposition)</li></ul>
   </main>
   <footer class="site">
     <div class="wrap">

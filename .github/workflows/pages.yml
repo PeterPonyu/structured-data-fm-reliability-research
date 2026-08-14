@@ -59,6 +59,10 @@ jobs:
               "paper_rie",
               "inspect-gate",
               "asr-gate",
+              "manuscripts/",
+              "paper_kbs.pdf",
+              "@gmail.com",
+              "fuzeyu09",
           )
           problems = []
           root = Path("docs")

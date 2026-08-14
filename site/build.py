@@ -632,6 +632,10 @@ def leak_scan(reproduce_rel: str) -> None:
         "inspect-gate",
         "asr-gate",
         "peaceiris",
+        "manuscripts/",
+        "paper_kbs.pdf",
+        "@gmail.com",
+        "fuzeyu09",
     )
     json_ok_prefix = reproduce_rel
     problems: list[str] = []
@@ -701,8 +705,10 @@ def verify() -> None:
     if "data-key-panel" not in key or "Key excluded" not in key:
         raise SystemExit("verify: key page incomplete")
     repro = (OUT / "reproduce/index.html").read_text(encoding="utf-8")
-    if "nd1_s2_lightgbm_mondrian.json" not in repro:
-        raise SystemExit("verify: reproduce archive pointers missing")
+    if "10.5281/zenodo.21130297" not in repro:
+        raise SystemExit("verify: reproduce missing reserved DOI")
+    if "github.com/PeterPonyu/structured-data-fm-reliability-research" not in repro:
+        raise SystemExit("verify: reproduce missing public code archive")
     print("verify: ok")
 
 
