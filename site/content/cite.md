@@ -1,5 +1,7 @@
 # Record
 
+Record status: frozen science. Code and reserved DOI. Not a venue package.
+
 {{bibtex}}
 
 **Keywords.** Selective prediction; conformal prediction; distribution shift; tabular foundation models; reliability evaluation; reproducibility.

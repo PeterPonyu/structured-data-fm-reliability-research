@@ -185,6 +185,15 @@ def fmt_num(value: object, digits: int = 3) -> str:
     return str(value)
 
 
+def fmt_cov(value: object) -> str:
+    """Four decimals so a fail below 0.90 is not shown as 0.900."""
+    if value is None:
+        return "—"
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return fmt_num(value)
+    return f"{float(value):.4f}"
+
+
 def fmt_ci(pair: object) -> str:
     if not isinstance(pair, (list, tuple)) or len(pair) != 2:
         return "—"
@@ -391,7 +400,7 @@ def gbm_coverage_table(
                     escape(model.replace("xgboost", "XGBoost").replace("lightgbm", "LightGBM")),
                     escape(fmt_num(r.get("aurc_random"), 4 if (r.get("aurc_random") or 0) > 1 else 3)),
                     escape(fmt_num(r.get("aurc_grouped"), 4 if (r.get("aurc_grouped") or 0) > 1 else 3)),
-                    escape(fmt_num(cov)),
+                    escape(fmt_cov(cov)),
                     escape(fmt_num(r.get("repair_ratio_grouped"))),
                     f'<span class="mute">{escape(fmt_ci(r.get("repair_grouped_ci")))}</span>',
                 ]
@@ -417,8 +426,8 @@ def fm_table(fm: dict, pretty: dict[str, str], order: list[str]) -> str:
                 escape(pretty_dataset(name, pretty)),
                 escape(str(r.get("key") or "")),
                 escape(str(r.get("kind") or "")),
-                escape(fmt_num(r.get("conformal_cov_random"))),
-                escape(fmt_num(cov_g)),
+                escape(fmt_cov(r.get("conformal_cov_random"))),
+                escape(fmt_cov(cov_g)),
                 escape(fmt_num(r.get("coverage_gap"))),
                 escape(fmt_num(r.get("repair_ratio_grouped"))),
                 f'<span class="mute">{escape(fmt_ci(r.get("repair_grouped_ci")))}</span>',
@@ -481,8 +490,8 @@ def acs_table(acs: dict, pretty_acs: dict[str, str], pretty_rac: dict[str, str])
             [
                 escape(pretty_acs.get(r["task"], r["task"])),
                 escape("XGBoost" if r["model"] == "xgboost" else "LightGBM"),
-                escape(fmt_num(r.get("conformal_cov_random"))),
-                escape(fmt_num(r.get("conformal_cov_ood"))),
+                escape(fmt_cov(r.get("conformal_cov_random"))),
+                escape(fmt_cov(r.get("conformal_cov_ood"))),
                 escape(fmt_num(r.get("repair_ratio_ood"))),
                 f'<span class="mute">{escape(fmt_ci(r.get("repair_ood_ci")))}</span>',
                 escape(fmt_num(r.get("grouped_coverage_gap_worst_minus_best"))),
@@ -506,7 +515,7 @@ def acs_table(acs: dict, pretty_acs: dict[str, str], pretty_rac: dict[str, str])
         cls = ["", ""]
         for code in ("1", "2", "6", "8", "9"):
             val = per.get(code)
-            row.append(escape(fmt_num(val)))
+            row.append(escape(fmt_cov(val)))
             cls.append(cov_class(val))
         rac_body.append(row)
         rac_cls.append(cls)
@@ -812,6 +821,9 @@ def build() -> None:
     css_dest = OUT / "css"
     css_dest.mkdir(parents=True, exist_ok=True)
     shutil.copy2(SITE / "css" / "portal.css", css_dest / "portal.css")
+    favicon = SITE / "favicon.svg"
+    if favicon.is_file():
+        shutil.copy2(favicon, OUT / "favicon.svg")
     fonts_src = SITE / "fonts"
     if fonts_src.is_dir():
         fonts_dest = OUT / "fonts"
@@ -954,7 +966,7 @@ def build() -> None:
             "index.html",
             "index.md",
             "thesis",
-            cite["title"],
+            "Thesis",
             "Preregistered tabular reliability audit.",
             "",
             False,
