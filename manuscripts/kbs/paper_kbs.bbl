@@ -1,0 +1,348 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{quinonerocandela2009datasetshift}
+J.~Qui{\~n}onero-Candela, M.~Sugiyama, A.~Schwaighofer, N.~D. Lawrence (Eds.),
+  Dataset Shift in Machine Learning, MIT Press, Cambridge, MA, 2008.
+\newblock \href {https://doi.org/10.7551/mitpress/9780262170055.001.0001}
+  {\path{doi:10.7551/mitpress/9780262170055.001.0001}}.
+
+\bibitem{gardner2023tableshift}
+J.~Gardner, Z.~Popovi{\'c}, L.~Schmidt, Benchmarking distribution shift in
+  tabular data with {TableShift}, in: Advances in Neural Information Processing
+  Systems 36 (NeurIPS), Datasets and Benchmarks Track, 2023, pp. 53385--53432.
+\newblock \href {https://doi.org/10.52202/075280-2324}
+  {\path{doi:10.52202/075280-2324}}.
+
+\bibitem{whyshift2023}
+J.~Liu, T.~Wang, P.~Cui, H.~Namkoong, On the need for a language describing
+  distribution shifts: Illustrations on tabular datasets, in: Advances in
+  Neural Information Processing Systems 36 (NeurIPS), Datasets and Benchmarks
+  Track, 2023, pp. 51371--51408, introduces the WhyShift benchmark;
+  arXiv:2307.05284.
+\newblock \href {https://doi.org/10.52202/075280-2237}
+  {\path{doi:10.52202/075280-2237}}.
+
+\bibitem{wildtab2023}
+S.~Kolesnikov, {Wild-Tab}: A benchmark for out-of-distribution generalization
+  in tabular regression, arXiv:2312.01792 (2023).
+\newblock \href {http://arxiv.org/abs/2312.01792} {\path{arXiv:2312.01792}}.
+
+\bibitem{vovk2005algorithmic}
+V.~Vovk, A.~Gammerman, G.~Shafer, Algorithmic Learning in a Random World,
+  Springer, New York, 2005.
+\newblock \href {https://doi.org/10.1007/b106715} {\path{doi:10.1007/b106715}}.
+
+\bibitem{angelopoulos2023conformal}
+A.~N. Angelopoulos, S.~Bates, Conformal prediction: A gentle introduction,
+  Foundations and Trends in Machine Learning 16~(4) (2023) 494--591.
+\newblock \href {https://doi.org/10.1561/2200000101}
+  {\path{doi:10.1561/2200000101}}.
+
+\bibitem{elyaniv2010selective}
+R.~El-Yaniv, Y.~Wiener, \href{https://jmlr.org/papers/v11/el-yaniv10a.html}{On
+  the foundations of noise-free selective classification}, Journal of Machine
+  Learning Research 11~(53) (2010) 1605--1641.
+\newline\urlprefix\url{https://jmlr.org/papers/v11/el-yaniv10a.html}
+
+\bibitem{geifman2017selective}
+Y.~Geifman, R.~El-Yaniv, Selective classification for deep neural networks, in:
+  Advances in Neural Information Processing Systems 30 (NeurIPS), Vol.~30,
+  2017, pp. 4878--4887.
+
+\bibitem{chow1970reject}
+C.~K. Chow, On optimum recognition error and reject tradeoff, IEEE Transactions
+  on Information Theory 16~(1) (1970) 41--46.
+\newblock \href {https://doi.org/10.1109/TIT.1970.1054406}
+  {\path{doi:10.1109/TIT.1970.1054406}}.
+
+\bibitem{herbei2006reject}
+R.~Herbei, M.~H. Wegkamp, Classification with reject option, Canadian Journal
+  of Statistics 34~(4) (2006) 709--721.
+\newblock \href {https://doi.org/10.1002/cjs.5550340410}
+  {\path{doi:10.1002/cjs.5550340410}}.
+
+\bibitem{cortes2016rejection}
+C.~Cortes, G.~DeSalvo, M.~Mohri, Learning with rejection, in: Algorithmic
+  Learning Theory (ALT), Vol. 9925 of Lecture Notes in Computer Science, 2016,
+  pp. 67--82.
+\newblock \href {https://doi.org/10.1007/978-3-319-46379-7_5}
+  {\path{doi:10.1007/978-3-319-46379-7_5}}.
+
+\bibitem{jones2021selective}
+E.~Jones, S.~Sagawa, P.~W. Koh, A.~Kumar, P.~Liang,
+  \href{https://openreview.net/forum?id=N0M_4BkQ05i}{Selective classification
+  can magnify disparities across groups}, in: International Conference on
+  Learning Representations (ICLR), 2021.
+\newline\urlprefix\url{https://openreview.net/forum?id=N0M_4BkQ05i}
+
+\bibitem{kamiran2018reject}
+F.~Kamiran, S.~Mansha, A.~Karim, X.~Zhang, Exploiting reject option in
+  classification for social discrimination control, Information Sciences 425
+  (2018) 18--33.
+\newblock \href {https://doi.org/10.1016/j.ins.2017.09.064}
+  {\path{doi:10.1016/j.ins.2017.09.064}}.
+
+\bibitem{papadopoulos2002inductive}
+H.~Papadopoulos, K.~Proedrou, V.~Vovk, A.~Gammerman, Inductive confidence
+  machines for regression, in: Machine Learning: ECML 2002, Vol. 2430 of
+  Lecture Notes in Computer Science, 2002, pp. 345--356.
+\newblock \href {https://doi.org/10.1007/3-540-36755-1_29}
+  {\path{doi:10.1007/3-540-36755-1_29}}.
+
+\bibitem{vanschoren2014openml}
+J.~Vanschoren, J.~N. van Rijn, B.~Bischl, L.~Torgo, {OpenML}: Networked science
+  in machine learning, ACM SIGKDD Explorations Newsletter 15~(2) (2014) 49--60.
+\newblock \href {https://doi.org/10.1145/2641190.2641198}
+  {\path{doi:10.1145/2641190.2641198}}.
+
+\bibitem{chen2016xgboost}
+T.~Chen, C.~Guestrin, {XGBoost}: A scalable tree boosting system, in:
+  Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge
+  Discovery and Data Mining, 2016, pp. 785--794.
+\newblock \href {https://doi.org/10.1145/2939672.2939785}
+  {\path{doi:10.1145/2939672.2939785}}.
+
+\bibitem{ke2017lightgbm}
+G.~Ke, Q.~Meng, T.~Finley, T.~Wang, W.~Chen, W.~Ma, Q.~Ye, T.-Y. Liu,
+  {LightGBM}: A highly efficient gradient boosting decision tree, in: Advances
+  in Neural Information Processing Systems 30 (NeurIPS), 2017, pp. 3146--3154.
+
+\bibitem{qu2026tabicl}
+J.~Qu, D.~Holzm{\"u}ller, G.~Varoquaux, M.~Le~Morvan, {TabICLv2}: A better,
+  faster, scalable, and open tabular foundation model, arXiv:2602.11139,
+  \url{https://github.com/soda-inria/tabicl} (2026).
+\newblock \href {http://arxiv.org/abs/2602.11139} {\path{arXiv:2602.11139}}.
+
+\bibitem{ma2024tabdpt}
+J.~Ma, V.~Thomas, R.~Hosseinzadeh, A.~Labach, H.~Kamkari, J.~C. Cresswell,
+  K.~Golestan, G.~Yu, A.~L. Caterini, M.~Volkovs, {TabDPT}: Scaling tabular
+  foundation models on real data, in: Advances in Neural Information Processing
+  Systems 38 (NeurIPS), 2025, pp. 191387--191417,
+  \url{https://github.com/layer6ai-labs/TabDPT}.
+\newblock \href {http://arxiv.org/abs/2410.18164} {\path{arXiv:2410.18164}},
+  \href {https://doi.org/10.52202/085713-5748}
+  {\path{doi:10.52202/085713-5748}}.
+
+\bibitem{tfm_uncertainty_esann2026}
+J.~L. De~Melo~Costa, F.~Popineau, A.~Rimmel, B.-L. Doan, High performance, low
+  reliability: Uncertainty benchmarking for tabular foundation models, in:
+  Proceedings of the European Symposium on Artificial Neural Networks,
+  Computational Intelligence and Machine Learning (ESANN), 2026, pp. 115--120.
+\newblock \href {http://arxiv.org/abs/2605.28554} {\path{arXiv:2605.28554}},
+  \href {https://doi.org/10.14428/esann/2026.ES2026-261}
+  {\path{doi:10.14428/esann/2026.ES2026-261}}.
+
+\bibitem{beyondiid2026}
+L.~Purucker, A.~Tschalzev, N.~Erickson, G.~Blayer, D.~Holzm{\"u}ller, A.~Arazi,
+  A.~Pfefferle, M.~Tajjar, G.~Varoquaux, F.~Hutter, Beyond {IID}: How general
+  are tabular foundation models, really?, arXiv:2606.30410, introduces the
+  BeyondArena benchmark (2026).
+\newblock \href {http://arxiv.org/abs/2606.30410} {\path{arXiv:2606.30410}}.
+
+\bibitem{tabpfn_openenv2025}
+Z.-J. Cheng, Z.-Y. Jia, Z.~Zhou, Y.-F. Li, L.-Z. Guo, Realistic evaluation of
+  {TabPFN} v2 in open environments, arXiv:2505.16226 (2025).
+\newblock \href {http://arxiv.org/abs/2505.16226} {\path{arXiv:2505.16226}}.
+
+\bibitem{hollmann2025tabpfn}
+N.~Hollmann, S.~M{\"u}ller, L.~Purucker, A.~Krishnakumar, M.~K{\"o}rfer, S.~B.
+  Hoo, R.~T. Schirrmeister, F.~Hutter, Accurate predictions on small data with
+  a tabular foundation model, Nature 637~(8045) (2025) 319--326, tabPFN v2.
+\newblock \href {https://doi.org/10.1038/s41586-024-08328-6}
+  {\path{doi:10.1038/s41586-024-08328-6}}.
+
+\bibitem{helli2024driftresilient}
+K.~Helli, D.~Schnurr, N.~Hollmann, S.~M{\"u}ller, F.~Hutter, Drift-resilient
+  {TabPFN}: In-context learning temporal distribution shifts on tabular data,
+  in: Advances in Neural Information Processing Systems 37 (NeurIPS), 2024, pp.
+  98742--98781.
+\newblock \href {http://arxiv.org/abs/2411.10634} {\path{arXiv:2411.10634}},
+  \href {https://doi.org/10.52202/079017-3134}
+  {\path{doi:10.52202/079017-3134}}.
+
+\bibitem{tabpfn_uncdecomp2026}
+S.~Fortini, K.~Ng, S.~Petrone, J.~Rousseau, S.~Wei, Uncertainty decomposition
+  for bayes-filtered transformers via bayesian predictive inference,
+  arXiv:2602.04596 (2026).
+\newblock \href {http://arxiv.org/abs/2602.04596} {\path{arXiv:2602.04596}}.
+
+\bibitem{distreg_tfm2026}
+J.~Landsgesell, P.~Knoll, T.~Wenzel, Distributional regression with tabular
+  foundation models: Evaluating probabilistic predictions via proper scoring
+  rules, arXiv:2603.08206 (2026).
+\newblock \href {http://arxiv.org/abs/2603.08206} {\path{arXiv:2603.08206}}.
+
+\bibitem{tabarena2025}
+N.~Erickson, L.~Purucker, A.~Tschalzev, D.~Holzm{\"u}ller, P.~Mutalik~Desai,
+  D.~Salinas, F.~Hutter, {TabArena}: A living benchmark for machine learning on
+  tabular data, in: Advances in Neural Information Processing Systems 38
+  (NeurIPS), Datasets and Benchmarks Track, 2025, pp. 17285--17350.
+\newblock \href {http://arxiv.org/abs/2506.16791} {\path{arXiv:2506.16791}},
+  \href {https://doi.org/10.52202/085713-0519}
+  {\path{doi:10.52202/085713-0519}}.
+
+\bibitem{tfm_benchmark_openreview2026}
+{OpenReview}, Uncertainty benchmarking for tabular foundation models: A
+  preregistered empirical evaluation, OpenReview, forum KQ8DD8c43a,
+  \url{https://openreview.net/forum?id=KQ8DD8c43a} (2026).
+
+\bibitem{subpop2025conformal}
+N.-S. Wang, D.~N. Yaldiz, Y.~F. Bakman, S.~P. Karimireddy, Conformal prediction
+  adaptive to unknown subpopulation shifts, arXiv:2506.05583 (2025).
+\newblock \href {http://arxiv.org/abs/2506.05583} {\path{arXiv:2506.05583}}.
+
+\bibitem{audited2026conformal}
+Y.~Zhou, R.~Fathony, N.~H. Nguyen, M.~Sesia, Audited conformal prediction for
+  classification under unknown distribution shift, arXiv:2606.14909 (2026).
+\newblock \href {http://arxiv.org/abs/2606.14909} {\path{arXiv:2606.14909}}.
+
+\bibitem{campagner2021threeway}
+A.~Campagner, F.~Cabitza, P.~Berjano, D.~Ciucci, Three-way decision and
+  conformal prediction: Isomorphisms, differences and theoretical properties of
+  cautious learning approaches, Information Sciences 579 (2021) 347--367.
+\newblock \href {https://doi.org/10.1016/j.ins.2021.08.009}
+  {\path{doi:10.1016/j.ins.2021.08.009}}.
+
+\bibitem{he2025conjunction}
+Z.~He, Z.~Li, J.~Dong, X.~Liu, M.~Jiang, L.~Hu, Conjunction subspaces test for
+  conformal and selective classification, Information Sciences 707 (2025)
+  122037.
+\newblock \href {https://doi.org/10.1016/j.ins.2025.122037}
+  {\path{doi:10.1016/j.ins.2025.122037}}.
+
+\bibitem{shen2022reject}
+F.~Shen, Z.~Yang, X.~Zhao, D.~Lan, Reject inference in credit scoring using a
+  three-way decision and safe semi-supervised support vector machine,
+  Information Sciences 606 (2022) 614--627.
+\newblock \href {https://doi.org/10.1016/j.ins.2022.05.067}
+  {\path{doi:10.1016/j.ins.2022.05.067}}.
+
+\bibitem{grisci2021relevance}
+B.~I. Grisci, M.~J. Krause, M.~Dorn, Relevance aggregation for neural networks
+  interpretability and knowledge discovery on tabular data, Information
+  Sciences 559 (2021) 111--129.
+\newblock \href {https://doi.org/10.1016/j.ins.2021.01.052}
+  {\path{doi:10.1016/j.ins.2021.01.052}}.
+
+\bibitem{tanha2022cpssds}
+J.~Tanha, N.~Samadi, Y.~Abdi, N.~Razzaghi-Asl, {CPSSDS}: Conformal prediction
+  for semi-supervised classification on data streams, Information Sciences 584
+  (2022) 212--234.
+\newblock \href {https://doi.org/10.1016/j.ins.2021.10.068}
+  {\path{doi:10.1016/j.ins.2021.10.068}}.
+
+\bibitem{gibbs2021adaptive}
+I.~Gibbs, E.~J. Cand{\`e}s, Adaptive conformal inference under distribution
+  shift, in: Advances in Neural Information Processing Systems 34 (NeurIPS),
+  2021, pp. 1660--1672.
+\newblock \href {http://arxiv.org/abs/2106.00170} {\path{arXiv:2106.00170}}.
+
+\bibitem{vovk2013conditional}
+V.~Vovk, Conditional validity of inductive conformal predictors, Machine
+  Learning 92~(2--3) (2013) 349--376.
+\newblock \href {https://doi.org/10.1007/s10994-013-5355-6}
+  {\path{doi:10.1007/s10994-013-5355-6}}.
+
+\bibitem{barber2021jackknife}
+R.~F. Barber, E.~J. Cand{\`e}s, A.~Ramdas, R.~J. Tibshirani, Predictive
+  inference with the jackknife+, The Annals of Statistics 49~(1) (2021)
+  486--507.
+\newblock \href {https://doi.org/10.1214/20-AOS1965}
+  {\path{doi:10.1214/20-AOS1965}}.
+
+\bibitem{grinsztajn2022trees}
+L.~Grinsztajn, E.~Oyallon, G.~Varoquaux, Why do tree-based models still
+  outperform deep learning on typical tabular data?, in: Advances in Neural
+  Information Processing Systems 35 (NeurIPS), Datasets and Benchmarks Track,
+  2022, pp. 507--520.
+\newblock \href {http://arxiv.org/abs/2207.08815} {\path{arXiv:2207.08815}},
+  \href {https://doi.org/10.52202/068431-0037}
+  {\path{doi:10.52202/068431-0037}}.
+
+\bibitem{gorishniy2021revisiting}
+Y.~Gorishniy, I.~Rubachev, V.~Khrulkov, A.~Babenko, Revisiting deep learning
+  models for tabular data, in: Advances in Neural Information Processing
+  Systems 34 (NeurIPS), 2021, pp. 18932--18943.
+\newblock \href {http://arxiv.org/abs/2106.11959} {\path{arXiv:2106.11959}}.
+
+\bibitem{schultz2024convgen}
+K.~Schultz, S.~Bej, W.~Hahn, M.~Wolfien, P.~Srivastava, O.~Wolkenhauer,
+  {ConvGeN}: A convex space learning approach for deep-generative oversampling
+  and imbalanced classification of small tabular datasets, Pattern Recognition
+  147 (2024) 110138.
+\newblock \href {https://doi.org/10.1016/j.patcog.2023.110138}
+  {\path{doi:10.1016/j.patcog.2023.110138}}.
+
+\bibitem{abdar2021review}
+M.~Abdar, F.~Pourpanah, S.~Hussain, D.~Rezazadegan, L.~Liu, M.~Ghavamzadeh,
+  P.~Fieguth, X.~Cao, A.~Khosravi, U.~R. Acharya, V.~Makarenkov, S.~Nahavandi,
+  A review of uncertainty quantification in deep learning: Techniques,
+  applications and challenges, Information Fusion 76 (2021) 243--297.
+\newblock \href {https://doi.org/10.1016/j.inffus.2021.05.008}
+  {\path{doi:10.1016/j.inffus.2021.05.008}}.
+
+\bibitem{gawlikowski2023survey}
+J.~Gawlikowski, C.~R. Njieutcheu~Tassi, M.~Ali, J.~Lee, M.~Humt, J.~Feng,
+  A.~Kruspe, R.~Triebel, P.~Jung, R.~Roscher, M.~Shahzad, W.~Yang, R.~Bamler,
+  X.~X. Zhu, A survey of uncertainty in deep neural networks, Artificial
+  Intelligence Review 56~(S1) (2023) 1513--1589.
+\newblock \href {https://doi.org/10.1007/s10462-023-10562-9}
+  {\path{doi:10.1007/s10462-023-10562-9}}.
+
+\bibitem{romano2019cqr}
+Y.~Romano, E.~Patterson, E.~J. Cand{\`e}s, Conformalized quantile regression,
+  in: Advances in Neural Information Processing Systems 32 (NeurIPS), 2019, pp.
+  3538--3548.
+\newblock \href {http://arxiv.org/abs/1905.03222} {\path{arXiv:1905.03222}}.
+
+\bibitem{guo2017calibration}
+C.~Guo, G.~Pleiss, Y.~Sun, K.~Q. Weinberger, On calibration of modern neural
+  networks, in: Proceedings of the 34th International Conference on Machine
+  Learning (ICML), Vol.~70 of Proceedings of Machine Learning Research, 2017,
+  pp. 1321--1330.
+
+\bibitem{vovk2003mondrian}
+V.~Vovk, D.~Lindsay, I.~Nouretdinov, A.~Gammerman, Mondrian confidence machine,
+  On-line Compression Modelling Project Working Paper~4, Royal Holloway,
+  University of London (2003).
+
+\bibitem{tibshirani2019covariate}
+R.~J. Tibshirani, R.~Foygel~Barber, E.~J. Cand{\`e}s, A.~Ramdas, Conformal
+  prediction under covariate shift, in: Advances in Neural Information
+  Processing Systems 32 (NeurIPS), 2019, pp. 2526--2536.
+\newblock \href {http://arxiv.org/abs/1904.06019} {\path{arXiv:1904.06019}}.
+
+\bibitem{lei2018distribution}
+J.~Lei, M.~G'Sell, A.~Rinaldo, R.~J. Tibshirani, L.~Wasserman,
+  Distribution-free predictive inference for regression, Journal of the
+  American Statistical Association 113~(523) (2018) 1094--1111.
+\newblock \href {https://doi.org/10.1080/01621459.2017.1307116}
+  {\path{doi:10.1080/01621459.2017.1307116}}.
+
+\bibitem{barber2023beyond}
+R.~F. Barber, E.~J. Cand{\`e}s, A.~Ramdas, R.~J. Tibshirani, Conformal
+  prediction beyond exchangeability, The Annals of Statistics 51~(2) (2023)
+  816--845.
+\newblock \href {https://doi.org/10.1214/23-AOS2276}
+  {\path{doi:10.1214/23-AOS2276}}.
+
+\bibitem{ding2021retiring}
+F.~Ding, M.~Hardt, J.~Miller, L.~Schmidt, Retiring {Adult}: New datasets for
+  fair machine learning, in: Advances in Neural Information Processing Systems
+  34 (NeurIPS), 2021, pp. 6478--6490, folktables package.
+
+\bibitem{tabpfn25_2025}
+L.~Grinsztajn, K.~Fl{\"o}ge, O.~Key, F.~Birkel, P.~Jund, B.~Roof, B.~J{\"a}ger,
+  D.~Safaric, S.~Alessi, A.~Hayler, M.~Manium, R.~Yu, F.~Jablonski, S.~B. Hoo,
+  A.~Garg, J.~Robertson, M.~B{\"u}hler, V.~Moroshan, L.~Purucker, C.~Cornu,
+  L.~C. Wehrhahn, A.~Bonetto, B.~Sch{\"o}lkopf, S.~Gambhir, N.~Hollmann,
+  F.~Hutter, {TabPFN-2.5}: Advancing the state of the art in tabular foundation
+  models, arXiv:2511.08667, prior Labs (2025).
+\newblock \href {http://arxiv.org/abs/2511.08667} {\path{arXiv:2511.08667}}.
+
+\end{thebibliography}

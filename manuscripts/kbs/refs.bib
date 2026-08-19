@@ -1,1 +1,588 @@
-../infosci/refs.bib
+% Independent KBS bibliography (paper_kbs.tex: \bibliography{refs}).
+% Cited keys only, including the two former kbs_additions.bib records.
+% Portfolio leftovers that used to live in the Infosci-shared file
+% (WeatherBench, GraphCast, GenCast, MACE, Matbench, EmbodiedBench, TabICL)
+% are not included. Do not upload shared.bib or kbs_additions.bib.
+
+@book{quinonerocandela2009datasetshift,
+  title     = {Dataset Shift in Machine Learning},
+  editor    = {Qui{\~n}onero-Candela, Joaquin and Sugiyama, Masashi and Schwaighofer, Anton and Lawrence, Neil D.},
+  year      = {2008},
+  publisher = {MIT Press},
+  address   = {Cambridge, MA},
+  isbn      = {978-0-262-17005-5},
+  doi       = {10.7551/mitpress/9780262170055.001.0001},
+}
+
+@inproceedings{gardner2023tableshift,
+  title     = {Benchmarking Distribution Shift in Tabular Data with {TableShift}},
+  author    = {Gardner, Josh and Popovi{\'c}, Zoran and Schmidt, Ludwig},
+  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS), Datasets and Benchmarks Track},
+  pages     = {53385--53432},
+  year      = {2023},
+  doi       = {10.52202/075280-2324},
+}
+
+% Tabular OOD-generalization benchmarks (accuracy/robustness line, cited for
+% positioning; ids + author lists PENDING human verification before submission)
+% NOTE: "WhyShift" is the benchmark/package name (github.com/namkoong-lab/whyshift);
+% neither the arXiv nor the NeurIPS Datasets & Benchmarks paper is literally titled
+% "WhyShift". Title below is the NeurIPS 2023 D&B track title (peer-reviewed venue);
+% verified against arXiv:2307.05284 and the NeurIPS proceedings page, 2026-07-16.
+% author order corrected (Liu Jiashuo first, not Wang Tianyu) against the NeurIPS
+% D&B proceedings page, 2026-07-17.
+@inproceedings{whyshift2023,
+  title     = {On the Need for a Language Describing Distribution Shifts: Illustrations on Tabular Datasets},
+  author    = {Liu, Jiashuo and Wang, Tianyu and Cui, Peng and Namkoong, Hongseok},
+  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS), Datasets and Benchmarks Track},
+  pages     = {51371--51408},
+  year      = {2023},
+  doi       = {10.52202/075280-2237},
+  note      = {Introduces the WhyShift benchmark; arXiv:2307.05284},
+}
+
+@misc{wildtab2023,
+  title         = {{Wild-Tab}: A Benchmark for Out-of-Distribution Generalization in Tabular Regression},
+  author        = {Kolesnikov, Sergey},
+  year          = {2023},
+  eprint        = {2312.01792},
+  archivePrefix = {arXiv},
+  howpublished  = {arXiv:2312.01792},
+}
+
+% ==========================================================================
+% shared.bib -- curated shared bibliography for the ML-reliability portfolio.
+%
+% Usage: paper-template Makefile copies this file next to each paper as
+% shared.bib and paper.tex loads \bibliography{shared,refs}. Keep
+% paper-specific entries in each paper's refs.bib with disjoint keys.
+%
+% Citation data written from standard well-known records; fields that could
+% not be verified against the source at kit-creation time are flagged by a
+% "% TODO verify ..." comment line ABOVE the entry (BibTeX does not allow
+% comments inside entries). Verify all flagged fields against publisher
+% metadata before any camera-ready submission.
+% ==========================================================================
+
+% ---------- Conformal prediction ----------
+
+% DOI verified against Crossref/Springer, 2026-07-16
+@book{vovk2005algorithmic,
+  title     = {Algorithmic Learning in a Random World},
+  author    = {Vovk, Vladimir and Gammerman, Alexander and Shafer, Glenn},
+  year      = {2005},
+  publisher = {Springer},
+  address   = {New York},
+  doi       = {10.1007/b106715},
+}
+
+% DOI verified against Crossref, 2026-07-16
+@article{angelopoulos2023conformal,
+  title   = {Conformal Prediction: A Gentle Introduction},
+  author  = {Angelopoulos, Anastasios N. and Bates, Stephen},
+  journal = {Foundations and Trends in Machine Learning},
+  volume  = {16},
+  number  = {4},
+  pages   = {494--591},
+  year    = {2023},
+  doi     = {10.1561/2200000101},
+}
+
+% ---- Added 2026-08-12 for Intro/Methods lineage (append-only; existing DOI/year fields above untouched) ----
+@article{elyaniv2010selective,
+  title   = {On the Foundations of Noise-free Selective Classification},
+  author  = {El-Yaniv, Ran and Wiener, Yair},
+  journal = {Journal of Machine Learning Research},
+  volume  = {11},
+  number  = {53},
+  pages   = {1605--1641},
+  year    = {2010},
+  url     = {https://jmlr.org/papers/v11/el-yaniv10a.html},
+}
+
+% ---------- Selective classification ----------
+
+% pages verified against DBLP/NeurIPS proceedings, 2026-07-16
+@inproceedings{geifman2017selective,
+  title     = {Selective Classification for Deep Neural Networks},
+  author    = {Geifman, Yonatan and El-Yaniv, Ran},
+  booktitle = {Advances in Neural Information Processing Systems 30 (NeurIPS)},
+  volume    = {30},
+  year      = {2017},
+  pages     = {4878--4887},
+}
+
+% ---- Reject option / selective classification lineage (DOIs verified via Crossref 2026-07-16) ----
+@article{chow1970reject,
+  title   = {On optimum recognition error and reject tradeoff},
+  author  = {Chow, C. K.},
+  journal = {IEEE Transactions on Information Theory},
+  volume  = {16},
+  number  = {1},
+  pages   = {41--46},
+  year    = {1970},
+  doi     = {10.1109/TIT.1970.1054406},
+}
+
+@article{herbei2006reject,
+  title   = {Classification with reject option},
+  author  = {Herbei, Radu and Wegkamp, Marten H.},
+  journal = {Canadian Journal of Statistics},
+  volume  = {34},
+  number  = {4},
+  pages   = {709--721},
+  year    = {2006},
+  doi     = {10.1002/cjs.5550340410},
+}
+
+@inproceedings{cortes2016rejection,
+  title     = {Learning with Rejection},
+  author    = {Cortes, Corinna and DeSalvo, Giulia and Mohri, Mehryar},
+  booktitle = {Algorithmic Learning Theory (ALT)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {9925},
+  pages     = {67--82},
+  year      = {2016},
+  doi       = {10.1007/978-3-319-46379-7_5},
+}
+
+@inproceedings{jones2021selective,
+  title     = {Selective Classification Can Magnify Disparities Across Groups},
+  author    = {Jones, Erik and Sagawa, Shiori and Koh, Pang Wei and Kumar, Ananya and Liang, Percy},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2021},
+  url       = {https://openreview.net/forum?id=N0M_4BkQ05i},
+}
+
+@article{kamiran2018reject,
+  title   = {Exploiting reject option in classification for social discrimination control},
+  author  = {Kamiran, Faisal and Mansha, Sameen and Karim, Asim and Zhang, Xiangliang},
+  journal = {Information Sciences},
+  volume  = {425},
+  pages   = {18--33},
+  year    = {2018},
+  doi     = {10.1016/j.ins.2017.09.064},
+}
+
+% ---- Conformal prediction lineage & validity (DOIs verified via Crossref 2026-07-16) ----
+@inproceedings{papadopoulos2002inductive,
+  title     = {Inductive Confidence Machines for Regression},
+  author    = {Papadopoulos, Harris and Proedrou, Kostas and Vovk, Volodya and Gammerman, Alex},
+  booktitle = {Machine Learning: ECML 2002},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {2430},
+  pages     = {345--356},
+  year      = {2002},
+  doi       = {10.1007/3-540-36755-1_29},
+}
+
+% refs.bib -- paper-SPECIFIC references for the ND1 structured-data manuscript.
+%
+% Shared portfolio literature lives in reliability-commons/shared.bib;
+% `make bib` copies it next to the paper and paper.tex loads BOTH via
+%   \bibliography{shared,refs}
+% Keys here are disjoint from shared.bib.
+@article{vanschoren2014openml,
+  title   = {{OpenML}: Networked Science in Machine Learning},
+  author  = {Vanschoren, Joaquin and van Rijn, Jan N. and Bischl, Bernd and Torgo, Lu{\'i}s},
+  journal = {ACM SIGKDD Explorations Newsletter},
+  volume  = {15},
+  number  = {2},
+  pages   = {49--60},
+  year    = {2014},
+  doi     = {10.1145/2641190.2641198},
+}
+
+@inproceedings{chen2016xgboost,
+  title     = {{XGBoost}: A Scalable Tree Boosting System},
+  author    = {Chen, Tianqi and Guestrin, Carlos},
+  booktitle = {Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+  pages     = {785--794},
+  year      = {2016},
+  doi       = {10.1145/2939672.2939785},
+}
+
+@inproceedings{ke2017lightgbm,
+  title     = {{LightGBM}: A Highly Efficient Gradient Boosting Decision Tree},
+  author    = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},
+  booktitle = {Advances in Neural Information Processing Systems 30 (NeurIPS)},
+  pages     = {3146--3154},
+  year      = {2017},
+}
+
+% author list and arXiv id verified against arXiv:2602.11139, 2026-07-16
+@misc{qu2026tabicl,
+  title         = {{TabICLv2}: A Better, Faster, Scalable, and Open Tabular Foundation Model},
+  author        = {Qu, Jingang and Holzm{\"u}ller, David and Varoquaux, Ga{\"e}l and Le Morvan, Marine},
+  year          = {2026},
+  eprint        = {2602.11139},
+  archivePrefix = {arXiv},
+  howpublished  = {arXiv:2602.11139},
+  note          = {\url{https://github.com/soda-inria/tabicl}},
+}
+
+% venue/DOI/pages from Crossref 10.52202/085713-5748 (NeurIPS 2025); author list from arXiv:2410.18164 (Crossref dropped Kamkari)
+@inproceedings{ma2024tabdpt,
+  title     = {{TabDPT}: Scaling Tabular Foundation Models on Real Data},
+  author    = {Ma, Junwei and Thomas, Valentin and Hosseinzadeh, Rasa and Labach, Alex
+               and Kamkari, Hamidreza and Cresswell, Jesse C. and Golestan, Keyvan and Yu, Guangwei
+               and Caterini, Anthony L. and Volkovs, Maksims},
+  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},
+  pages     = {191387--191417},
+  year      = {2025},
+  doi       = {10.52202/085713-5748},
+  eprint    = {2410.18164},
+  archivePrefix = {arXiv},
+  note      = {\url{https://github.com/layer6ai-labs/TabDPT}},
+}
+
+@inproceedings{tfm_uncertainty_esann2026,
+  title     = {High Performance, Low Reliability: Uncertainty Benchmarking for Tabular Foundation Models},
+  author    = {De Melo Costa, Jos{\'e} Lucas and Popineau, Fabrice and Rimmel, Arpad and Doan, Bich-Li{\^e}n},
+  booktitle = {Proceedings of the European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning (ESANN)},
+  pages     = {115--120},
+  year      = {2026},
+  doi       = {10.14428/esann/2026.ES2026-261},
+  eprint    = {2605.28554},
+  archivePrefix = {arXiv},
+}
+
+@misc{beyondiid2026,
+  title         = {Beyond {IID}: How General Are Tabular Foundation Models, Really?},
+  author        = {Purucker, Lennart and Tschalzev, Andrej and Erickson, Nick and Blayer, Gioia
+                   and Holzm{\"u}ller, David and Arazi, Alan and Pfefferle, Alexander and Tajjar, Mustafa
+                   and Varoquaux, Ga{\"e}l and Hutter, Frank},
+  year          = {2026},
+  eprint        = {2606.30410},
+  archivePrefix = {arXiv},
+  howpublished  = {arXiv:2606.30410},
+  note          = {Introduces the BeyondArena benchmark},
+}
+
+@misc{tabpfn_openenv2025,
+  title         = {Realistic Evaluation of {TabPFN} v2 in Open Environments},
+  author        = {Cheng, Zi-Jian and Jia, Zi-Yi and Zhou, Zhi and Li, Yu-Feng and Guo, Lan-Zhe},
+  year          = {2025},
+  eprint        = {2505.16226},
+  archivePrefix = {arXiv},
+  howpublished  = {arXiv:2505.16226},
+}
+
+% ---------- Tabular foundation models ----------
+@article{hollmann2025tabpfn,
+  title   = {Accurate Predictions on Small Data with a Tabular Foundation Model},
+  author  = {Hollmann, Noah and M{\"u}ller, Samuel and Purucker, Lennart and Krishnakumar, Arjun and K{\"o}rfer, Max and Hoo, Shi Bin and Schirrmeister, Robin Tibor and Hutter, Frank},
+  journal = {Nature},
+  volume  = {637},
+  number  = {8045},
+  pages   = {319--326},
+  year    = {2025},
+  doi     = {10.1038/s41586-024-08328-6},
+  note    = {TabPFN v2},
+}
+
+@inproceedings{helli2024driftresilient,
+  title     = {Drift-Resilient {TabPFN}: In-Context Learning Temporal Distribution Shifts on Tabular Data},
+  author    = {Helli, Kai and Schnurr, David and Hollmann, Noah and M{\"u}ller, Samuel and Hutter, Frank},
+  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},
+  pages     = {98742--98781},
+  year      = {2024},
+  doi       = {10.52202/079017-3134},
+  eprint    = {2411.10634},
+  archivePrefix = {arXiv},
+}
+
+% title updated to current arXiv:2602.04596 abstract (v1 was retitled; comment: "Major revision, retitled")
+@misc{tabpfn_uncdecomp2026,
+  title         = {Uncertainty Decomposition for Bayes-Filtered Transformers via Bayesian Predictive Inference},
+  author        = {Fortini, Sandra and Ng, Kenyon and Petrone, Sonia and Rousseau, Judith and Wei, Susan},
+  year          = {2026},
+  eprint        = {2602.04596},
+  archivePrefix = {arXiv},
+  howpublished  = {arXiv:2602.04596},
+}
+
+@misc{distreg_tfm2026,
+  title         = {Distributional Regression with Tabular Foundation Models:
+                   Evaluating Probabilistic Predictions via Proper Scoring Rules},
+  author        = {Landsgesell, Jonas and Knoll, Pascal and Wenzel, Tizian},
+  year          = {2026},
+  eprint        = {2603.08206},
+  archivePrefix = {arXiv},
+  howpublished  = {arXiv:2603.08206},
+}
+
+@inproceedings{tabarena2025,
+  title     = {{TabArena}: A Living Benchmark for Machine Learning on Tabular Data},
+  author    = {Erickson, Nick and Purucker, Lennart and Tschalzev, Andrej and Holzm{\"u}ller, David and Mutalik Desai, Prateek and Salinas, David and Hutter, Frank},
+  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS), Datasets and Benchmarks Track},
+  pages     = {17285--17350},
+  year      = {2025},
+  doi       = {10.52202/085713-0519},
+  eprint    = {2506.16791},
+  archivePrefix = {arXiv},
+}
+
+% KBS-only additions; kept separate because refs.bib is shared with the Information Sciences port.
+@misc{tfm_benchmark_openreview2026,
+  title         = {Uncertainty Benchmarking for Tabular Foundation Models: A Preregistered Empirical Evaluation},
+  author        = {{OpenReview}},
+  year          = {2026},
+  howpublished = {OpenReview},
+  note          = {Forum KQ8DD8c43a, \url{https://openreview.net/forum?id=KQ8DD8c43a}},
+}
+
+% Conformal / selective prediction UNDER subpopulation / distribution shift
+% (2025-26; arXiv ids verified 2026-07-11; author lists pending human verification)
+@misc{subpop2025conformal,
+  title  = {Conformal Prediction Adaptive to Unknown Subpopulation Shifts},
+  author = {Wang, Nien-Shao and Yaldiz, Duygu Nur and Bakman, Yavuz Faruk and Karimireddy, Sai Praneeth},
+  year   = {2025},
+  eprint = {2506.05583},
+  archivePrefix = {arXiv},
+  note   = {arXiv:2506.05583},
+}
+
+@misc{audited2026conformal,
+  title  = {Audited Conformal Prediction for Classification under Unknown Distribution Shift},
+  author = {Zhou, Yanfei and Fathony, Rizal and Nguyen, Nam H. and Sesia, Matteo},
+  year   = {2026},
+  eprint = {2606.14909},
+  archivePrefix = {arXiv},
+  note   = {arXiv:2606.14909},
+}
+
+@article{campagner2021threeway,
+  title   = {Three-way decision and conformal prediction: Isomorphisms, differences and theoretical properties of cautious learning approaches},
+  author  = {Campagner, Andrea and Cabitza, Federico and Berjano, Pedro and Ciucci, Davide},
+  journal = {Information Sciences},
+  volume  = {579},
+  pages   = {347--367},
+  year    = {2021},
+  doi     = {10.1016/j.ins.2021.08.009},
+}
+
+% ==========================================================================
+% Information Sciences resubmission -- reference expansion (2026-07-16).
+% Every entry below was live-verified this session against Crossref
+% (api.crossref.org/works/<doi>) or the arXiv API (export.arxiv.org):
+% title, author list, year, venue, and volume/pages taken from the resolved
+% record, not from memory. The six 10.1016/j.ins.* entries are the in-venue
+% Information Sciences conformal/selective/tabular cluster the reviewer pool
+% is drawn from.
+% ==========================================================================
+
+% ---- In-venue Information Sciences cluster (DOIs verified via Crossref 2026-07-16) ----
+@article{he2025conjunction,
+  title   = {Conjunction subspaces test for conformal and selective classification},
+  author  = {He, Zengyou and Li, Zerun and Dong, Junjie and Liu, Xinying and Jiang, Mudi and Hu, Lianyu},
+  journal = {Information Sciences},
+  volume  = {707},
+  pages   = {122037},
+  year    = {2025},
+  doi     = {10.1016/j.ins.2025.122037},
+}
+
+@article{shen2022reject,
+  title   = {Reject inference in credit scoring using a three-way decision and safe semi-supervised support vector machine},
+  author  = {Shen, Feng and Yang, Zhiyuan and Zhao, Xingchao and Lan, Dao},
+  journal = {Information Sciences},
+  volume  = {606},
+  pages   = {614--627},
+  year    = {2022},
+  doi     = {10.1016/j.ins.2022.05.067},
+}
+
+@article{grisci2021relevance,
+  title   = {Relevance aggregation for neural networks interpretability and knowledge discovery on tabular data},
+  author  = {Grisci, Bruno Iochins and Krause, Mathias J. and Dorn, Marcio},
+  journal = {Information Sciences},
+  volume  = {559},
+  pages   = {111--129},
+  year    = {2021},
+  doi     = {10.1016/j.ins.2021.01.052},
+}
+
+@article{tanha2022cpssds,
+  title   = {{CPSSDS}: Conformal prediction for semi-supervised classification on data streams},
+  author  = {Tanha, Jafar and Samadi, Negin and Abdi, Yousef and Razzaghi-Asl, Nazila},
+  journal = {Information Sciences},
+  volume  = {584},
+  pages   = {212--234},
+  year    = {2022},
+  doi     = {10.1016/j.ins.2021.10.068},
+}
+
+@inproceedings{gibbs2021adaptive,
+  title     = {Adaptive Conformal Inference Under Distribution Shift},
+  author    = {Gibbs, Isaac and Cand{\`e}s, Emmanuel J.},
+  booktitle = {Advances in Neural Information Processing Systems 34 (NeurIPS)},
+  pages     = {1660--1672},
+  year      = {2021},
+  eprint    = {2106.00170},
+  archivePrefix = {arXiv},
+}
+
+@article{vovk2013conditional,
+  title   = {Conditional validity of inductive conformal predictors},
+  author  = {Vovk, Vladimir},
+  journal = {Machine Learning},
+  volume  = {92},
+  number  = {2--3},
+  pages   = {349--376},
+  year    = {2013},
+  doi     = {10.1007/s10994-013-5355-6},
+}
+
+@article{barber2021jackknife,
+  title   = {Predictive inference with the jackknife+},
+  author  = {Barber, Rina Foygel and Cand{\`e}s, Emmanuel J. and Ramdas, Aaditya and Tibshirani, Ryan J.},
+  journal = {The Annals of Statistics},
+  volume  = {49},
+  number  = {1},
+  pages   = {486--507},
+  year    = {2021},
+  doi     = {10.1214/20-AOS1965},
+}
+
+@inproceedings{grinsztajn2022trees,
+  title     = {Why do tree-based models still outperform deep learning on typical tabular data?},
+  author    = {Grinsztajn, L{\'e}o and Oyallon, Edouard and Varoquaux, Ga{\"e}l},
+  booktitle = {Advances in Neural Information Processing Systems 35 (NeurIPS), Datasets and Benchmarks Track},
+  pages     = {507--520},
+  year      = {2022},
+  doi       = {10.52202/068431-0037},
+  eprint    = {2207.08815},
+  archivePrefix = {arXiv},
+}
+
+@inproceedings{gorishniy2021revisiting,
+  title     = {Revisiting Deep Learning Models for Tabular Data},
+  author    = {Gorishniy, Yury and Rubachev, Ivan and Khrulkov, Valentin and Babenko, Artem},
+  booktitle = {Advances in Neural Information Processing Systems 34 (NeurIPS)},
+  pages     = {18932--18943},
+  year      = {2021},
+  eprint    = {2106.11959},
+  archivePrefix = {arXiv},
+}
+
+@article{schultz2024convgen,
+  title   = {{ConvGeN}: A convex space learning approach for deep-generative oversampling and imbalanced classification of small tabular datasets},
+  author  = {Schultz, Kristian and Bej, Saptarshi and Hahn, Waldemar and Wolfien, Markus and Srivastava, Prashant and Wolkenhauer, Olaf},
+  journal = {Pattern Recognition},
+  volume  = {147},
+  pages   = {110138},
+  year    = {2024},
+  doi     = {10.1016/j.patcog.2023.110138},
+}
+
+% ---- Uncertainty-quantification surveys (DOIs verified via Crossref 2026-07-16) ----
+@article{abdar2021review,
+  title   = {A review of uncertainty quantification in deep learning: Techniques, applications and challenges},
+  author  = {Abdar, Moloud and Pourpanah, Farhad and Hussain, Sadiq and Rezazadegan, Dana and Liu, Li and Ghavamzadeh, Mohammad and Fieguth, Paul and Cao, Xiaochun and Khosravi, Abbas and Acharya, U. Rajendra and Makarenkov, Vladimir and Nahavandi, Saeid},
+  journal = {Information Fusion},
+  volume  = {76},
+  pages   = {243--297},
+  year    = {2021},
+  doi     = {10.1016/j.inffus.2021.05.008},
+}
+
+@article{gawlikowski2023survey,
+  title   = {A survey of uncertainty in deep neural networks},
+  author  = {Gawlikowski, Jakob and Njieutcheu Tassi, Cedrique Rovile and Ali, Mohsin and Lee, Jongseok and Humt, Matthias and Feng, Jianxiang and Kruspe, Anna and Triebel, Rudolph and Jung, Peter and Roscher, Ribana and Shahzad, Muhammad and Yang, Wen and Bamler, Richard and Zhu, Xiao Xiang},
+  journal = {Artificial Intelligence Review},
+  volume  = {56},
+  number  = {S1},
+  pages   = {1513--1589},
+  year    = {2023},
+  doi     = {10.1007/s10462-023-10562-9},
+}
+
+@inproceedings{romano2019cqr,
+  title     = {Conformalized Quantile Regression},
+  author    = {Romano, Yaniv and Patterson, Evan and Cand{\`e}s, Emmanuel J.},
+  booktitle = {Advances in Neural Information Processing Systems 32 (NeurIPS)},
+  pages     = {3538--3548},
+  year      = {2019},
+  eprint    = {1905.03222},
+  archivePrefix = {arXiv},
+}
+
+% ---------- Calibration ----------
+@inproceedings{guo2017calibration,
+  title     = {On Calibration of Modern Neural Networks},
+  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  booktitle = {Proceedings of the 34th International Conference on Machine Learning (ICML)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {70},
+  pages     = {1321--1330},
+  year      = {2017},
+}
+
+@techreport{vovk2003mondrian,
+  title       = {Mondrian Confidence Machine},
+  author      = {Vovk, Vladimir and Lindsay, David and Nouretdinov, Ilia and Gammerman, Alexander},
+  institution = {Royal Holloway, University of London},
+  type        = {On-line Compression Modelling Project Working Paper},
+  number      = {4},
+  year        = {2003},
+}
+
+% Conformal validity under distribution shift (G3; verified 2026-07-11)
+@inproceedings{tibshirani2019covariate,
+  title     = {Conformal Prediction Under Covariate Shift},
+  author    = {Tibshirani, Ryan J. and Foygel Barber, Rina and Cand{\`e}s, Emmanuel J. and Ramdas, Aaditya},
+  booktitle = {Advances in Neural Information Processing Systems 32 (NeurIPS)},
+  pages     = {2526--2536},
+  year      = {2019},
+  eprint    = {1904.06019},
+  archivePrefix = {arXiv},
+}
+
+@article{lei2018distribution,
+  title   = {Distribution-Free Predictive Inference for Regression},
+  author  = {Lei, Jing and G'Sell, Max and Rinaldo, Alessandro and Tibshirani, Ryan J. and Wasserman, Larry},
+  journal = {Journal of the American Statistical Association},
+  volume  = {113},
+  number  = {523},
+  pages   = {1094--1111},
+  year    = {2018},
+  doi     = {10.1080/01621459.2017.1307116},
+}
+
+@article{barber2023beyond,
+  title   = {Conformal Prediction Beyond Exchangeability},
+  author  = {Barber, Rina Foygel and Cand{\`e}s, Emmanuel J. and Ramdas, Aaditya and Tibshirani, Ryan J.},
+  journal = {The Annals of Statistics},
+  volume  = {51},
+  number  = {2},
+  pages   = {816--845},
+  year    = {2023},
+  doi     = {10.1214/23-AOS2276},
+}
+
+@inproceedings{ding2021retiring,
+  title     = {Retiring {Adult}: New Datasets for Fair Machine Learning},
+  author    = {Ding, Frances and Hardt, Moritz and Miller, John and Schmidt, Ludwig},
+  booktitle = {Advances in Neural Information Processing Systems 34 (NeurIPS)},
+  pages     = {6478--6490},
+  year      = {2021},
+  note      = {Folktables package},
+}
+
+@misc{tabpfn25_2025,
+  title         = {{TabPFN-2.5}: Advancing the State of the Art in Tabular Foundation Models},
+  author        = {Grinsztajn, L{\'e}o and Fl{\"o}ge, Klemens and Key, Oscar and Birkel, Felix
+                   and Jund, Philipp and Roof, Brendan and J{\"a}ger, Benjamin and Safaric, Dominik
+                   and Alessi, Simone and Hayler, Adrian and Manium, Mihir and Yu, Rosen
+                   and Jablonski, Felix and Hoo, Shi Bin and Garg, Anurag and Robertson, Jake
+                   and B{\"u}hler, Magnus and Moroshan, Vladyslav and Purucker, Lennart and Cornu, Clara
+                   and Wehrhahn, Lilly Charlotte and Bonetto, Alessandro and Sch{\"o}lkopf, Bernhard
+                   and Gambhir, Sauraj and Hollmann, Noah and Hutter, Frank},
+  year          = {2025},
+  eprint        = {2511.08667},
+  archivePrefix = {arXiv},
+  howpublished  = {arXiv:2511.08667},
+  note          = {Prior Labs},
+}
+
