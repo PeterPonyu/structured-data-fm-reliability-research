@@ -1,15 +1,15 @@
-/* Structure tabular audit. Okabe–Ito roles match fig0. */
+/* Code-and-protocol leaf. Unique binding: structure-code-protocol. */
 @import url("../fonts/ibm-plex.css");
 
 :root {
-  --page: #fafaf7;
-  --ink: #1a1a1a;
-  --mute: #4a4a4a;
-  --rule: #d0d0c8;
-  --random: #0072b2;
-  --grouped: #e69f00;
-  --restore: #009e73;
-  --fail: #d55e00;
+  --page: #eef1f4;
+  --ink: #1c2430;
+  --mute: #4a5563;
+  --rule: #c5ccd4;
+  --random: #2f5d50;
+  --grouped: #8c4a2f;
+  --restore: #2f5d50;
+  --fail: #8c4a2f;
   --measure: 40rem;
   --wide: 72rem;
 }
@@ -31,6 +31,10 @@ body {
   color: var(--ink);
   font-family: "IBM Plex Sans", "Source Sans 3", "Segoe UI", sans-serif;
   line-height: 1.5;
+}
+
+body[data-site-binding="structure-code-protocol"] {
+  border-left: 4px solid #8c4a2f;
 }
 
 a {
@@ -133,12 +137,12 @@ footer {
   margin: 0 0 1rem;
 }
 
-.thesis {
-  padding-left: 1.3rem;
-}
-
-.thesis li {
-  margin: 0.45rem 0;
+.kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mute);
 }
 
 blockquote.pull {
@@ -195,18 +199,6 @@ td.cov-fail {
 td.cov-ok {
   color: var(--restore);
   font-weight: 500;
-}
-
-td.verdict-kill,
-td.verdict-reject {
-  color: var(--fail);
-  font-weight: 600;
-}
-
-td.verdict-confirm,
-td.verdict-success {
-  color: var(--restore);
-  font-weight: 600;
 }
 
 .legend {

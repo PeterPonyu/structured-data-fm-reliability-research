@@ -74,6 +74,20 @@ jobs:
               "InfoSci",
               "Paper companion",
               "Print PDF",
+              "Thesis",
+              "unpublished",
+              "SOTA",
+              "REJECT",
+              "CONFIRM",
+              "KILL",
+              "13/14",
+              "H1 coverage",
+              "Same frozen numbers",
+              "verdict-reject",
+              "Science Gateway",
+              "Launch Explorer",
+              "flagship",
+              "AURC",
           )
           problems = []
           root = Path("docs")
@@ -86,7 +100,15 @@ jobs:
                   if needle in text:
                       problems.append(f"{rel}: {needle}")
           if (root / "paper_kbs.pdf").exists() or list(root.glob("paper_*.pdf")):
-              problems.append("paper_*.pdf in Pages artifact (off this stretch)")
+              problems.append("paper_*.pdf in Pages artifact")
+          fig = root / "figures"
+          if fig.is_dir() and (
+              list(fig.glob("*.png")) or list(fig.glob("*.pdf")) or list(fig.glob("*.svg"))
+          ):
+              problems.append("figure binaries in docs/figures")
+          data = root / "data"
+          if data.is_dir() and any(data.iterdir()):
+              problems.append("table extracts in docs/data")
           if problems:
               raise SystemExit("leak scan failed:\n  " + "\n  ".join(problems))
           print("leak scan: ok")

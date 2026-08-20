@@ -1,22 +1,29 @@
-# Conformal Coverage Fails Under Grouped and Temporal Shift but Uncertainty Abstention Repairs Selective Risk: A Preregistered Tabular Audit
+<p class="kicker">Public code leaf</p>
 
-<p class="meta">Zeyu Fu · State Key Laboratory of Trauma and Chemical Poisoning, Institute of Combined Injury, Army Medical University, Chongqing, China</p>
+# structured-data-fm-reliability-research
 
-{{verdict_table}}
+This page describes the public repository
+[PeterPonyu/structured-data-fm-reliability-research](https://github.com/PeterPonyu/structured-data-fm-reliability-research).
+It is a code and protocol leaf. It does not host figures or result numbers.
 
-<p>Scope: no financial, medical, or business deployment claims.</p>
+## What the code does
 
-[Code](https://github.com/PeterPonyu/structured-data-fm-reliability-research) · Zenodo DOI [10.5281/zenodo.21130297](https://doi.org/10.5281/zenodo.21130297)
+Python scripts for a split-conditioned selective-prediction reliability
+audit on keyed tabular data. A frozen predictor (gradient-boosted tree or
+open-weights tabular foundation model) is wrapped in split-conformal
+prediction. The same items are scored under a random row split and under a
+leave-group-out or rolling-origin split. An optional abstention step ranks
+items by a model-native uncertainty score.
 
-## Thesis
+No financial, medical, or business deployment claims.
 
-<ol class="thesis">
-  <li>Random-split validation overstates reliability for keyed tabular models: the split that matters at deployment is leave-group-out or rolling-origin, not a row-wise hold-out.</li>
-  <li>On 14 public OpenML datasets with a defensible entity or time key, grouped and temporal splits push plain split-conformal below its 0.90 target (median worst-group coverage about 0.81 on the held-out TableShift arm).</li>
-  <li>No tested distribution-free conformal remedy restores group-conditional coverage at the majority level (<strong>H1 REJECT</strong>).</li>
-  <li>Ranking the same test items by a free uncertainty score and abstaining on the highest-risk ones beats random deferral on 13 of 14 exploratory datasets and matches a budget-matched tuned selector on held-out TableShift (<strong>H2 CONFIRM</strong>).</li>
-  <li>Repair remains far below an oracle ceiling (median repair ratio 0.34 vs 0.75); the prescription is selective-risk fallback, not a restored coverage guarantee.</li>
-  <li>The collapse is model-agnostic across XGBoost, LightGBM, TabICLv2, and TabDPT: tabular foundation models do not auto-repair the gap.</li>
-  <li>The preregistered Stage-2 conjunctive gate evaluates to <strong>KILL</strong> because the grouped-gap count is split-realization-fragile and key-inclusion-sensitive; only the repair count is load-bearing.</li>
-  <li>The contribution is a reusable protocol — keyed split comparison, coverage test, uncertainty abstention fallback — not a new estimator.</li>
-</ol>
+## Code and archive
+
+- Repository: [github.com/PeterPonyu/structured-data-fm-reliability-research](https://github.com/PeterPonyu/structured-data-fm-reliability-research)
+- Zenodo archive: [10.5281/zenodo.21130297](https://doi.org/10.5281/zenodo.21130297)
+
+## What this leaf is not
+
+Not a findings report. Not an article companion. Not an archive of figures.
+Install from the repository if you want the scripts; do not treat this leaf
+as a results page.

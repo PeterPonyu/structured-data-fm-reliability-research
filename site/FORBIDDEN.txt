@@ -1,5 +1,5 @@
-# Stems that must not appear in rendered companion HTML/CSS/JS.
-# Identity fence: Structure science only (keyed splits, H1/H2, quarantine, abstention).
+# Stems that must not appear in rendered leaf HTML/CSS/JS.
+# Identity fence: code and protocol only.
 F1_debt
 Matbench
 MVTec
@@ -21,3 +21,17 @@ submitted
 journal
 InfoSci
 Paper companion
+Thesis
+unpublished
+SOTA
+REJECT
+CONFIRM
+KILL
+13/14
+H1 coverage
+Same frozen numbers
+verdict-reject
+Science Gateway
+Launch Explorer
+flagship
+AURC

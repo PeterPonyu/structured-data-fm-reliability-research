@@ -3,30 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reproduce — tabular reliability audit</title>
-  <meta name="description" content="Smoke test, data licenses, figure regeneration, archive filenames.">
+  <title>Reproduce</title>
+  <meta name="description" content="Smoke test, data licenses, and archive links.">
+  <meta name="robots" content="noindex, follow">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../css/portal.css">
 </head>
-<body>
+<body data-site-binding="structure-code-protocol">
   <header class="site">
     <div class="wrap">
-      <p class="brand">Tabular reliability audit</p>
+      <p class="brand">Code and protocol</p>
       <details class="nav-toggle">
         <summary>Menu</summary>
-        <nav class="primary" aria-label="Sections"><a href="../index.html">Thesis</a><a href="../protocol/index.html">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html" aria-current="page">Reproduce</a><a href="../cite/index.html">Record</a></nav>
+        <nav class="primary" aria-label="Sections"><a href="../index.html">Code</a><a href="../protocol/index.html">Protocol</a><a href="../reproduce/index.html" aria-current="page">Reproduce</a><a href="../cite/index.html">Record</a></nav>
       </details>
-      <nav class="primary" aria-label="Primary"><a href="../index.html">Thesis</a><a href="../protocol/index.html">Protocol</a><a href="../tables/index.html">Tables</a><a href="../figures/index.html">Figures</a><a href="../key/index.html">Key in/out</a><a href="../quarantine/index.html">Quarantine</a><a href="../reproduce/index.html" aria-current="page">Reproduce</a><a href="../cite/index.html">Record</a></nav>
+      <nav class="primary" aria-label="Primary"><a href="../index.html">Code</a><a href="../protocol/index.html">Protocol</a><a href="../reproduce/index.html" aria-current="page">Reproduce</a><a href="../cite/index.html">Record</a></nav>
     </div>
   </header>
   <main class="prose wrap">
 <h1>Reproduce</h1>
-<p>Frozen numbers on this site are stamped from committed table extracts. Figures use the same frozen plots as the tables.</p>
-<h2>What to obtain</h2>
-<ol><li>The public code archive.</li><li>The public Zenodo archive.</li><li>OpenML datasets on demand (no authentication). Folktables / ACS PUMS 2018 is downloaded on demand. Dataset licenses are <strong>not</strong> covered by the code archive’s MIT license.</li></ol>
-<h2>What is frozen</h2>
-<p>CORE14 coverage, repair, Mondrian, and Stage-2 gate counts; TabICLv2 and TabDPT arms; learned versus free versus oracle headlines; the ACS exploratory arm; the held-out TableShift roster and H1/H2 aggregate; and the split-realization fragility counts used for Figure 6.</p>
-<p>No bulk data is stored in the public archive.</p>
+<p>Pinned Python dependencies are in <code>requirements.txt</code>. No bulk data is stored in the public archive: OpenML datasets and Folktables / ACS PUMS 2018 are fetched on demand. Tabular-foundation-model weights come from the Hugging Face Hub on first use. Dataset licenses are <strong>not</strong> covered by the code archive’s MIT license.</p>
+<pre><code>pip install -r requirements.txt
+./smoke_test.sh</code></pre>
+<p>Further scripts live under <code>experiments/</code> in the repository. Results change only by rerunning those scripts locally.</p>
 <h2>Links</h2>
 <ul><li>Code: https://github.com/PeterPonyu/structured-data-fm-reliability-research</li><li>Zenodo: https://doi.org/10.5281/zenodo.21130297</li></ul>
   </main>

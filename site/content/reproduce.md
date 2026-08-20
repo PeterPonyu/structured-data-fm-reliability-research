@@ -1,18 +1,18 @@
 # Reproduce
 
-Frozen numbers on this site are stamped from committed table extracts. Figures use the same frozen plots as the tables.
+Pinned Python dependencies are in `requirements.txt`. No bulk data is stored
+in the public archive: OpenML datasets and Folktables / ACS PUMS 2018 are
+fetched on demand. Tabular-foundation-model weights come from the Hugging Face
+Hub on first use. Dataset licenses are **not** covered by the code archive’s
+MIT license.
 
-## What to obtain
+```bash
+pip install -r requirements.txt
+./smoke_test.sh
+```
 
-1. The public code archive.
-2. The public Zenodo archive.
-3. OpenML datasets on demand (no authentication). Folktables / ACS PUMS 2018 is downloaded on demand. Dataset licenses are **not** covered by the code archive’s MIT license.
-
-## What is frozen
-
-CORE14 coverage, repair, Mondrian, and Stage-2 gate counts; TabICLv2 and TabDPT arms; learned versus free versus oracle headlines; the ACS exploratory arm; the held-out TableShift roster and H1/H2 aggregate; and the split-realization fragility counts used for Figure 6.
-
-No bulk data is stored in the public archive.
+Further scripts live under `experiments/` in the repository. Results change
+only by rerunning those scripts locally.
 
 ## Links
 

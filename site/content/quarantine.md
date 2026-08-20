@@ -1,5 +1,7 @@
-# Honesty ledger
+# Scope notes
 
-Blocked runs are absences, not findings. No error theatre.
+This path does not host figures or result numbers.
 
-{{quarantine_table}}
+Blocked downloads (license-gated weights or corpora) are absences, not
+findings. Exploratory remedy runs are kept separate from the held-out
+spatial-OOD arm.

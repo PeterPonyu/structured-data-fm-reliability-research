@@ -3,39 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thesis — tabular reliability audit</title>
-  <meta name="description" content="Preregistered tabular reliability audit.">
+  <title>structured-data-fm-reliability-research</title>
+  <meta name="description" content="Code and protocol leaf for keyed tabular reliability scripts.">
+  <meta name="robots" content="noindex, follow">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/portal.css">
 </head>
-<body>
+<body data-site-binding="structure-code-protocol">
   <header class="site">
     <div class="wrap">
-      <p class="brand">Tabular reliability audit</p>
+      <p class="brand">Code and protocol</p>
       <details class="nav-toggle">
         <summary>Menu</summary>
-        <nav class="primary" aria-label="Sections"><a href="index.html" aria-current="page">Thesis</a><a href="protocol/index.html">Protocol</a><a href="tables/index.html">Tables</a><a href="figures/index.html">Figures</a><a href="key/index.html">Key in/out</a><a href="quarantine/index.html">Quarantine</a><a href="reproduce/index.html">Reproduce</a><a href="cite/index.html">Record</a></nav>
+        <nav class="primary" aria-label="Sections"><a href="index.html" aria-current="page">Code</a><a href="protocol/index.html">Protocol</a><a href="reproduce/index.html">Reproduce</a><a href="cite/index.html">Record</a></nav>
       </details>
-      <nav class="primary" aria-label="Primary"><a href="index.html" aria-current="page">Thesis</a><a href="protocol/index.html">Protocol</a><a href="tables/index.html">Tables</a><a href="figures/index.html">Figures</a><a href="key/index.html">Key in/out</a><a href="quarantine/index.html">Quarantine</a><a href="reproduce/index.html">Reproduce</a><a href="cite/index.html">Record</a></nav>
+      <nav class="primary" aria-label="Primary"><a href="index.html" aria-current="page">Code</a><a href="protocol/index.html">Protocol</a><a href="reproduce/index.html">Reproduce</a><a href="cite/index.html">Record</a></nav>
     </div>
   </header>
   <main class="prose wrap">
-<h1>Conformal Coverage Fails Under Grouped and Temporal Shift but Uncertainty Abstention Repairs Selective Risk: A Preregistered Tabular Audit</h1>
-<p class="meta">Zeyu Fu · State Key Laboratory of Trauma and Chemical Poisoning, Institute of Combined Injury, Army Medical University, Chongqing, China</p>
-<div class="table-scroll"><table><thead><tr><th>Gate</th><th>Result</th></tr></thead><tbody><tr><td>H1 coverage restoration (held-out TableShift)</td><td class="verdict-reject">REJECT</td></tr><tr><td>H2 uncertainty vs tuned selector (held-out TableShift)</td><td class="verdict-confirm">CONFIRM</td></tr><tr><td>Stage-2 conjunctive gate (exploratory 14)</td><td class="verdict-kill">KILL</td></tr><tr><td>Repair vs random deferral (exploratory 14, all arms)</td><td>13/14 (load-bearing)</td></tr></tbody></table></div>
-<p>Scope: no financial, medical, or business deployment claims.</p>
-<p><a href="https://github.com/PeterPonyu/structured-data-fm-reliability-research">Code</a> · Zenodo DOI <a href="https://doi.org/10.5281/zenodo.21130297">10.5281/zenodo.21130297</a></p>
-<h2>Thesis</h2>
-<ol class="thesis">
-<li>Random-split validation overstates reliability for keyed tabular models: the split that matters at deployment is leave-group-out or rolling-origin, not a row-wise hold-out.</li>
-<li>On 14 public OpenML datasets with a defensible entity or time key, grouped and temporal splits push plain split-conformal below its 0.90 target (median worst-group coverage about 0.81 on the held-out TableShift arm).</li>
-<li>No tested distribution-free conformal remedy restores group-conditional coverage at the majority level (<strong>H1 REJECT</strong>).</li>
-<li>Ranking the same test items by a free uncertainty score and abstaining on the highest-risk ones beats random deferral on 13 of 14 exploratory datasets and matches a budget-matched tuned selector on held-out TableShift (<strong>H2 CONFIRM</strong>).</li>
-<li>Repair remains far below an oracle ceiling (median repair ratio 0.34 vs 0.75); the prescription is selective-risk fallback, not a restored coverage guarantee.</li>
-<li>The collapse is model-agnostic across XGBoost, LightGBM, TabICLv2, and TabDPT: tabular foundation models do not auto-repair the gap.</li>
-<li>The preregistered Stage-2 conjunctive gate evaluates to <strong>KILL</strong> because the grouped-gap count is split-realization-fragile and key-inclusion-sensitive; only the repair count is load-bearing.</li>
-<li>The contribution is a reusable protocol — keyed split comparison, coverage test, uncertainty abstention fallback — not a new estimator.</li>
-</ol>
+<p class="kicker">Public code leaf</p>
+<h1>structured-data-fm-reliability-research</h1>
+<p>This page describes the public repository <a href="https://github.com/PeterPonyu/structured-data-fm-reliability-research">PeterPonyu/structured-data-fm-reliability-research</a>. It is a code and protocol leaf. It does not host figures or result numbers.</p>
+<h2>What the code does</h2>
+<p>Python scripts for a split-conditioned selective-prediction reliability audit on keyed tabular data. A frozen predictor (gradient-boosted tree or open-weights tabular foundation model) is wrapped in split-conformal prediction. The same items are scored under a random row split and under a leave-group-out or rolling-origin split. An optional abstention step ranks items by a model-native uncertainty score.</p>
+<p>No financial, medical, or business deployment claims.</p>
+<h2>Code and archive</h2>
+<ul><li>Repository: <a href="https://github.com/PeterPonyu/structured-data-fm-reliability-research">github.com/PeterPonyu/structured-data-fm-reliability-research</a></li><li>Zenodo archive: <a href="https://doi.org/10.5281/zenodo.21130297">10.5281/zenodo.21130297</a></li></ul>
+<h2>What this leaf is not</h2>
+<p>Not a findings report. Not an article companion. Not an archive of figures. Install from the repository if you want the scripts; do not treat this leaf as a results page.</p>
   </main>
   <footer class="site">
     <div class="wrap">

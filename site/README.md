@@ -1,13 +1,13 @@
-# Structure tabular reliability audit (Pages source)
+# Structure code-and-protocol leaf (Pages source)
 
-Static HTML for keyed-split coverage, H1/H2, quarantine, and abstention.
-No npm. Python 3 stdlib only.
+Static HTML for the public code and protocol page.
+No npm. Python 3 stdlib only. Does not copy figure binaries or table extracts.
 
 ```bash
 python site/build.py
 ```
 
-Writes `docs/` (GitHub Pages artifact). Does not restyle source figure binaries.
+Writes `docs/` (GitHub Pages artifact).
 
 GitHub Actions (`.github/workflows/pages.yml`) runs the same command and uploads
 `docs/` with the official Pages actions. The workflow watches
@@ -19,15 +19,12 @@ GitHub Actions (`.github/workflows/pages.yml`) runs the same command and uploads
 site/
   build.py
   css/portal.css
-  js/keytoggle.js          # optional; both key conditions stay in the DOM
   templates/page.html
   content/*.md
-  data/                    # frozen table extracts (no workstation paths)
-  figures/                 # web-only binaries the runner cannot rasterize
 docs/                      # generated
 ```
 
 ## Identity
 
-Structure science only (keyed splits, H1/H2, quarantine, abstention).
-Do not copy GEO, JCP, RotCert, ASR, or Inspect assets.
+Code and protocol only. Do not stamp result numbers, figure binaries, or
+article-companion chrome onto this leaf.

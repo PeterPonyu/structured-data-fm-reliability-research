@@ -1,9 +1,0 @@
-task,model,conformal_cov_random,conformal_cov_ood,repair_ratio_ood,grouped_coverage_gap_worst_minus_best
-ACSIncome,xgboost,0.9076,0.9059,0.617,-0.0308
-ACSIncome,lightgbm,0.8985,0.9029,0.61765,-0.0376
-ACSPublicCoverage,xgboost,0.9004,0.8596,0.46117,-0.0503
-ACSPublicCoverage,lightgbm,0.9048,0.9208,0.53946,-0.0329
-ACSMobility,xgboost,0.8946,0.9081,0.41385,-0.0207
-ACSMobility,lightgbm,0.8919,0.8948,0.39714,-0.0194
-ACSEmployment,xgboost,0.898,0.9022,0.64067,-0.0353
-ACSEmployment,lightgbm,0.9041,0.9061,0.64019,-0.022

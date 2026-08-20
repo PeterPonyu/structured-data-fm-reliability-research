@@ -1,12 +1,6 @@
 # Figures
 
-Same frozen numbers as the tables. Coverage target 0.90 is the dashed line in the coverage panels.
+This path does not host figures or result numbers.
 
-<p class="legend">
-  <span><i class="swatch random"></i>random</span>
-  <span><i class="swatch grouped"></i>grouped / time</span>
-  <span><i class="swatch restore"></i>Restore</span>
-  <span><i class="swatch fail"></i>Fail</span>
-</p>
-
-{{figure_gallery}}
+Plot binaries that used to live under this route have been removed from the
+public leaf.
