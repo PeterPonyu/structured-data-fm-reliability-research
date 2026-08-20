@@ -5,8 +5,7 @@ open-weights tabular foundation models. Random-split validation is compared
 with leave-group-out and rolling-origin splits. No financial, medical, or
 business deployment claims.
 
-Code archive: Zenodo DOI [10.5281/zenodo.21130297](https://doi.org/10.5281/zenodo.21130297)
-(reserved draft; not yet public).
+Code archive: Zenodo DOI [10.5281/zenodo.21130297](https://doi.org/10.5281/zenodo.21130297).
 
 ## Question
 

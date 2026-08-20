@@ -773,9 +773,11 @@ def verify() -> None:
         raise SystemExit("verify: key page incomplete")
     repro = (OUT / "reproduce/index.html").read_text(encoding="utf-8")
     if "10.5281/zenodo.21130297" not in repro:
-        raise SystemExit("verify: reproduce missing reserved DOI")
+        raise SystemExit("verify: reproduce missing Zenodo DOI")
     if "github.com/PeterPonyu/structured-data-fm-reliability-research" not in repro:
         raise SystemExit("verify: reproduce missing public code archive")
+    if "not yet public" in home or "reserved draft" in home or "reserved draft" in repro:
+        raise SystemExit("verify: stale reserved-draft copy on live pages")
     cite_page = (OUT / "cite/index.html").read_text(encoding="utf-8")
     if "<pre><code>@misc{fu2026conformal," not in cite_page:
         raise SystemExit("verify: cite missing rendered BibTeX block")
@@ -955,7 +957,7 @@ def build() -> None:
         f'  title   = {{{cite["title"]}}},\n'
         f'  author  = {{{cite["author"]}}},\n'
         f'  year    = {{{cite["year"]}}},\n'
-        f'  howpublished = {{Zenodo reserved draft {cite["doi"]}}},\n'
+        f'  howpublished = {{Zenodo {cite["doi"]}}},\n'
         f'  url     = {{{cite["github"]}}}\n'
         "}\n"
         "```"
@@ -1051,7 +1053,7 @@ def build() -> None:
             "cite.md",
             "cite",
             "Record",
-            "Code archive and reserved Zenodo DOI.",
+            "Code archive and Zenodo DOI.",
             "",
             False,
             {"bibtex": bib, "root": "../"},
