@@ -99,6 +99,3 @@ python experiments/nd1_tabicl_fm_arm_full14.py   # GPU
 
 Key-excluded ablation: rerun Stage-1 / Stage-2 with `EXCLUDE_KEY=1`. Results
 change only by rerunning the scripts.
-
-Companion site (isolation-live):
-https://peterponyu.github.io/structured-data-fm-reliability-research/
