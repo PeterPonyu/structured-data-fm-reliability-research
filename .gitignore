@@ -6,3 +6,12 @@
 .env
 .env.*
 !.env.example
+
+# LaTeX build products; manuscript sources and final PDFs remain tracked.
+manuscripts/**/paper_*.aux
+manuscripts/**/paper_*.blg
+manuscripts/**/paper_*.fdb_latexmk
+manuscripts/**/paper_*.fls
+manuscripts/**/paper_*.log
+manuscripts/**/paper_*.out
+manuscripts/**/paper_*.spl
