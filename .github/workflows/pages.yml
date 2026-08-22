@@ -19,13 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Hash frozen extracts
-        run: |
-          if compgen -G "site/data/*" > /dev/null; then
-            find site/data -type f | sort | xargs sha256sum
-          else
-            echo "no extracts yet"
-          fi
+      - name: Verify frozen extracts
+        run: sha256sum --check --strict site/FROZEN_DATA_SHA256SUMS
 
   build:
     runs-on: ubuntu-latest
